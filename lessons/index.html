@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation English Course | Final Lessons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --light: #f0f9ff;
+            --dark: #1e293b;
+            --highlight: #fef3c7;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), #1e40af);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        .course-badge {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 64, 175, 0.9)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: #93c5fd;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Lessons Section */
+        .lessons {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .lesson-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .lesson-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lesson-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lesson-type {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        .lesson-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lesson-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .lesson-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            flex-grow: 1;
+        }
+        
+        .lesson-topics {
+            margin-bottom: 1.5rem;
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .lesson-topics h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        
+        .topics-list {
+            list-style-type: none;
+        }
+        
+        .topics-list li {
+            padding: 0.3rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        
+        .topics-list li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .lesson-link {
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        /* Progress Section */
+        .progress {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f0f4ff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e0e7ff;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 6px;
+            width: 75%;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary), #1e3a8a);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-plane"></i></span>
+                    Aviation English
+                    <span class="course-badge">Final Lessons</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#lessons">Lessons</a></li>
+                        <li><a href="#progress">Progress</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Aviation English Final Lessons</h1>
+            <p>Master the essential English communication skills for aviation professionals. Complete your training with these final lessons.</p>
+            <a href="#lessons" class="btn">Start Learning</a>
+            <a href="#progress" class="btn btn-outline">Check Progress</a>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section class="lessons" id="lessons">
+        <div class="container">
+            <h2 class="section-title">Final Aviation English Lessons</h2>
+            <div class="lessons-grid">
+                <!-- Lesson 17 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">17</div>
+                        <div class="lesson-type">Exam</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Final Interview Exam</h3>
+                        <p>Comprehensive evaluation of your aviation English proficiency through simulated interview scenarios.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Professional communication skills</li>
+                                <li>Aviation terminology</li>
+                                <li>Scenario-based responses</li>
+                                <li>Pronunciation and fluency</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson17.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 18 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">18</div>
+                        <div class="lesson-type">Optional</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Final Interview Exam Part 2</h3>
+                        <p>Additional practice and evaluation for those seeking extra assessment opportunities.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Advanced scenario responses</li>
+                                <li>Complex aviation situations</li>
+                                <li>Extended communication tasks</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson18.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 19 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">19</div>
+                        <div class="lesson-type">Procedure</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Pre-flight Briefing</h3>
+                        <p>Master the language and communication protocols for effective pre-flight briefings.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Crew communication</li>
+                                <li>Flight plan discussion</li>
+                                <li>Safety procedures review</li>
+                                <li>Weather and route briefing</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson19.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 20 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">20</div>
+                        <div class="lesson-type">Customer Service</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Welcome on Board</h3>
+                        <p>Learn professional welcoming announcements and passenger interaction protocols.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Welcome announcements</li>
+                                <li>Passenger assistance</li>
+                                <li>Seating guidance</li>
+                                <li>Initial safety instructions</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson20.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 21 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">21</div>
+                        <div class="lesson-type">Speaking Club</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Speaking Club – Pre-flight & Welcome</h3>
+                        <p>Practice the language from Lessons 19-20 in interactive speaking sessions.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Role-playing scenarios</li>
+                                <li>Pronunciation practice</li>
+                                <li>Fluency development</li>
+                                <li>Peer feedback</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson21.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 22 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">22</div>
+                        <div class="lesson-type">Procedure</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>After Take-off and into the Flight</h3>
+                        <p>Communication protocols and announcements for the cruise phase of flight.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Post-takeoff announcements</li>
+                                <li>Cruising altitude information</li>
+                                <li>Flight progress updates</li>
+                                <li>Weather conditions enroute</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson22.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 23 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">23</div>
+                        <div class="lesson-type">Service</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Cabin Services and Amenities</h3>
+                        <p>Learn vocabulary and phrases for offering services and amenities to passengers.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Food and beverage service</li>
+                                <li>Entertainment systems</li>
+                                <li>Comfort items</li>
+                                <li>Special requests handling</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson23.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lesson 24 -->
+                <div class="lesson-card">
+                    <div class="lesson-header">
+                        <div class="lesson-number">24</div>
+                        <div class="lesson-type">Speaking Club</div>
+                    </div>
+                    <div class="lesson-content">
+                        <h3>Speaking Club with Native Speaker</h3>
+                        <p>Practice aviation English with a native speaker focusing on real-world scenarios.</p>
+                        <div class="lesson-topics">
+                            <h4>Key Areas:</h4>
+                            <ul class="topics-list">
+                                <li>Interactive conversation practice</li>
+                                <li>Pronunciation correction</li>
+                                <li>Natural phrasing</li>
+                                <li>Cultural nuances</li>
+                            </ul>
+                        </div>
+                        <div class="lesson-link">
+                            <a href="lesson24.html" class="btn">Start Lesson</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional lessons would continue here -->
+                <!-- I've included the first 8 as examples -->
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress" id="progress">
+        <div class="container">
+            <h2 class="section-title">Your Learning Progress</h2>
+            <div class="progress-container">
+                <h3>Aviation English Course Completion</h3>
+                <p>You've completed 16 of 33 lessons. You're 75% through the final lessons!</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-stats">
+                    <div>Completed: 16 lessons</div>
+                    <div>Remaining: 17 lessons</div>
+                    <div>Progress: 75%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Course Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Speaking Practice</h3>
+                    <p>Regular speaking clubs with peers and native speakers</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Aviation Scenarios</h3>
+                    <p>Real-world situations and emergency procedures</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your improvement with detailed feedback</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-plane-departure"></i></div>
+                    <h3>Industry Focused</h3>
+                    <p>Content specifically designed for aviation professionals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="resources">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aviation English</h3>
+                    <p>Specialized English language training for aviation professionals. Final lessons covering essential communication skills.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#lessons">All Lessons</a></li>
+                        <li><a href="#progress">Progress Tracking</a></li>
+                        <li><a href="#features">Course Features</a></li>
+                        <li><a href="resources.html">Aviation Resources</a></li>
+                        <li><a href="exercises.html">Practice Exercises</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="pronunciation.html">Pronunciation Guide</a></li>
+                        <li><a href="scenarios.html">Scenario Videos</a></li>
+                        <li><a href="audio.html">Audio Exercises</a></li>
+                        <li><a href="phrasebook.html">Phrasebook</a></li>
+                        <li><a href="icao.html">ICAO Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Instructor</a></li>
+                        <li><a href="support.html">Technical Support</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Aviation English Course. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation for lesson cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Apply animation to lesson cards
+        document.querySelectorAll('.lesson-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+        
+        // Apply animation to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

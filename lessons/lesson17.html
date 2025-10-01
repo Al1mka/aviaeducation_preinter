@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 17: Final Interview Exam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .timer-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-indigo-500">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">Lesson 17: Final Interview Exam</h1>
+                    <p class="text-gray-600 mt-1">Master the art of professional interviews</p>
+                </div>
+                <div class="text-right">
+                    <div id="timer" class="text-2xl font-bold text-indigo-600 timer-pulse">60:00</div>
+                    <p class="text-sm text-gray-500">Class Timer</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow-md mb-8">
+            <div class="flex flex-wrap border-b">
+                <button onclick="showSection('overview')" id="tab-overview" class="tab-btn px-6 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600">Overview</button>
+                <button onclick="showSection('preparation')" id="tab-preparation" class="tab-btn px-6 py-3 font-semibold text-gray-500 hover:text-indigo-600">Preparation</button>
+                <button onclick="showSection('practice')" id="tab-practice" class="tab-btn px-6 py-3 font-semibold text-gray-500 hover:text-indigo-600">Practice</button>
+                <button onclick="showSection('assessment')" id="tab-assessment" class="tab-btn px-6 py-3 font-semibold text-gray-500 hover:text-indigo-600">Assessment</button>
+                <button onclick="showSection('resources')" id="tab-resources" class="tab-btn px-6 py-3 font-semibold text-gray-500 hover:text-indigo-600">Resources</button>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="section-overview" class="section-content">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Learning Objectives</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3">✓</span>
+                            <span>Master professional interview techniques and etiquette</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3">✓</span>
+                            <span>Practice answering common and behavioral interview questions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3">✓</span>
+                            <span>Develop confidence in presenting skills and experience</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3">✓</span>
+                            <span>Learn to ask thoughtful questions to employers</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">⏰ Lesson Timeline</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                            <span class="font-medium">Introduction & Warm-up</span>
+                            <span class="text-blue-600 font-bold">10 min</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                            <span class="font-medium">Interview Preparation</span>
+                            <span class="text-green-600 font-bold">15 min</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-yellow-50 rounded">
+                            <span class="font-medium">Mock Interview Practice</span>
+                            <span class="text-yellow-600 font-bold">25 min</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-purple-50 rounded">
+                            <span class="font-medium">Feedback & Wrap-up</span>
+                            <span class="text-purple-600 font-bold">10 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">🚀 Today's Challenge</h2>
+                <p class="text-lg mb-4">Students will participate in realistic mock interviews and receive constructive feedback to improve their interview performance.</p>
+                <button onclick="showSection('preparation')" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Start Lesson →</button>
+            </div>
+        </div>
+
+        <!-- Preparation Section -->
+        <div id="section-preparation" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">📋 Interview Preparation Checklist</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Before the Interview</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Research the company and role thoroughly</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Prepare your elevator pitch (30-60 seconds)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Practice common interview questions</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Prepare thoughtful questions to ask</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Plan your outfit and route</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">During the Interview</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Arrive 10-15 minutes early</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Maintain good eye contact and posture</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Use the STAR method for behavioral questions</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Ask clarifying questions when needed</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3 w-5 h-5 text-indigo-600">
+                                <span>Show enthusiasm and interest</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🌟 The STAR Method</h3>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-600 mb-2">S</div>
+                        <h4 class="font-semibold text-gray-800">Situation</h4>
+                        <p class="text-sm text-gray-600 mt-2">Set the context</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-green-600 mb-2">T</div>
+                        <h4 class="font-semibold text-gray-800">Task</h4>
+                        <p class="text-sm text-gray-600 mt-2">Describe your responsibility</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-yellow-600 mb-2">A</div>
+                        <h4 class="font-semibold text-gray-800">Action</h4>
+                        <p class="text-sm text-gray-600 mt-2">Explain what you did</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-purple-600 mb-2">R</div>
+                        <h4 class="font-semibold text-gray-800">Result</h4>
+                        <p class="text-sm text-gray-600 mt-2">Share the outcome</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Section -->
+        <div id="section-practice" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🎭 Mock Interview Practice</h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Question Categories</h3>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <button onclick="loadQuestions('general')" class="question-category bg-blue-100 text-blue-800 px-4 py-2 rounded-lg hover:bg-blue-200 transition-colors">General</button>
+                        <button onclick="loadQuestions('behavioral')" class="question-category bg-green-100 text-green-800 px-4 py-2 rounded-lg hover:bg-green-200 transition-colors">Behavioral</button>
+                        <button onclick="loadQuestions('technical')" class="question-category bg-purple-100 text-purple-800 px-4 py-2 rounded-lg hover:bg-purple-200 transition-colors">Technical</button>
+                        <button onclick="loadQuestions('situational')" class="question-category bg-orange-100 text-orange-800 px-4 py-2 rounded-lg hover:bg-orange-200 transition-colors">Situational</button>
+                    </div>
+                </div>
+
+                <div id="question-display" class="bg-gray-50 rounded-lg p-6 mb-6">
+                    <p class="text-gray-600 text-center">Select a question category above to begin practice</p>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <button onclick="previousQuestion()" id="prev-btn" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg cursor-not-allowed" disabled>← Previous</button>
+                    <div class="text-center">
+                        <span id="question-counter" class="text-gray-600">Question 0 of 0</span>
+                    </div>
+                    <button onclick="nextQuestion()" id="next-btn" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg cursor-not-allowed" disabled>Next →</button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">💡 Practice Tips</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-800 mb-2">Body Language</h4>
+                        <p class="text-sm text-gray-600">Maintain eye contact, sit up straight, and use confident gestures</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800 mb-2">Voice & Pace</h4>
+                        <p class="text-sm text-gray-600">Speak clearly, at a moderate pace, and with enthusiasm</p>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-800 mb-2">Content</h4>
+                        <p class="text-sm text-gray-600">Be specific, honest, and relate answers to the role</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Section -->
+        <div id="section-assessment" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">📊 Interview Performance Assessment</h2>
+                
+                <form id="assessment-form" onsubmit="calculateScore(event)">
+                    <div class="space-y-6">
+                        <div class="assessment-category">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">Professional Appearance & Punctuality</h3>
+                            <div class="grid grid-cols-5 gap-2 mb-4">
+                                <label class="text-center">
+                                    <input type="radio" name="appearance" value="1" class="mb-1">
+                                    <div class="text-sm">Poor</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="appearance" value="2" class="mb-1">
+                                    <div class="text-sm">Fair</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="appearance" value="3" class="mb-1">
+                                    <div class="text-sm">Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="appearance" value="4" class="mb-1">
+                                    <div class="text-sm">Very Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="appearance" value="5" class="mb-1">
+                                    <div class="text-sm">Excellent</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="assessment-category">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">Communication Skills</h3>
+                            <div class="grid grid-cols-5 gap-2 mb-4">
+                                <label class="text-center">
+                                    <input type="radio" name="communication" value="1" class="mb-1">
+                                    <div class="text-sm">Poor</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="communication" value="2" class="mb-1">
+                                    <div class="text-sm">Fair</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="communication" value="3" class="mb-1">
+                                    <div class="text-sm">Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="communication" value="4" class="mb-1">
+                                    <div class="text-sm">Very Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="communication" value="5" class="mb-1">
+                                    <div class="text-sm">Excellent</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="assessment-category">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">Knowledge & Preparation</h3>
+                            <div class="grid grid-cols-5 gap-2 mb-4">
+                                <label class="text-center">
+                                    <input type="radio" name="knowledge" value="1" class="mb-1">
+                                    <div class="text-sm">Poor</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="knowledge" value="2" class="mb-1">
+                                    <div class="text-sm">Fair</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="knowledge" value="3" class="mb-1">
+                                    <div class="text-sm">Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="knowledge" value="4" class="mb-1">
+                                    <div class="text-sm">Very Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="knowledge" value="5" class="mb-1">
+                                    <div class="text-sm">Excellent</div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="assessment-category">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-3">Confidence & Enthusiasm</h3>
+                            <div class="grid grid-cols-5 gap-2 mb-4">
+                                <label class="text-center">
+                                    <input type="radio" name="confidence" value="1" class="mb-1">
+                                    <div class="text-sm">Poor</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="confidence" value="2" class="mb-1">
+                                    <div class="text-sm">Fair</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="confidence" value="3" class="mb-1">
+                                    <div class="text-sm">Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="confidence" value="4" class="mb-1">
+                                    <div class="text-sm">Very Good</div>
+                                </label>
+                                <label class="text-center">
+                                    <input type="radio" name="confidence" value="5" class="mb-1">
+                                    <div class="text-sm">Excellent</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <button type="submit" class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">Calculate Score</button>
+                    </div>
+                </form>
+
+                <div id="score-result" class="hidden mt-8 p-6 rounded-lg"></div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">📝 Feedback Notes</h3>
+                <textarea id="feedback-notes" class="w-full h-32 p-4 border border-gray-300 rounded-lg resize-none" placeholder="Write feedback and improvement suggestions here..."></textarea>
+                <button onclick="saveFeedback()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">Save Feedback</button>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div id="section-resources" class="section-content hidden">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">📚 Additional Resources</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Interview Question Banks</h4>
+                            <p class="text-sm text-gray-600">Comprehensive lists of common interview questions by industry</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Body Language Guide</h4>
+                            <p class="text-sm text-gray-600">Visual guide to professional body language and presentation</p>
+                        </div>
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Salary Negotiation Tips</h4>
+                            <p class="text-sm text-gray-600">Strategies for discussing compensation professionally</p>
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <h4 class="font-semibold text-gray-800">Follow-up Templates</h4>
+                            <p class="text-sm text-gray-600">Thank you email templates and follow-up strategies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Homework Assignment</h2>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-yellow-800 mb-2">Practice Assignment</h4>
+                        <p class="text-sm text-yellow-700">Record yourself answering 3 behavioral questions using the STAR method. Review and identify areas for improvement.</p>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">Key Takeaways</h3>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>• First impressions matter - arrive early and dress professionally</li>
+                        <li>• Preparation is key - research the company and practice common questions</li>
+                        <li>• Use specific examples to demonstrate your skills and experience</li>
+                        <li>• Ask thoughtful questions to show genuine interest</li>
+                        <li>• Follow up with a thank you email within 24 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timer functionality
+        let timeLeft = 60 * 60; // 60 minutes in seconds
+        let timerInterval;
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    alert('Class time is up!');
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Section navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(`section-${sectionName}`).classList.remove('hidden');
+            document.getElementById(`section-${sectionName}`).classList.add('slide-in');
+            
+            // Update tab styles
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('text-indigo-600', 'border-b-2', 'border-indigo-600');
+                tab.classList.add('text-gray-500');
+            });
+            
+            const activeTab = document.getElementById(`tab-${sectionName}`);
+            activeTab.classList.remove('text-gray-500');
+            activeTab.classList.add('text-indigo-600', 'border-b-2', 'border-indigo-600');
+        }
+
+        // Interview questions
+        const questionBank = {
+            general: [
+                "Tell me about yourself.",
+                "Why do you want to work here?",
+                "What are your greatest strengths?",
+                "What is your biggest weakness?",
+                "Where do you see yourself in 5 years?"
+            ],
+            behavioral: [
+                "Tell me about a time you faced a challenge at work.",
+                "Describe a situation where you had to work with a difficult team member.",
+                "Give an example of when you showed leadership.",
+                "Tell me about a time you made a mistake. How did you handle it?",
+                "Describe a time when you had to meet a tight deadline."
+            ],
+            technical: [
+                "What technical skills are most relevant to this position?",
+                "How do you stay updated with industry trends?",
+                "Describe your experience with [specific software/tool].",
+                "Walk me through your problem-solving process.",
+                "What's the most complex project you've worked on?"
+            ],
+            situational: [
+                "How would you handle a disagreement with your supervisor?",
+                "What would you do if you were assigned a task you'd never done before?",
+                "How would you prioritize multiple urgent projects?",
+                "What would you do if you noticed a coworker wasn't pulling their weight?",
+                "How would you handle receiving constructive criticism?"
+            ]
+        };
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+
+        function loadQuestions(category) {
+            currentQuestions = questionBank[category];
+            currentQuestionIndex = 0;
+            displayCurrentQuestion();
+            updateNavigationButtons();
+        }
+
+        function displayCurrentQuestion() {
+            if (currentQuestions.length > 0) {
+                document.getElementById('question-display').innerHTML = `
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Interview Question</h3>
+                    <p class="text-gray-700 text-lg">${currentQuestions[currentQuestionIndex]}</p>
+                `;
+                document.getElementById('question-counter').textContent = 
+                    `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayCurrentQuestion();
+                updateNavigationButtons();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayCurrentQuestion();
+                updateNavigationButtons();
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (currentQuestions.length === 0) {
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                prevBtn.classList.add('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                nextBtn.classList.add('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                return;
+            }
+            
+            // Previous button
+            if (currentQuestionIndex === 0) {
+                prevBtn.disabled = true;
+                prevBtn.classList.add('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                prevBtn.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            } else {
+                prevBtn.disabled = false;
+                prevBtn.classList.remove('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                prevBtn.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            }
+            
+            // Next button
+            if (currentQuestionIndex === currentQuestions.length - 1) {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                nextBtn.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            } else {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
+                nextBtn.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+            }
+        }
+
+        // Assessment functionality
+        function calculateScore(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            let totalScore = 0;
+            let categoryCount = 0;
+            
+            const categories = ['appearance', 'communication', 'knowledge', 'confidence'];
+            
+            categories.forEach(category => {
+                const value = formData.get(category);
+                if (value) {
+                    totalScore += parseInt(value);
+                    categoryCount++;
+                }
+            });
+            
+            if (categoryCount === 0) {
+                alert('Please rate all categories before calculating the score.');
+                return;
+            }
+            
+            const averageScore = totalScore / categoryCount;
+            const percentage = (averageScore / 5) * 100;
+            
+            let grade, color, message;
+            
+            if (percentage >= 90) {
+                grade = 'A';
+                color = 'green';
+                message = 'Excellent interview performance! You\'re well-prepared for real interviews.';
+            } else if (percentage >= 80) {
+                grade = 'B';
+                color = 'blue';
+                message = 'Good interview performance with room for minor improvements.';
+            } else if (percentage >= 70) {
+                grade = 'C';
+                color = 'yellow';
+                message = 'Satisfactory performance. Focus on practicing weak areas.';
+            } else if (percentage >= 60) {
+                grade = 'D';
+                color = 'orange';
+                message = 'Needs improvement. Additional practice and preparation recommended.';
+            } else {
+                grade = 'F';
+                color = 'red';
+                message = 'Significant improvement needed. Consider additional coaching and practice.';
+            }
+            
+            const resultDiv = document.getElementById('score-result');
+            resultDiv.className = `mt-8 p-6 rounded-lg bg-${color}-50 border border-${color}-200`;
+            resultDiv.innerHTML = `
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-${color}-600 mb-2">${grade}</div>
+                    <div class="text-xl font-semibold text-${color}-800 mb-2">${percentage.toFixed(1)}%</div>
+                    <p class="text-${color}-700">${message}</p>
+                </div>
+            `;
+            resultDiv.classList.remove('hidden');
+        }
+
+        function saveFeedback() {
+            const feedback = document.getElementById('feedback-notes').value;
+            if (feedback.trim()) {
+                alert('Feedback saved successfully!');
+                // In a real application, this would save to a database
+            } else {
+                alert('Please enter some feedback before saving.');
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            startTimer();
+            showSection('overview');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987a70eb00b4eeba',t:'MTc1OTMwNTc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

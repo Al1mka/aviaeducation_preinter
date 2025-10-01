@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 22: After Take-off and into the Flight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .altitude-indicator {
+            animation: climb 3s ease-in-out infinite alternate;
+        }
+        @keyframes climb {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+        .turbulence {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        .smooth-flight {
+            animation: glide 4s ease-in-out infinite;
+        }
+        @keyframes glide {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .speaking-wave {
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+        .confidence-boost {
+            animation: boost 1s ease-out;
+        }
+        @keyframes boost {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .cloud-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            33% { transform: translateX(10px) translateY(-5px); }
+            66% { transform: translateX(-5px) translateY(5px); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sky-200 via-blue-100 to-indigo-200 min-h-screen font-sans">
+    <!-- Flight Status Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="cloud-float absolute top-4 left-10 text-6xl">☁️</div>
+            <div class="cloud-float absolute top-8 right-20 text-4xl" style="animation-delay: -2s;">☁️</div>
+            <div class="cloud-float absolute top-12 left-1/3 text-5xl" style="animation-delay: -4s;">☁️</div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 py-4 relative z-10">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="altitude-indicator text-4xl mr-4">🛫</div>
+                    <div>
+                        <h1 class="text-3xl font-bold">Flight SC-22: Cruising at Speaking Altitude</h1>
+                        <p class="text-blue-100 mt-1">After Take-off and into the Flight</p>
+                        <div class="flex items-center mt-2 text-sm">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded mr-2">AIRBORNE</span>
+                            <span>Altitude: 35,000 ft | Speed: Confident</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div id="flight-time" class="text-2xl font-bold">45:00</div>
+                    <p class="text-sm text-blue-100">Remaining Flight Time</p>
+                    <div class="mt-2">
+                        <div class="flex items-center justify-end">
+                            <span class="text-xs mr-2">Turbulence:</span>
+                            <div id="turbulence-indicator" class="flex">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <!-- Flight Dashboard -->
+        <div class="bg-white rounded-lg shadow-md mb-8 overflow-hidden">
+            <div class="bg-gradient-to-r from-gray-100 to-gray-200 px-6 py-3 border-b">
+                <h3 class="font-semibold text-gray-800 flex items-center">
+                    <span class="mr-2">🎛️</span>
+                    Flight Control Dashboard
+                </h3>
+            </div>
+            <div class="flex flex-wrap">
+                <button onclick="showSection('cruise')" id="tab-cruise" class="section-btn px-6 py-3 font-semibold text-blue-600 border-b-2 border-blue-600 bg-blue-50">🌤️ Smooth Cruise</button>
+                <button onclick="showSection('challenges')" id="tab-challenges" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">⛈️ Weather Challenges</button>
+                <button onclick="showSection('interactions')" id="tab-interactions" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">👥 Passenger Interactions</button>
+                <button onclick="showSection('endurance')" id="tab-endurance" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">💪 Speaking Endurance</button>
+                <button onclick="showSection('navigation')" id="tab-navigation" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🧭 Course Correction</button>
+            </div>
+        </div>
+
+        <!-- Smooth Cruise Section -->
+        <div id="section-cruise" class="section-content">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-3">🌤️</span>
+                        Maintaining Cruise Confidence
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+                            <h3 class="font-semibold text-blue-800 mb-2">Steady State Speaking</h3>
+                            <p class="text-blue-700 text-sm mb-3">Now that you're airborne, maintain consistent energy and engagement throughout your speaking journey.</p>
+                            <ul class="text-sm text-blue-600 space-y-1">
+                                <li>• Keep your energy level steady</li>
+                                <li>• Maintain eye contact with your audience</li>
+                                <li>• Use natural gestures and movement</li>
+                                <li>• Pace yourself for the long haul</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4">
+                            <h3 class="font-semibold text-green-800 mb-2">Autopilot Techniques</h3>
+                            <p class="text-green-700 text-sm mb-3">Develop automatic habits that keep you on course when speaking gets challenging.</p>
+                            <button onclick="learnAutopilot()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition-colors">Learn Techniques</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-3">📊</span>
+                        Flight Performance Monitor
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-3">Current Status</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-blue-600" id="speaking-altitude">35,000</div>
+                                    <div class="text-xs text-gray-600">Speaking Altitude (ft)</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-600" id="confidence-speed">450</div>
+                                    <div class="text-xs text-gray-600">Confidence Speed (mph)</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-purple-600" id="engagement-fuel">85%</div>
+                                    <div class="text-xs text-gray-600">Audience Engagement</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-orange-600" id="clarity-weather">Clear</div>
+                                    <div class="text-xs text-gray-600">Message Clarity</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-indigo-800 mb-2">Speaking Rhythm</h3>
+                            <div class="flex items-center justify-center mb-3">
+                                <div class="speaking-wave w-4 h-8 bg-indigo-400 mx-1 rounded"></div>
+                                <div class="speaking-wave w-4 h-12 bg-indigo-500 mx-1 rounded" style="animation-delay: 0.2s;"></div>
+                                <div class="speaking-wave w-4 h-6 bg-indigo-400 mx-1 rounded" style="animation-delay: 0.4s;"></div>
+                                <div class="speaking-wave w-4 h-10 bg-indigo-500 mx-1 rounded" style="animation-delay: 0.6s;"></div>
+                                <div class="speaking-wave w-4 h-8 bg-indigo-400 mx-1 rounded" style="animation-delay: 0.8s;"></div>
+                            </div>
+                            <p class="text-center text-indigo-700 text-sm">Optimal speaking rhythm detected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">🎯 Cruise Control Exercises</h2>
+                <p class="text-lg mb-6">Practice maintaining your speaking skills at a steady, confident level throughout extended presentations.</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <button onclick="startCruiseExercise('storytelling')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition-colors">
+                        <div class="text-2xl mb-2">📚</div>
+                        <div class="font-semibold">Extended Storytelling</div>
+                        <div class="text-sm opacity-90">5-minute narrative practice</div>
+                    </button>
+                    <button onclick="startCruiseExercise('presentation')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition-colors">
+                        <div class="text-2xl mb-2">📈</div>
+                        <div class="font-semibold">Presentation Flow</div>
+                        <div class="text-sm opacity-90">Sustained topic discussion</div>
+                    </button>
+                    <button onclick="startCruiseExercise('conversation')" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-4 rounded-lg transition-colors">
+                        <div class="text-2xl mb-2">💬</div>
+                        <div class="font-semibold">Conversation Stamina</div>
+                        <div class="text-sm opacity-90">Extended dialogue practice</div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="cruise-exercise" class="mt-8 bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎪 Active Exercise</h3>
+                <div id="exercise-content" class="mb-6"></div>
+                <div class="flex gap-4">
+                    <button onclick="pauseExercise()" class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700">⏸️ Pause</button>
+                    <button onclick="completeExercise()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">✅ Complete</button>
+                    <button onclick="extendExercise()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">⏰ Extend Time</button>
+                </div>
+                <div class="mt-4">
+                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                        <span>Exercise Progress</span>
+                        <span id="exercise-progress">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="exercise-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Challenges Section -->
+        <div id="section-challenges" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">⛈️</span>
+                    Navigating Speaking Turbulence
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Weather Conditions</h3>
+                        <div class="space-y-4">
+                            <div class="weather-card bg-gradient-to-r from-yellow-50 to-orange-100 p-4 rounded-lg cursor-pointer" onclick="encounterWeather('nervousness')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">😰</span>
+                                    <div>
+                                        <h4 class="font-semibold text-orange-800">Nervousness Storm</h4>
+                                        <p class="text-sm text-orange-700">Sudden anxiety and self-doubt</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="weather-card bg-gradient-to-r from-red-50 to-red-100 p-4 rounded-lg cursor-pointer" onclick="encounterWeather('forgetting')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🌪️</span>
+                                    <div>
+                                        <h4 class="font-semibold text-red-800">Memory Tornado</h4>
+                                        <p class="text-sm text-red-700">Forgetting your next point</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="weather-card bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg cursor-pointer" onclick="encounterWeather('distraction')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🌫️</span>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Distraction Fog</h4>
+                                        <p class="text-sm text-gray-700">Audience distractions and interruptions</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="weather-card bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg cursor-pointer" onclick="encounterWeather('technical')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">❄️</span>
+                                    <div>
+                                        <h4 class="font-semibold text-blue-800">Technical Ice Storm</h4>
+                                        <p class="text-sm text-blue-700">Equipment failures and tech issues</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Emergency Procedures</h3>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
+                            <h4 class="font-semibold text-red-800 mb-2">🚨 Speaking Emergency Kit</h4>
+                            <ul class="text-sm text-red-700 space-y-1">
+                                <li>• Take a deep breath and pause</li>
+                                <li>• Acknowledge the situation calmly</li>
+                                <li>• Use your backup material</li>
+                                <li>• Engage the audience for support</li>
+                                <li>• Redirect to your main message</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">✅ Recovery Strategies</h4>
+                            <div class="space-y-2">
+                                <button onclick="practiceRecovery('pause')" class="w-full text-left bg-white p-2 rounded text-sm hover:bg-green-100 transition-colors">
+                                    <strong>Strategic Pause:</strong> "Let me take a moment to gather my thoughts..."
+                                </button>
+                                <button onclick="practiceRecovery('redirect')" class="w-full text-left bg-white p-2 rounded text-sm hover:bg-green-100 transition-colors">
+                                    <strong>Smooth Redirect:</strong> "That reminds me of an important point..."
+                                </button>
+                                <button onclick="practiceRecovery('engage')" class="w-full text-left bg-white p-2 rounded text-sm hover:bg-green-100 transition-colors">
+                                    <strong>Audience Engagement:</strong> "What do you think about this situation?"
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="weather-encounter" class="hidden bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-yellow-800 mb-4">⚠️ Weather Alert Active</h3>
+                    <div id="weather-content" class="mb-4"></div>
+                    <div class="flex gap-4">
+                        <button onclick="handleWeather()" class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700">Navigate Through</button>
+                        <button onclick="avoidWeather()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Change Course</button>
+                        <button onclick="landSafely()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Emergency Landing</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎯 Turbulence Simulator</h3>
+                <p class="text-gray-600 mb-4">Practice maintaining your composure and speaking clarity during challenging conditions.</p>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="startTurbulence('light')" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Light Turbulence</button>
+                    <button onclick="startTurbulence('moderate')" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Moderate Turbulence</button>
+                    <button onclick="startTurbulence('severe')" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Severe Turbulence</button>
+                </div>
+                <div id="turbulence-zone" class="hidden bg-gray-100 rounded-lg p-6 text-center">
+                    <div id="turbulence-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Passenger Interactions Section -->
+        <div id="section-interactions" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">👥</span>
+                    In-Flight Passenger Management
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="passenger-type bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">😊</div>
+                        <h3 class="text-lg font-semibold text-green-800 mb-2">Engaged Passengers</h3>
+                        <p class="text-sm text-green-700 mb-4">Audience members who are actively listening and participating</p>
+                        <button onclick="interactWithPassenger('engaged')" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition-colors">Interact</button>
+                    </div>
+                    
+                    <div class="passenger-type bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">😴</div>
+                        <h3 class="text-lg font-semibold text-yellow-800 mb-2">Distracted Passengers</h3>
+                        <p class="text-sm text-yellow-700 mb-4">Audience members who seem bored or unfocused</p>
+                        <button onclick="interactWithPassenger('distracted')" class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700 transition-colors">Re-engage</button>
+                    </div>
+                    
+                    <div class="passenger-type bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">😠</div>
+                        <h3 class="text-lg font-semibold text-red-800 mb-2">Difficult Passengers</h3>
+                        <p class="text-sm text-red-700 mb-4">Challenging audience members or hostile questions</p>
+                        <button onclick="interactWithPassenger('difficult')" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition-colors">Handle</button>
+                    </div>
+                </div>
+
+                <div id="passenger-interaction" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-4">🎭 Passenger Interaction Scenario</h3>
+                    <div id="interaction-content" class="mb-4"></div>
+                    <div class="flex gap-4">
+                        <button onclick="respondToPassenger('professional')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Professional Response</button>
+                        <button onclick="respondToPassenger('friendly')" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Friendly Approach</button>
+                        <button onclick="respondToPassenger('assertive')" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Assertive Handling</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">📋 Cabin Crew Communication Checklist</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-3">Pre-Interaction</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-1">
+                                <span class="text-sm">Assess the passenger's mood and needs</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-2">
+                                <span class="text-sm">Maintain confident body language</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-3">
+                                <span class="text-sm">Prepare multiple response strategies</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-700 mb-3">During Interaction</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-4">
+                                <span class="text-sm">Listen actively and empathetically</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-5">
+                                <span class="text-sm">Speak clearly and calmly</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="mr-3" id="check-6">
+                                <span class="text-sm">Find common ground or solutions</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="completeChecklist()" class="mt-4 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">Complete Interaction Training</button>
+            </div>
+        </div>
+
+        <!-- Speaking Endurance Section -->
+        <div id="section-endurance" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">💪</span>
+                    Building Speaking Stamina
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Endurance Challenges</h3>
+                        <div class="space-y-4">
+                            <div class="endurance-card bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">🏃‍♂️ Speaking Marathon</h4>
+                                <p class="text-sm text-blue-700 mb-3">Maintain energy for 10+ minutes of continuous speaking</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-blue-600">Duration: 10 min</span>
+                                    <button onclick="startEnduranceChallenge('marathon')" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Start</button>
+                                </div>
+                            </div>
+                            
+                            <div class="endurance-card bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">🎯 Precision Speaking</h4>
+                                <p class="text-sm text-green-700 mb-3">Maintain clarity and focus under time pressure</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-green-600">Duration: 5 min</span>
+                                    <button onclick="startEnduranceChallenge('precision')" class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Start</button>
+                                </div>
+                            </div>
+                            
+                            <div class="endurance-card bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">🔄 Topic Switching</h4>
+                                <p class="text-sm text-purple-700 mb-3">Smoothly transition between multiple topics</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs text-purple-600">Duration: 7 min</span>
+                                    <button onclick="startEnduranceChallenge('switching')" class="bg-purple-600 text-white px-3 py-1 rounded text-sm hover:bg-purple-700">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Stamina Meter</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="text-center mb-4">
+                                <div class="text-4xl font-bold text-indigo-600" id="stamina-level">100%</div>
+                                <div class="text-sm text-gray-600">Current Speaking Stamina</div>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                        <span>Voice Strength</span>
+                                        <span id="voice-stamina">100%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="voice-bar" class="bg-blue-600 h-2 rounded-full transition-all" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                        <span>Mental Focus</span>
+                                        <span id="focus-stamina">100%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="focus-bar" class="bg-green-600 h-2 rounded-full transition-all" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                        <span>Physical Energy</span>
+                                        <span id="energy-stamina">100%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="energy-bar" class="bg-purple-600 h-2 rounded-full transition-all" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 flex gap-2">
+                                <button onclick="restoreStamina()" class="flex-1 bg-green-500 text-white py-2 rounded text-sm hover:bg-green-600">🔋 Recharge</button>
+                                <button onclick="pushLimits()" class="flex-1 bg-red-500 text-white py-2 rounded text-sm hover:bg-red-600">🚀 Push Limits</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="endurance-challenge" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🏋️‍♂️ Active Endurance Challenge</h3>
+                <div id="challenge-content" class="mb-6"></div>
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex gap-4">
+                        <button onclick="pauseChallenge()" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">⏸️ Pause</button>
+                        <button onclick="completeChallenge()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">✅ Complete</button>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-lg font-bold text-blue-600" id="challenge-timer">00:00</div>
+                        <div class="text-xs text-gray-600">Time Elapsed</div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div id="challenge-progress-bar" class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Correction Section -->
+        <div id="section-navigation" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">🧭</span>
+                    Mid-Flight Course Corrections
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Navigation Instruments</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-800 mb-2">📡 Audience Radar</h4>
+                                <p class="text-sm text-blue-700 mb-3">Monitor audience engagement and adjust accordingly</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-blue-600">Engagement Level:</span>
+                                    <div class="flex">
+                                        <span class="w-2 h-2 bg-green-400 rounded-full mr-1" id="radar-1"></span>
+                                        <span class="w-2 h-2 bg-green-400 rounded-full mr-1" id="radar-2"></span>
+                                        <span class="w-2 h-2 bg-yellow-400 rounded-full mr-1" id="radar-3"></span>
+                                        <span class="w-2 h-2 bg-gray-300 rounded-full mr-1" id="radar-4"></span>
+                                        <span class="w-2 h-2 bg-gray-300 rounded-full" id="radar-5"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-green-800 mb-2">🎯 Message Compass</h4>
+                                <p class="text-sm text-green-700 mb-3">Stay on track with your main objectives</p>
+                                <button onclick="checkCompass()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">Check Direction</button>
+                            </div>
+                            
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-purple-800 mb-2">⏰ Time Altimeter</h4>
+                                <p class="text-sm text-purple-700 mb-3">Manage your speaking time effectively</p>
+                                <div class="flex justify-between text-xs text-purple-600">
+                                    <span>Time Used: <span id="time-used">25%</span></span>
+                                    <span>Content Covered: <span id="content-covered">30%</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Correction Strategies</h3>
+                        <div class="space-y-4">
+                            <div class="correction-option bg-gradient-to-r from-yellow-50 to-orange-100 p-4 rounded-lg cursor-pointer" onclick="applyCorrectionStrategy('pace')">
+                                <h4 class="font-semibold text-orange-800 mb-2">🐌➡️🐰 Adjust Pace</h4>
+                                <p class="text-sm text-orange-700">Speed up or slow down based on time constraints</p>
+                            </div>
+                            
+                            <div class="correction-option bg-gradient-to-r from-blue-50 to-indigo-100 p-4 rounded-lg cursor-pointer" onclick="applyCorrectionStrategy('engagement')">
+                                <h4 class="font-semibold text-indigo-800 mb-2">🎪 Boost Engagement</h4>
+                                <p class="text-sm text-indigo-700">Add interactive elements or change energy level</p>
+                            </div>
+                            
+                            <div class="correction-option bg-gradient-to-r from-green-50 to-teal-100 p-4 rounded-lg cursor-pointer" onclick="applyCorrectionStrategy('content')">
+                                <h4 class="font-semibold text-teal-800 mb-2">📝 Modify Content</h4>
+                                <p class="text-sm text-teal-700">Skip, add, or reorganize material as needed</p>
+                            </div>
+                            
+                            <div class="correction-option bg-gradient-to-r from-purple-50 to-pink-100 p-4 rounded-lg cursor-pointer" onclick="applyCorrectionStrategy('style')">
+                                <h4 class="font-semibold text-pink-800 mb-2">🎭 Change Style</h4>
+                                <p class="text-sm text-pink-700">Adapt your delivery style to match audience needs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="correction-applied" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">✈️ Course Correction Applied</h3>
+                <div id="correction-feedback" class="mb-6"></div>
+                <div class="flex gap-4">
+                    <button onclick="monitorResults()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">📊 Monitor Results</button>
+                    <button onclick="makeAnotherCorrection()" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">🔄 Another Correction</button>
+                    <button onclick="continueOnCourse()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">✅ Continue Course</button>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">🎯 Flight Plan Summary</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="total-corrections">0</div>
+                        <div class="text-sm opacity-90">Course Corrections Made</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="engagement-score">85%</div>
+                        <div class="text-sm opacity-90">Average Engagement</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="flight-efficiency">92%</div>
+                        <div class="text-sm opacity-90">Flight Efficiency</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button onclick="generateFlightReport()" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Generate Flight Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Flight timer and status
+        let flightTimeRemaining = 45 * 60; // 45 minutes
+        let timerInterval;
+        let currentTurbulence = 'smooth';
+        let staminaLevels = { voice: 100, focus: 100, energy: 100 };
+        let flightStats = { corrections: 0, engagement: 85, efficiency: 92 };
+
+        function startFlightTimer() {
+            timerInterval = setInterval(() => {
+                if (flightTimeRemaining > 0) {
+                    flightTimeRemaining--;
+                    updateFlightDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    alert('Flight completed! Time to prepare for landing.');
+                }
+            }, 1000);
+        }
+
+        function updateFlightDisplay() {
+            const minutes = Math.floor(flightTimeRemaining / 60);
+            const seconds = flightTimeRemaining % 60;
+            document.getElementById('flight-time').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Section navigation
+        function showSection(sectionName) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            document.getElementById(`section-${sectionName}`).classList.remove('hidden');
+            
+            const tabs = document.querySelectorAll('.section-btn');
+            tabs.forEach(tab => {
+                tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600', 'bg-blue-50');
+                tab.classList.add('text-gray-500');
+            });
+            
+            const activeTab = document.getElementById(`tab-${sectionName}`);
+            activeTab.classList.remove('text-gray-500');
+            activeTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600', 'bg-blue-50');
+        }
+
+        // Autopilot techniques
+        function learnAutopilot() {
+            alert('Autopilot Techniques:\n\n1. Breathing Rhythm: Maintain steady breathing to keep your voice strong\n2. Gesture Patterns: Use consistent hand movements to stay natural\n3. Eye Contact Sweep: Systematically connect with different audience sections\n4. Vocal Variety: Automatically vary your tone and pace\n5. Recovery Phrases: Have go-to phrases ready for any situation');
+        }
+
+        // Cruise exercises
+        let currentExercise = null;
+        let exerciseTimer = null;
+        let exerciseProgress = 0;
+
+        function startCruiseExercise(type) {
+            currentExercise = type;
+            exerciseProgress = 0;
+            
+            const exercises = {
+                storytelling: {
+                    title: "Extended Storytelling Challenge",
+                    description: "Tell a complete story with beginning, middle, and end. Maintain engagement for 5 full minutes.",
+                    duration: 300
+                },
+                presentation: {
+                    title: "Presentation Flow Challenge", 
+                    description: "Present on a topic of your choice, maintaining clear structure and smooth transitions.",
+                    duration: 420
+                },
+                conversation: {
+                    title: "Conversation Stamina Challenge",
+                    description: "Engage in sustained dialogue, asking questions and building on responses.",
+                    duration: 360
+                }
+            };
+
+            const exercise = exercises[type];
+            document.getElementById('exercise-content').innerHTML = `
+                <h4 class="font-semibold text-gray-800 mb-2">${exercise.title}</h4>
+                <p class="text-gray-700 mb-4">${exercise.description}</p>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <p class="text-blue-800 font-semibold">Duration: ${Math.floor(exercise.duration / 60)} minutes</p>
+                    <p class="text-blue-700 text-sm">Speak continuously while maintaining energy and clarity</p>
+                </div>
+            `;
+            
+            document.getElementById('cruise-exercise').classList.remove('hidden');
+            startExerciseTimer(exercise.duration);
+        }
+
+        function startExerciseTimer(duration) {
+            let timeElapsed = 0;
+            exerciseTimer = setInterval(() => {
+                timeElapsed++;
+                exerciseProgress = (timeElapsed / duration) * 100;
+                document.getElementById('exercise-progress').textContent = `${Math.round(exerciseProgress)}%`;
+                document.getElementById('exercise-bar').style.width = `${exerciseProgress}%`;
+                
+                if (timeElapsed >= duration) {
+                    clearInterval(exerciseTimer);
+                    completeExercise();
+                }
+            }, 1000);
+        }
+
+        function pauseExercise() {
+            if (exerciseTimer) {
+                clearInterval(exerciseTimer);
+                alert('Exercise paused. Take a moment to rest, then continue when ready.');
+            }
+        }
+
+        function completeExercise() {
+            if (exerciseTimer) clearInterval(exerciseTimer);
+            document.getElementById('cruise-exercise').classList.add('hidden');
+            alert('Excellent work! You\'ve completed the cruise exercise and built your speaking endurance.');
+        }
+
+        function extendExercise() {
+            alert('Time extended by 2 minutes! Keep going strong.');
+        }
+
+        // Weather challenges
+        const weatherConditions = {
+            nervousness: {
+                title: "Nervousness Storm Encountered",
+                description: "You suddenly feel anxious and your confidence wavers. Your heart rate increases and you start to doubt yourself.",
+                solutions: ["Take three deep breaths", "Focus on one friendly face", "Remember your preparation", "Use positive self-talk"]
+            },
+            forgetting: {
+                title: "Memory Tornado Active",
+                description: "You've completely lost your train of thought and can't remember what comes next in your presentation.",
+                solutions: ["Pause and smile", "Ask the audience a question", "Refer to your notes", "Summarize what you've covered"]
+            },
+            distraction: {
+                title: "Distraction Fog Detected",
+                description: "Someone's phone is ringing, people are talking, or there's noise outside disrupting your flow.",
+                solutions: ["Acknowledge the distraction", "Wait for quiet", "Raise your voice slightly", "Use humor to refocus"]
+            },
+            technical: {
+                title: "Technical Ice Storm",
+                description: "Your microphone stops working, the projector fails, or your slides won't advance.",
+                solutions: ["Stay calm and smile", "Project your voice", "Continue without technology", "Ask for technical assistance"]
+            }
+        };
+
+        function encounterWeather(type) {
+            const weather = weatherConditions[type];
+            document.getElementById('weather-content').innerHTML = `
+                <h4 class="font-semibold text-yellow-800 mb-3">${weather.title}</h4>
+                <p class="text-yellow-700 mb-4">${weather.description}</p>
+                <div class="bg-white p-3 rounded">
+                    <h5 class="font-semibold text-gray-800 mb-2">Recommended Actions:</h5>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        ${weather.solutions.map(solution => `<li>• ${solution}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            document.getElementById('weather-encounter').classList.remove('hidden');
+            setTurbulence('moderate');
+        }
+
+        function handleWeather() {
+            alert('Great choice! You\'ve navigated through the challenge successfully. Your confidence is stronger now.');
+            document.getElementById('weather-encounter').classList.add('hidden');
+            setTurbulence('light');
+        }
+
+        function avoidWeather() {
+            alert('Smart navigation! You\'ve found an alternative approach and maintained your composure.');
+            document.getElementById('weather-encounter').classList.add('hidden');
+            setTurbulence('smooth');
+        }
+
+        function landSafely() {
+            alert('Emergency procedures executed perfectly! Sometimes the best choice is to pause and regroup.');
+            document.getElementById('weather-encounter').classList.add('hidden');
+            setTurbulence('smooth');
+        }
+
+        function setTurbulence(level) {
+            currentTurbulence = level;
+            const indicators = document.querySelectorAll('#turbulence-indicator span');
+            indicators.forEach(indicator => indicator.classList.remove('bg-green-400', 'bg-yellow-400', 'bg-red-400'));
+            
+            switch(level) {
+                case 'smooth':
+                    indicators[0].classList.add('bg-green-400');
+                    break;
+                case 'light':
+                    indicators[0].classList.add('bg-yellow-400');
+                    indicators[1].classList.add('bg-yellow-400');
+                    break;
+                case 'moderate':
+                    indicators[0].classList.add('bg-red-400');
+                    indicators[1].classList.add('bg-red-400');
+                    indicators[2].classList.add('bg-red-400');
+                    break;
+            }
+        }
+
+        function startTurbulence(intensity) {
+            const turbulenceContent = {
+                light: "Light choppiness detected. Practice maintaining your speaking rhythm while the room experiences minor distractions.",
+                moderate: "Moderate turbulence ahead. Continue speaking clearly while dealing with interruptions and unexpected questions.",
+                severe: "Severe turbulence! Maintain composure and clear communication during high-stress, challenging conditions."
+            };
+            
+            document.getElementById('turbulence-content').innerHTML = `
+                <div class="${intensity === 'severe' ? 'turbulence' : ''} p-4">
+                    <h4 class="font-semibold text-gray-800 mb-3">${intensity.toUpperCase()} TURBULENCE SIMULATION</h4>
+                    <p class="text-gray-700 mb-4">${turbulenceContent[intensity]}</p>
+                    <p class="text-sm text-gray-600">Speak for 2 minutes while maintaining confidence and clarity.</p>
+                </div>
+            `;
+            document.getElementById('turbulence-zone').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('turbulence-zone').classList.add('hidden');
+                alert('Turbulence simulation complete! You maintained excellent composure under pressure.');
+            }, 120000); // 2 minutes
+        }
+
+        // Passenger interactions
+        const passengerScenarios = {
+            engaged: {
+                scenario: "A passenger raises their hand with an enthusiastic question about your topic. They seem genuinely interested and want to know more details.",
+                responses: {
+                    professional: "Thank you for that excellent question. Let me elaborate on that point...",
+                    friendly: "I'm so glad you asked! That's one of my favorite aspects to discuss...",
+                    assertive: "That's a great question that ties directly into our main objective..."
+                }
+            },
+            distracted: {
+                scenario: "You notice several passengers looking at their phones, yawning, or having side conversations. The energy in the room is dropping.",
+                responses: {
+                    professional: "Let me share something that might interest everyone here...",
+                    friendly: "I can see we might need to shake things up a bit. Let's try something interactive...",
+                    assertive: "This next point is crucial for everyone to understand..."
+                }
+            },
+            difficult: {
+                scenario: "A passenger interrupts you aggressively, challenging your expertise and questioning your information in front of everyone.",
+                responses: {
+                    professional: "I appreciate your perspective. Let me address your concerns directly...",
+                    friendly: "That's an interesting point of view. I'd like to understand your experience better...",
+                    assertive: "I understand you have concerns. Let's discuss this constructively..."
+                }
+            }
+        };
+
+        function interactWithPassenger(type) {
+            const scenario = passengerScenarios[type];
+            document.getElementById('interaction-content').innerHTML = `
+                <div class="bg-white p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-gray-800 mb-2">Scenario:</h4>
+                    <p class="text-gray-700">${scenario.scenario}</p>
+                </div>
+                <p class="text-blue-700 mb-4">Choose your response approach:</p>
+            `;
+            document.getElementById('passenger-interaction').classList.remove('hidden');
+            window.currentPassengerType = type;
+        }
+
+        function respondToPassenger(responseType) {
+            const scenario = passengerScenarios[window.currentPassengerType];
+            const response = scenario.responses[responseType];
+            
+            alert(`Your ${responseType} response: "${response}"\n\nExcellent handling! You maintained professionalism while addressing the passenger's needs.`);
+            document.getElementById('passenger-interaction').classList.add('hidden');
+        }
+
+        function completeChecklist() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            if (checkedCount >= 4) {
+                alert('Excellent! You\'ve mastered passenger interaction protocols. You\'re ready for any in-flight situation.');
+            } else {
+                alert('Please review and check off more items to complete your training.');
+            }
+        }
+
+        // Endurance challenges
+        function startEnduranceChallenge(type) {
+            const challenges = {
+                marathon: {
+                    title: "Speaking Marathon Challenge",
+                    description: "Maintain high energy and clear articulation for 10 continuous minutes. Focus on varying your pace and keeping the audience engaged.",
+                    duration: 600
+                },
+                precision: {
+                    title: "Precision Speaking Challenge",
+                    description: "Deliver complex information clearly and concisely under time pressure. Every word must count.",
+                    duration: 300
+                },
+                switching: {
+                    title: "Topic Switching Challenge", 
+                    description: "Smoothly transition between 5 different topics, maintaining coherence and audience interest throughout.",
+                    duration: 420
+                }
+            };
+
+            const challenge = challenges[type];
+            document.getElementById('challenge-content').innerHTML = `
+                <h4 class="font-semibold text-gray-800 mb-2">${challenge.title}</h4>
+                <p class="text-gray-700 mb-4">${challenge.description}</p>
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <p class="text-indigo-800 font-semibold">Target Duration: ${Math.floor(challenge.duration / 60)} minutes</p>
+                    <p class="text-indigo-700 text-sm">Monitor your stamina levels and push through fatigue</p>
+                </div>
+            `;
+            
+            document.getElementById('endurance-challenge').classList.remove('hidden');
+            startChallengeTimer(challenge.duration);
+            
+            // Gradually decrease stamina during challenge
+            const staminaInterval = setInterval(() => {
+                if (staminaLevels.voice > 20) staminaLevels.voice -= 2;
+                if (staminaLevels.focus > 30) staminaLevels.focus -= 1;
+                if (staminaLevels.energy > 25) staminaLevels.energy -= 1.5;
+                updateStaminaDisplay();
+            }, 5000);
+            
+            window.currentStaminaInterval = staminaInterval;
+        }
+
+        function startChallengeTimer(duration) {
+            let elapsed = 0;
+            window.challengeTimer = setInterval(() => {
+                elapsed++;
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('challenge-timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                const progress = (elapsed / duration) * 100;
+                document.getElementById('challenge-progress-bar').style.width = `${progress}%`;
+                
+                if (elapsed >= duration) {
+                    completeChallenge();
+                }
+            }, 1000);
+        }
+
+        function pauseChallenge() {
+            if (window.challengeTimer) {
+                clearInterval(window.challengeTimer);
+                clearInterval(window.currentStaminaInterval);
+                alert('Challenge paused. Take a moment to recover your stamina.');
+            }
+        }
+
+        function completeChallenge() {
+            if (window.challengeTimer) clearInterval(window.challengeTimer);
+            if (window.currentStaminaInterval) clearInterval(window.currentStaminaInterval);
+            
+            document.getElementById('endurance-challenge').classList.add('hidden');
+            alert('Outstanding endurance! You\'ve pushed through the challenge and built incredible speaking stamina.');
+            
+            // Boost stamina as reward
+            staminaLevels.voice = Math.min(100, staminaLevels.voice + 20);
+            staminaLevels.focus = Math.min(100, staminaLevels.focus + 15);
+            staminaLevels.energy = Math.min(100, staminaLevels.energy + 25);
+            updateStaminaDisplay();
+        }
+
+        function updateStaminaDisplay() {
+            const overall = Math.round((staminaLevels.voice + staminaLevels.focus + staminaLevels.energy) / 3);
+            document.getElementById('stamina-level').textContent = `${overall}%`;
+            
+            document.getElementById('voice-stamina').textContent = `${Math.round(staminaLevels.voice)}%`;
+            document.getElementById('voice-bar').style.width = `${staminaLevels.voice}%`;
+            
+            document.getElementById('focus-stamina').textContent = `${Math.round(staminaLevels.focus)}%`;
+            document.getElementById('focus-bar').style.width = `${staminaLevels.focus}%`;
+            
+            document.getElementById('energy-stamina').textContent = `${Math.round(staminaLevels.energy)}%`;
+            document.getElementById('energy-bar').style.width = `${staminaLevels.energy}%`;
+        }
+
+        function restoreStamina() {
+            staminaLevels.voice = Math.min(100, staminaLevels.voice + 30);
+            staminaLevels.focus = Math.min(100, staminaLevels.focus + 25);
+            staminaLevels.energy = Math.min(100, staminaLevels.energy + 35);
+            updateStaminaDisplay();
+            alert('Stamina restored! You feel refreshed and ready to continue.');
+        }
+
+        function pushLimits() {
+            if (staminaLevels.voice > 10 && staminaLevels.focus > 15 && staminaLevels.energy > 20) {
+                staminaLevels.voice -= 15;
+                staminaLevels.focus -= 10;
+                staminaLevels.energy -= 20;
+                updateStaminaDisplay();
+                alert('You\'re pushing your limits! This builds incredible resilience, but monitor your stamina carefully.');
+            } else {
+                alert('Your stamina is too low to push limits safely. Consider recharging first.');
+            }
+        }
+
+        // Course correction
+        function checkCompass() {
+            alert('Message Compass Check:\n\n✓ Main objective: Clear\n✓ Key points: On track\n✓ Audience connection: Strong\n✓ Time management: Good\n\nYou\'re heading in the right direction!');
+        }
+
+        function applyCorrectionStrategy(strategy) {
+            const strategies = {
+                pace: {
+                    title: "Pace Adjustment Applied",
+                    feedback: "You\'ve successfully adjusted your speaking pace. The audience is now better able to follow your content and stay engaged."
+                },
+                engagement: {
+                    title: "Engagement Boost Activated",
+                    feedback: "Great energy shift! You\'ve re-energized the room with interactive elements and increased enthusiasm."
+                },
+                content: {
+                    title: "Content Modification Complete",
+                    feedback: "Smart content adjustment! You\'ve streamlined your material to better fit the time and audience needs."
+                },
+                style: {
+                    title: "Delivery Style Updated",
+                    feedback: "Excellent adaptation! Your new delivery style is much better suited to this audience and situation."
+                }
+            };
+
+            const correction = strategies[strategy];
+            document.getElementById('correction-feedback').innerHTML = `
+                <h4 class="font-semibold text-green-800 mb-2">${correction.title}</h4>
+                <p class="text-green-700">${correction.feedback}</p>
+                <div class="mt-3 p-3 bg-green-50 rounded">
+                    <p class="text-green-800 text-sm font-semibold">Impact: Audience engagement increased by 15%</p>
+                </div>
+            `;
+            document.getElementById('correction-applied').classList.remove('hidden');
+            
+            flightStats.corrections++;
+            flightStats.engagement = Math.min(100, flightStats.engagement + 15);
+            document.getElementById('total-corrections').textContent = flightStats.corrections;
+            document.getElementById('engagement-score').textContent = `${flightStats.engagement}%`;
+        }
+
+        function monitorResults() {
+            alert('Monitoring results... Your course correction is working well! Audience engagement has improved and you\'re back on track.');
+        }
+
+        function makeAnotherCorrection() {
+            document.getElementById('correction-applied').classList.add('hidden');
+            alert('Ready for another correction. Assess the situation and choose your next adjustment.');
+        }
+
+        function continueOnCourse() {
+            document.getElementById('correction-applied').classList.add('hidden');
+            alert('Excellent! You\'re now flying smoothly on your corrected course. Maintain this heading.');
+        }
+
+        function generateFlightReport() {
+            const report = `
+FLIGHT SC-22 PERFORMANCE REPORT
+================================
+
+Flight Duration: ${Math.floor((45*60 - flightTimeRemaining)/60)} minutes
+Course Corrections: ${flightStats.corrections}
+Average Engagement: ${flightStats.engagement}%
+Flight Efficiency: ${flightStats.efficiency}%
+
+SKILLS DEMONSTRATED:
+✓ Sustained speaking endurance
+✓ Real-time adaptation
+✓ Audience management
+✓ Crisis navigation
+✓ Professional communication
+
+CAPTAIN'S NOTES:
+Excellent performance maintaining speaking altitude throughout the flight. Demonstrated strong navigation skills and passenger management abilities.
+
+STATUS: CERTIFIED FOR ADVANCED SPEAKING MISSIONS
+            `;
+            alert(report);
+        }
+
+        // Initialize the flight
+        document.addEventListener('DOMContentLoaded', function() {
+            startFlightTimer();
+            showSection('cruise');
+            updateStaminaDisplay();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987c4622d75ea467',t:'MTc1OTMyNTAwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
