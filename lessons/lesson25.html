@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 25: Minor Passenger Problems and Complaints</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .lesson-title {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .lesson-subtitle {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .timer {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #667eea;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+        
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab:hover:not(.active) {
+            background: #f7fafc;
+            transform: translateY(-1px);
+        }
+        
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: #2d3748;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .objective-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .objective-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .objective-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .objective-list li:before {
+            content: "✈️";
+            margin-right: 10px;
+        }
+        
+        .problem-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .problem-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .solution-steps {
+            background: #e6fffa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .solution-steps h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .scenario-card {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            color: #2d3748;
+        }
+        
+        .scenario-title {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #d63031;
+        }
+        
+        .role-play-btn {
+            background: #00b894;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .role-play-btn:hover {
+            background: #00a085;
+            transform: translateY(-2px);
+        }
+        
+        .quiz-question {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+        
+        .quiz-options {
+            margin: 15px 0;
+        }
+        
+        .quiz-option {
+            display: block;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+        
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .checklist-checkbox.checked {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .tip-box h4 {
+            margin-bottom: 10px;
+        }
+        
+        .completion-badge {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .badge-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="lesson-title">Lesson 25: Minor Passenger Problems and Complaints</h1>
+            <p class="lesson-subtitle">Professional Service Recovery for Flight Attendants</p>
+            <div class="timer" id="lessonTimer">⏱️ 60:00</div>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('objectives')">Learning Objectives</div>
+            <div class="nav-tab" onclick="showSection('problems')">Common Problems</div>
+            <div class="nav-tab" onclick="showSection('solutions')">Solution Strategies</div>
+            <div class="nav-tab" onclick="showSection('scenarios')">Practice Scenarios</div>
+            <div class="nav-tab" onclick="showSection('quiz')">Knowledge Check</div>
+            <div class="nav-tab" onclick="showSection('checklist')">Skills Checklist</div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <!-- Learning Objectives Section -->
+        <div class="content-section active" id="objectives">
+            <h2 class="section-title">Learning Objectives</h2>
+            <div class="objective-card">
+                <h3>By the end of this lesson, you will be able to:</h3>
+                <ul class="objective-list">
+                    <li>Identify the most common minor passenger problems and complaints</li>
+                    <li>Apply the LAST method for effective complaint resolution</li>
+                    <li>Demonstrate professional communication techniques for de-escalation</li>
+                    <li>Implement proactive service recovery strategies</li>
+                    <li>Maintain composure and empathy in challenging situations</li>
+                    <li>Document incidents appropriately for follow-up</li>
+                </ul>
+            </div>
+            
+            <div class="tip-box">
+                <h4>💡 Key Principle</h4>
+                <p>Remember: Every complaint is an opportunity to turn a dissatisfied passenger into a loyal customer. Your response can make or break their entire travel experience.</p>
+            </div>
+        </div>
+        
+        <!-- Common Problems Section -->
+        <div class="content-section" id="problems">
+            <h2 class="section-title">Common Minor Problems & Complaints</h2>
+            
+            <div class="problem-card">
+                <div class="problem-title">🍽️ Food & Beverage Issues</div>
+                <p><strong>Examples:</strong> Meal not available, dietary restrictions not met, spilled drinks, cold food, limited beverage options</p>
+                <p><strong>Impact:</strong> Can affect passenger comfort and satisfaction throughout the flight</p>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-title">🎧 Entertainment System Problems</div>
+                <p><strong>Examples:</strong> Screen not working, no sound, limited movie selection, system freezing</p>
+                <p><strong>Impact:</strong> Particularly frustrating on long flights where entertainment is crucial</p>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-title">🌡️ Cabin Comfort Issues</div>
+                <p><strong>Examples:</strong> Too hot/cold, broken reading light, seat won't recline, no blanket available</p>
+                <p><strong>Impact:</strong> Affects passenger's ability to rest and feel comfortable</p>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-title">💺 Seating Concerns</div>
+                <p><strong>Examples:</strong> Seat assignment errors, requests for seat changes, proximity to crying babies, limited legroom complaints</p>
+                <p><strong>Impact:</strong> Can affect entire flight experience, especially for nervous flyers</p>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-title">🧳 Carry-on & Storage Issues</div>
+                <p><strong>Examples:</strong> Overhead bin full, bag doesn't fit, items shifted during flight</p>
+                <p><strong>Impact:</strong> Creates anxiety about belongings and can delay boarding/deplaning</p>
+            </div>
+        </div>
+        
+        <!-- Solution Strategies Section -->
+        <div class="content-section" id="solutions">
+            <h2 class="section-title">The LAST Method for Problem Resolution</h2>
+            
+            <div class="solution-steps">
+                <h4>🎯 LAST Method Framework</h4>
+                <div class="step">
+                    <div class="step-number">L</div>
+                    <div>
+                        <strong>LISTEN</strong> - Give your full attention, maintain eye contact, let them finish speaking without interrupting
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">A</div>
+                    <div>
+                        <strong>APOLOGIZE</strong> - Express genuine empathy: "I'm sorry this happened" or "I understand your frustration"
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">S</div>
+                    <div>
+                        <strong>SOLVE</strong> - Offer practical solutions within your authority, explain what you can do
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">T</div>
+                    <div>
+                        <strong>THANK</strong> - Thank them for bringing it to your attention and for their patience
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h4>🗣️ Professional Phrases to Use</h4>
+                <p><strong>Listening:</strong> "I can see this is important to you..." | "Help me understand..."</p>
+                <p><strong>Apologizing:</strong> "I sincerely apologize for the inconvenience..." | "I understand how frustrating this must be..."</p>
+                <p><strong>Solving:</strong> "Here's what I can do for you..." | "Let me see how I can help..."</p>
+                <p><strong>Thanking:</strong> "Thank you for your patience..." | "I appreciate you bringing this to my attention..."</p>
+            </div>
+            
+            <div class="solution-steps">
+                <h4>⚡ Quick Resolution Strategies</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Stay Calm & Professional</strong> - Your demeanor sets the tone for the interaction
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Offer Alternatives</strong> - Always have backup options ready to present
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Follow Up</strong> - Check back to ensure the solution worked and they're satisfied
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Document When Necessary</strong> - Record significant issues for crew briefing or reports
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Practice Scenarios Section -->
+        <div class="content-section" id="scenarios">
+            <h2 class="section-title">Practice Scenarios</h2>
+            
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 1: Meal Disappointment</div>
+                <p><strong>Situation:</strong> A passenger ordered a vegetarian meal but received chicken. They're upset because they haven't eaten in 8 hours and the flight is 6 more hours.</p>
+                <p><strong>Your Role:</strong> Apply the LAST method to resolve this situation.</p>
+                <button class="role-play-btn" onclick="showSolution(1)">Show Solution</button>
+                <div id="solution1" style="display: none; margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.9); border-radius: 8px;">
+                    <strong>LISTEN:</strong> "I can see you're really frustrated about not getting your vegetarian meal."<br>
+                    <strong>APOLOGIZE:</strong> "I sincerely apologize for this mix-up. I understand how concerning this is, especially on such a long flight."<br>
+                    <strong>SOLVE:</strong> "Let me check what vegetarian options we have available in our extra meals, and I'll also see if we have any substantial snacks I can bring you right away."<br>
+                    <strong>THANK:</strong> "Thank you for your patience while I sort this out for you."
+                </div>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 2: Entertainment System Failure</div>
+                <p><strong>Situation:</strong> A passenger's entertainment screen is completely black on a 10-hour international flight. They're traveling with a young child who was counting on watching movies.</p>
+                <p><strong>Your Role:</strong> Handle this complaint professionally.</p>
+                <button class="role-play-btn" onclick="showSolution(2)">Show Solution</button>
+                <div id="solution2" style="display: none; margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.9); border-radius: 8px;">
+                    <strong>LISTEN:</strong> "I understand this is especially difficult with your child on such a long flight."<br>
+                    <strong>APOLOGIZE:</strong> "I'm so sorry about the entertainment system. I know how important this is for keeping your little one comfortable."<br>
+                    <strong>SOLVE:</strong> "Let me try resetting the system first. If that doesn't work, I can see if we have any available seats with working systems, or I can bring some activity books and crayons for your child."<br>
+                    <strong>THANK:</strong> "Thank you for letting me know about this issue."
+                </div>
+            </div>
+            
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 3: Temperature Complaint</div>
+                <p><strong>Situation:</strong> A passenger complains that their section is too cold and they can't sleep. Other passengers nearby seem comfortable.</p>
+                <p><strong>Your Role:</strong> Address their comfort concern diplomatically.</p>
+                <button class="role-play-btn" onclick="showSolution(3)">Show Solution</button>
+                <div id="solution3" style="display: none; margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.9); border-radius: 8px;">
+                    <strong>LISTEN:</strong> "I can see you're having trouble getting comfortable because of the temperature."<br>
+                    <strong>APOLOGIZE:</strong> "I'm sorry you're feeling too cold. Everyone's comfort is important to us."<br>
+                    <strong>SOLVE:</strong> "I can bring you an extra blanket and pillow. I'll also check if we can make a slight adjustment to the cabin temperature, though I need to balance everyone's comfort."<br>
+                    <strong>THANK:</strong> "Thank you for letting me know. I want to make sure you can rest comfortably."
+                </div>
+            </div>
+        </div>
+        
+        <!-- Knowledge Check Section -->
+        <div class="content-section" id="quiz">
+            <h2 class="section-title">Knowledge Check Quiz</h2>
+            
+            <div class="quiz-question">
+                <h4>Question 1: What does the "L" in the LAST method stand for?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Learn about the problem</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Listen to the passenger</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Look for solutions</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Lead the conversation</div>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>Question 2: When a passenger complains about their meal, what should you do FIRST?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Explain the airline's meal policy</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Listen to their complete concern without interrupting</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Immediately offer a different meal</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Ask them to speak to the purser</div>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>Question 3: Which phrase demonstrates proper empathy?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) "That's just how our system works"</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) "I understand how frustrating this must be for you"</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) "You should have checked this earlier"</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) "There's nothing I can do about it"</div>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <h4>Question 4: After resolving a passenger complaint, what should you do?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Move on to other duties immediately</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Follow up to ensure they're satisfied with the solution</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Avoid the passenger for the rest of the flight</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Tell other crew members about the complaint</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Skills Checklist Section -->
+        <div class="content-section" id="checklist">
+            <h2 class="section-title">Skills Assessment Checklist</h2>
+            <p>Check off each skill as you master it during practice:</p>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Active Listening:</strong> I can give passengers my full attention and let them express their concerns completely
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Empathetic Responses:</strong> I can express genuine understanding and acknowledge passenger feelings
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Professional Apologies:</strong> I can apologize sincerely without admitting fault or making excuses
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Solution-Focused Approach:</strong> I can offer practical alternatives within my authority
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Calm Under Pressure:</strong> I can maintain composure and professionalism during complaints
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Follow-Up Skills:</strong> I can check back with passengers to ensure satisfaction
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Documentation:</strong> I can properly record incidents when necessary for crew communication
+                </div>
+            </div>
+            
+            <div class="checklist-item" onclick="toggleChecklist(this)">
+                <div class="checklist-checkbox"></div>
+                <div>
+                    <strong>Proactive Service:</strong> I can anticipate potential issues and address them before they become complaints
+                </div>
+            </div>
+            
+            <div id="completionBadge" class="completion-badge" style="display: none;">
+                <div class="badge-icon">🏆</div>
+                <h3>Congratulations!</h3>
+                <p>You've completed all the skills in this lesson. You're ready to handle minor passenger problems with confidence and professionalism!</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSection = 'objectives';
+        let timeRemaining = 3600; // 60 minutes in seconds
+        let timerInterval;
+        let checkedItems = 0;
+        const totalItems = 8;
+        
+        // Start the lesson timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert('Lesson time completed! Great job working through the material.');
+                }
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('lessonTimer').textContent = 
+                `⏱️ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            currentSection = sectionId;
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const sections = ['objectives', 'problems', 'solutions', 'scenarios', 'quiz', 'checklist'];
+            const currentIndex = sections.indexOf(currentSection);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function showSolution(scenarioNumber) {
+            const solution = document.getElementById('solution' + scenarioNumber);
+            if (solution.style.display === 'none') {
+                solution.style.display = 'block';
+                event.target.textContent = 'Hide Solution';
+                event.target.style.background = '#e17055';
+            } else {
+                solution.style.display = 'none';
+                event.target.textContent = 'Show Solution';
+                event.target.style.background = '#00b894';
+            }
+        }
+        
+        function selectAnswer(element, isCorrect) {
+            // Remove previous selections in this question
+            const siblings = element.parentNode.querySelectorAll('.quiz-option');
+            siblings.forEach(sibling => {
+                sibling.classList.remove('correct', 'incorrect');
+            });
+            
+            // Mark the selected answer
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    alert('Correct! Well done.');
+                }, 100);
+            } else {
+                element.classList.add('incorrect');
+                setTimeout(() => {
+                    alert('Not quite right. Think about the LAST method and try again.');
+                }, 100);
+            }
+        }
+        
+        function toggleChecklist(element) {
+            const checkbox = element.querySelector('.checklist-checkbox');
+            
+            if (checkbox.classList.contains('checked')) {
+                checkbox.classList.remove('checked');
+                checkbox.textContent = '';
+                checkedItems--;
+            } else {
+                checkbox.classList.add('checked');
+                checkbox.textContent = '✓';
+                checkedItems++;
+            }
+            
+            // Show completion badge when all items are checked
+            if (checkedItems === totalItems) {
+                document.getElementById('completionBadge').style.display = 'block';
+                setTimeout(() => {
+                    alert('🎉 Excellent work! You\'ve mastered all the key skills for handling passenger complaints professionally.');
+                }, 500);
+            } else {
+                document.getElementById('completionBadge').style.display = 'none';
+            }
+        }
+        
+        // Initialize the lesson
+        document.addEventListener('DOMContentLoaded', function() {
+            startTimer();
+            updateProgress();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988cfdbe6354265d',t:'MTc1OTUwMDI5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

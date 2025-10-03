@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 28: In-flight Emergencies - Flight Attendant Training</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .lesson-title {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .lesson-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        .tab-btn.active {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .tab-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .tab-btn.active:hover {
+            background: #1e3c72;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .emergency-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255,107,107,0.3);
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .emergency-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .emergency-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .scenario-box:hover {
+            transform: scale(1.02);
+        }
+
+        .quiz-question {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #1e3c72;
+            background: #f0f8ff;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .btn {
+            background: #1e3c72;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .checklist {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ffeaa7;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .lesson-title {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-btn {
+                margin: 5px 0;
+            }
+            
+            .emergency-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="lesson-title">✈️ Lesson 28: In-flight Emergencies</h1>
+            <p class="lesson-subtitle">Flight Attendant Training Program</p>
+            <div class="timer" id="timer">⏱️ 60:00</div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showSection('overview')">Overview</button>
+            <button class="tab-btn" onclick="showSection('medical')">Medical</button>
+            <button class="tab-btn" onclick="showSection('security')">Security</button>
+            <button class="tab-btn" onclick="showSection('technical')">Technical</button>
+            <button class="tab-btn" onclick="showSection('scenarios')">Scenarios</button>
+            <button class="tab-btn" onclick="showSection('quiz')">Quiz</button>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+            <h2>🎯 Learning Objectives</h2>
+            <div class="emergency-grid">
+                <div class="emergency-item">
+                    <h3>🚨 Identify Emergency Types</h3>
+                    <p>Recognize and categorize different in-flight emergencies</p>
+                </div>
+                <div class="emergency-item">
+                    <h3>📋 Follow Protocols</h3>
+                    <p>Execute proper emergency response procedures</p>
+                </div>
+                <div class="emergency-item">
+                    <h3>🤝 Coordinate Response</h3>
+                    <p>Work effectively with crew and ground support</p>
+                </div>
+                <div class="emergency-item">
+                    <h3>😌 Manage Passengers</h3>
+                    <p>Keep passengers calm and informed during emergencies</p>
+                </div>
+            </div>
+
+            <div class="emergency-card">
+                <h3>🔥 Emergency Response Priorities</h3>
+                <ol>
+                    <li><strong>Assess the situation</strong> - Gather information quickly</li>
+                    <li><strong>Ensure safety</strong> - Protect passengers and crew</li>
+                    <li><strong>Communicate</strong> - Alert flight deck and ground</li>
+                    <li><strong>Take action</strong> - Follow established procedures</li>
+                    <li><strong>Document</strong> - Record all incidents properly</li>
+                </ol>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="lessonProgress"></div>
+            </div>
+        </div>
+
+        <!-- Medical Emergencies Section -->
+        <div id="medical" class="content-section">
+            <h2>🏥 Medical Emergencies</h2>
+            
+            <div class="emergency-card">
+                <h3>Common Medical Situations</h3>
+                <p>Flight attendants encounter various medical emergencies. Quick assessment and proper response can save lives.</p>
+            </div>
+
+            <div class="emergency-grid">
+                <div class="emergency-item">
+                    <h4>💔 Cardiac Events</h4>
+                    <ul>
+                        <li>Check for consciousness and breathing</li>
+                        <li>Call for medical professionals onboard</li>
+                        <li>Prepare AED if needed</li>
+                        <li>Contact ground medical support</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🤢 Severe Allergic Reactions</h4>
+                    <ul>
+                        <li>Identify allergen and remove if possible</li>
+                        <li>Check for EpiPen in passenger's belongings</li>
+                        <li>Administer oxygen if available</li>
+                        <li>Prepare for emergency landing</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🩸 Severe Bleeding</h4>
+                    <ul>
+                        <li>Apply direct pressure to wound</li>
+                        <li>Elevate injured area if possible</li>
+                        <li>Use first aid kit supplies</li>
+                        <li>Monitor for shock symptoms</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🤰 Childbirth</h4>
+                    <ul>
+                        <li>Call for medical assistance onboard</li>
+                        <li>Prepare clean area and supplies</li>
+                        <li>Contact ground medical support</li>
+                        <li>Arrange priority landing if needed</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h4>✅ Medical Emergency Checklist</h4>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Assess patient condition and consciousness level</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Call for medical professionals among passengers</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Notify flight deck of medical emergency</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Retrieve appropriate medical equipment</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Contact ground medical support via radio</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <span>Document all actions taken and patient condition</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Emergencies Section -->
+        <div id="security" class="content-section">
+            <h2>🛡️ Security Emergencies</h2>
+            
+            <div class="emergency-card">
+                <h3>Security Threat Response</h3>
+                <p>Security emergencies require immediate, coordinated action while maintaining passenger safety and aircraft security.</p>
+            </div>
+
+            <div class="emergency-grid">
+                <div class="emergency-item">
+                    <h4>😠 Disruptive Passengers</h4>
+                    <ul>
+                        <li>Attempt verbal de-escalation first</li>
+                        <li>Move other passengers away if possible</li>
+                        <li>Alert flight deck immediately</li>
+                        <li>Use restraints only as last resort</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>💣 Bomb Threats</h4>
+                    <ul>
+                        <li>Do not touch suspicious items</li>
+                        <li>Isolate the area quietly</li>
+                        <li>Notify flight deck using code words</li>
+                        <li>Prepare for emergency procedures</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🔫 Hijacking Attempts</h4>
+                    <ul>
+                        <li>Comply with hijacker demands initially</li>
+                        <li>Observe and remember details</li>
+                        <li>Protect passengers when possible</li>
+                        <li>Use covert communication methods</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🚪 Unauthorized Cockpit Access</h4>
+                    <ul>
+                        <li>Block access to flight deck</li>
+                        <li>Alert pilots using interphone</li>
+                        <li>Coordinate with other crew members</li>
+                        <li>Use appropriate force if necessary</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>⚠️ Remember:</strong> Your safety and the safety of passengers is the top priority. Never escalate a situation unnecessarily, but be prepared to take decisive action when required.
+            </div>
+        </div>
+
+        <!-- Technical Emergencies Section -->
+        <div id="technical" class="content-section">
+            <h2>⚙️ Technical Emergencies</h2>
+            
+            <div class="emergency-card">
+                <h3>Aircraft System Failures</h3>
+                <p>Technical emergencies can range from minor system failures to serious situations requiring emergency landing.</p>
+            </div>
+
+            <div class="emergency-grid">
+                <div class="emergency-item">
+                    <h4>🔥 Fire Onboard</h4>
+                    <ul>
+                        <li>Identify fire location and type</li>
+                        <li>Use appropriate fire extinguisher</li>
+                        <li>Alert flight deck immediately</li>
+                        <li>Prepare for emergency landing</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>💨 Rapid Decompression</h4>
+                    <ul>
+                        <li>Put on oxygen mask immediately</li>
+                        <li>Assist passengers with masks</li>
+                        <li>Secure loose objects</li>
+                        <li>Prepare for emergency descent</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>⚡ Severe Turbulence</h4>
+                    <ul>
+                        <li>Secure all service items immediately</li>
+                        <li>Ensure passengers are seated</li>
+                        <li>Take nearest available seat</li>
+                        <li>Check for injuries after turbulence</li>
+                    </ul>
+                </div>
+                <div class="emergency-item">
+                    <h4>🛬 Emergency Landing</h4>
+                    <ul>
+                        <li>Brief passengers on brace position</li>
+                        <li>Secure cabin for landing</li>
+                        <li>Review evacuation procedures</li>
+                        <li>Prepare for possible evacuation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>💡 Key Point:</strong> During technical emergencies, clear communication with the flight deck is crucial. Use standard terminology and remain calm to ensure accurate information exchange.
+            </div>
+        </div>
+
+        <!-- Scenarios Section -->
+        <div id="scenarios" class="content-section">
+            <h2>🎭 Interactive Scenarios</h2>
+            
+            <div class="scenario-box" onclick="startScenario(1)">
+                <h3>Scenario 1: Medical Emergency</h3>
+                <p>A passenger in seat 12A appears to be having chest pains and difficulty breathing. What are your immediate actions?</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div class="scenario-box" onclick="startScenario(2)">
+                <h3>Scenario 2: Disruptive Passenger</h3>
+                <p>A passenger is becoming increasingly agitated and refusing to follow crew instructions. Other passengers are getting nervous.</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div class="scenario-box" onclick="startScenario(3)">
+                <h3>Scenario 3: Smoke in Cabin</h3>
+                <p>You notice smoke coming from the overhead bin area. Passengers are starting to panic.</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div class="scenario-box" onclick="startScenario(4)">
+                <h3>Scenario 4: Rapid Decompression</h3>
+                <p>Sudden loud pop, oxygen masks drop, and you feel the aircraft descending rapidly.</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div class="scenario-box" onclick="startScenario(5)">
+                <h3>Scenario 5: Emergency Childbirth</h3>
+                <p>A pregnant passenger is in active labor and the baby is coming immediately.</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div class="scenario-box" onclick="startScenario(6)">
+                <h3>Scenario 6: Suspicious Package</h3>
+                <p>You find an unattended bag with a ticking sound during your security check.</p>
+                <div class="btn btn-success">Start Scenario</div>
+            </div>
+
+            <div id="scenarioContent" class="hidden">
+                <div class="emergency-card">
+                    <h3 id="scenarioTitle"></h3>
+                    <p id="scenarioDescription"></p>
+                    <div id="scenarioOptions"></div>
+                    <div id="scenarioFeedback" class="hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section">
+            <h2>📝 Advanced Knowledge Assessment</h2>
+            <div class="alert alert-warning">
+                <strong>⚠️ Challenge Level:</strong> This quiz tests advanced emergency response knowledge. Each question is based on real flight attendant scenarios.
+            </div>
+            
+            <div class="quiz-question">
+                <h4>Question 1: A passenger shows signs of anaphylactic shock (severe allergic reaction). Their EpiPen failed to work. What is your next critical action?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Try to find another passenger's EpiPen</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Administer high-flow oxygen and prepare for emergency landing</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Give the passenger Benadryl from the medical kit</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Have them lie flat and elevate their legs</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 2: During turbulence, you notice a passenger has a head injury and is unconscious. The seatbelt sign is on. What should you do?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Wait until turbulence ends to provide medical care</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Secure yourself with a seatbelt and provide care from your seated position</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Move the passenger to the galley immediately</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Ask other passengers to help move them</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 3: You smell electrical burning and see sparks from a passenger's laptop. The passenger refuses to turn it off. Your immediate action:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Argue with the passenger until they comply</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">B) Pour water on the laptop to stop the sparks</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">C) Disconnect the device immediately and use Halon extinguisher if fire starts</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Move other passengers away and wait for it to stop</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 4: A passenger is having a seizure in the aisle. Which action is INCORRECT?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">A) Hold their arms and legs to stop the convulsions</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">B) Clear the area of hard objects that could cause injury</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Time the seizure and note the duration</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Place them in recovery position after seizure ends</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 5: During an emergency descent, passengers are panicking. Your communication priority is:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Explain the technical details of what's happening</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Give clear, calm instructions about oxygen masks and brace position</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Tell them everything will be fine without giving instructions</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Remain silent to avoid causing more panic</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 6: A passenger threatens you with a metal object during meal service. Your safest response:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Try to grab the weapon from them</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">B) Shout for help from other passengers</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">C) Comply, back away slowly, and discreetly alert the flight deck</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Threaten to have them arrested upon landing</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 7: You find an unconscious passenger who is not breathing but has a pulse. After calling for medical help, your next action:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Start chest compressions immediately</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Open airway and begin rescue breathing</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Get the AED and prepare for defibrillation</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Wait for a doctor to take over</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 8: During a bomb threat, you receive a call claiming there's a device in the cargo hold. Your protocol requires:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Immediately announce to passengers to prepare for emergency landing</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">B) Search the cabin thoroughly for suspicious items</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">C) Discreetly notify flight deck using code words and follow their instructions</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Try to get more information from the caller</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 9: A pregnant passenger's water breaks at 32 weeks gestation. She's having contractions but delivery isn't imminent. Your priority:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Prepare for immediate delivery in the galley</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Keep her calm, monitor contractions, and coordinate emergency landing</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Have her walk around to slow the labor</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Give her pain medication from the medical kit</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>Question 10: Fire breaks out in the lavatory waste bin. After alerting the flight deck, your immediate actions should be:</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">A) Use water extinguisher, then ventilate the area</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">B) Use Halon extinguisher, then flood with water to prevent re-ignition</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">C) Remove all contents from the bin first, then extinguish</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">D) Close the lavatory door and wait for pilot instructions</div>
+                </div>
+            </div>
+
+            <div id="quizResults" class="hidden">
+                <div class="emergency-card">
+                    <h3 id="resultsTitle">🎉 Assessment Complete!</h3>
+                    <p>Your Score: <span id="finalScore"></span></p>
+                    <div id="performanceLevel"></div>
+                    <button class="btn" onclick="resetQuiz()">Retake Assessment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 'overview';
+        let lessonStartTime = Date.now();
+        let quizScore = 0;
+        let questionsAnswered = 0;
+        let scenarios = {
+            1: {
+                title: "💔 Medical Emergency: Cardiac Event",
+                description: "You're serving beverages when a 55-year-old male passenger in seat 12A suddenly grabs his chest and says 'I can't breathe, my chest feels like it's crushing me.' He's sweating profusely and looks pale. Other passengers are starting to notice and look concerned.",
+                context: "Flight time: 2 hours into a 6-hour flight over the Atlantic Ocean. Weather is smooth, cabin is full.",
+                options: [
+                    { 
+                        text: "Ask if he has heart medication like nitroglycerin", 
+                        correct: false, 
+                        feedback: "❌ While medication is important, you must assess his condition first. He could be unconscious by the time you return with medication." 
+                    },
+                    { 
+                        text: "Check his consciousness level, pulse, and breathing immediately", 
+                        correct: true, 
+                        feedback: "✅ Perfect! The ABC approach (Airway, Breathing, Circulation) is critical. This assessment determines if CPR or AED is needed and guides all subsequent actions." 
+                    },
+                    { 
+                        text: "Announce 'Is there a doctor on board?' over the PA", 
+                        correct: false, 
+                        feedback: "❌ While medical assistance is valuable, your immediate assessment comes first. The patient's condition could deteriorate rapidly without proper evaluation." 
+                    },
+                    { 
+                        text: "Rush to get the AED and oxygen immediately", 
+                        correct: false, 
+                        feedback: "❌ Equipment is useless without proper assessment. You need to determine consciousness and breathing before deciding which equipment is needed." 
+                    }
+                ]
+            },
+            2: {
+                title: "😠 Security Emergency: Disruptive Passenger",
+                description: "A passenger in 18C has been drinking heavily and is now standing in the aisle, shouting at other passengers. He's blocking the aisle, using profanity, and when you approach, he says 'Don't tell me what to do!' His voice is getting louder and other passengers are becoming visibly uncomfortable and scared.",
+                context: "Flight time: 4 hours into a 5-hour domestic flight. Passenger appears intoxicated, no apparent weapons visible.",
+                options: [
+                    { 
+                        text: "Speak calmly: 'Sir, I understand you're upset. Let's talk about this quietly so we can help you.'", 
+                        correct: true, 
+                        feedback: "✅ Excellent! De-escalation with empathy and respect often works. You're acknowledging his feelings while redirecting to a calmer interaction. This approach protects other passengers while attempting to resolve peacefully." 
+                    },
+                    { 
+                        text: "Immediately call for backup crew and prepare restraints", 
+                        correct: false, 
+                        feedback: "❌ This escalates the situation before trying peaceful resolution. Always attempt verbal de-escalation first unless there's immediate physical threat." 
+                    },
+                    { 
+                        text: "Firmly state: 'Sir, you need to sit down now or we'll have to restrain you.'", 
+                        correct: false, 
+                        feedback: "❌ Threats and ultimatums often escalate intoxicated passengers. This confrontational approach could trigger aggressive behavior." 
+                    },
+                    { 
+                        text: "Walk away and hope he calms down on his own", 
+                        correct: false, 
+                        feedback: "❌ Ignoring disruptive behavior allows it to escalate and puts other passengers at risk. You have a duty to address the situation professionally." 
+                    }
+                ]
+            },
+            3: {
+                title: "🔥 Technical Emergency: Cabin Fire",
+                description: "You smell burning plastic and see light gray smoke coming from overhead bin 15A-C. The smoke is getting thicker and passengers in nearby seats are starting to cough and point upward. You can hear a slight crackling sound from inside the bin. Passengers are beginning to panic and some are standing up.",
+                context: "Flight time: 3 hours into a 4-hour flight. Cruising altitude 35,000 feet. Bin contains passenger carry-on luggage.",
+                options: [
+                    { 
+                        text: "Immediately open the bin to see what's burning inside", 
+                        correct: false, 
+                        feedback: "❌ NEVER open a compartment with smoke! Opening provides oxygen that can cause the fire to flare up dramatically, potentially causing severe burns and rapid fire spread." 
+                    },
+                    { 
+                        text: "Alert flight deck immediately, then identify if it's electrical, paper, or unknown fire type", 
+                        correct: true, 
+                        feedback: "✅ Perfect! Flight deck must know immediately for possible emergency descent/landing. Identifying fire type determines correct extinguisher (Halon for electrical, water for paper). This follows proper emergency protocol." 
+                    },
+                    { 
+                        text: "Shout 'Fire! Everyone evacuate to the back of the plane!'", 
+                        correct: false, 
+                        feedback: "❌ This creates panic and dangerous passenger movement. Assess and communicate with flight deck first. Premature evacuation commands can cause injuries and chaos." 
+                    },
+                    { 
+                        text: "Get a cup of water from the galley to pour on the smoke", 
+                        correct: false, 
+                        feedback: "❌ Water conducts electricity and could cause electrocution if it's an electrical fire. You must identify fire type first and use appropriate extinguisher." 
+                    }
+                ]
+            },
+            4: {
+                title: "💨 Technical Emergency: Rapid Decompression",
+                description: "You hear a loud 'pop' followed by a rushing wind sound. Suddenly, oxygen masks drop from the ceiling throughout the cabin. You feel your ears pop painfully and notice loose papers flying around. Passengers are screaming and some are struggling with their masks. The aircraft is starting to descend rapidly.",
+                context: "Flight time: 1 hour into a 3-hour flight at 38,000 feet. Cabin pressure has been lost.",
+                options: [
+                    { 
+                        text: "Put on your own oxygen mask first, then help passengers", 
+                        correct: true, 
+                        feedback: "✅ Absolutely correct! You have only 15-30 seconds of useful consciousness at this altitude. If you don't get oxygen first, you'll pass out and can't help anyone. This is critical safety protocol." 
+                    },
+                    { 
+                        text: "Immediately help the nearest passenger with their oxygen mask", 
+                        correct: false, 
+                        feedback: "❌ You'll lose consciousness in seconds without oxygen at this altitude. If you pass out, you become another casualty instead of a rescuer." 
+                    },
+                    { 
+                        text: "Run to the interphone to call the flight deck first", 
+                        correct: false, 
+                        feedback: "❌ The pilots are already aware (cockpit alarms) and executing emergency descent. You need oxygen immediately or you'll collapse before reaching the phone." 
+                    },
+                    { 
+                        text: "Secure all loose objects flying around the cabin", 
+                        correct: false, 
+                        feedback: "❌ Loose objects are secondary to oxygen. Without oxygen, you'll lose consciousness and potentially be injured by those same flying objects." 
+                    }
+                ]
+            },
+            5: {
+                title: "🤰 Medical Emergency: Emergency Childbirth",
+                description: "A pregnant passenger in seat 22F suddenly cries out 'The baby is coming NOW!' She's in active labor, contractions are 2 minutes apart, and you can see she's crowning. This is her third child and she says 'I can feel the head!' Other passengers are staring and she's very distressed about the public situation.",
+                context: "Flight time: 2 hours into a 8-hour international flight over the Pacific. No nearby airports for emergency landing.",
+                options: [
+                    { 
+                        text: "Move her to the galley area for privacy and call for medical professionals onboard", 
+                        correct: true, 
+                        feedback: "✅ Excellent! Privacy reduces stress for mother, galley has more space and supplies. Medical professionals can assist while you coordinate with ground medical support. This shows proper care and professionalism." 
+                    },
+                    { 
+                        text: "Tell her to hold the baby in until we can land", 
+                        correct: false, 
+                        feedback: "❌ Impossible and dangerous! When a baby is crowning, birth is imminent (minutes). Trying to delay can cause serious complications for mother and baby." 
+                    },
+                    { 
+                        text: "Leave her in her seat and just bring towels", 
+                        correct: false, 
+                        feedback: "❌ Lack of privacy increases stress, and the cramped seat makes delivery dangerous. You need space to assist and catch the baby safely." 
+                    },
+                    { 
+                        text: "Demand an emergency landing immediately", 
+                        correct: false, 
+                        feedback: "❌ Over the Pacific, emergency landing isn't possible. The baby will be born long before any landing. Focus on safe delivery onboard." 
+                    }
+                ]
+            },
+            6: {
+                title: "💣 Security Emergency: Suspicious Package",
+                description: "During your security check, you find an unattended black backpack under seat 8A. No passenger claims it, and it has no identification tags. When you listen closely, you hear a very faint ticking sound coming from inside. The passenger who was in 8A deplaned at the last stop, but this bag wasn't noticed during cleaning.",
+                context: "Flight time: 30 minutes into a 2-hour domestic flight. Bag was discovered during routine cabin check.",
+                options: [
+                    { 
+                        text: "Do not touch the bag, quietly clear the area, and notify flight deck using code words", 
+                        correct: true, 
+                        feedback: "✅ Perfect protocol! Never touch suspicious items. Clearing the area protects passengers, and code words prevent panic while alerting the flight deck to a potential bomb threat." 
+                    },
+                    { 
+                        text: "Carefully move the bag to the rear galley away from passengers", 
+                        correct: false, 
+                        feedback: "❌ NEVER move a suspected explosive device! Movement could trigger detonation. The rear galley is also near fuel tanks, making it more dangerous." 
+                    },
+                    { 
+                        text: "Open the bag carefully to see what's making the ticking sound", 
+                        correct: false, 
+                        feedback: "❌ Extremely dangerous! Opening could trigger an explosive device. Many bombs are designed to detonate when opened or disturbed." 
+                    },
+                    { 
+                        text: "Make an announcement asking if anyone owns a black backpack", 
+                        correct: false, 
+                        feedback: "❌ This could cause panic if passengers suspect it's a bomb. Also, if it is a threat, announcing it could alert a potential accomplice onboard." 
+                    }
+                ]
+            }
+        };
+
+        // Timer functionality
+        function updateTimer() {
+            const elapsed = Date.now() - lessonStartTime;
+            const remaining = Math.max(0, 3600000 - elapsed); // 60 minutes in milliseconds
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            document.getElementById('timer').textContent = `⏱️ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (remaining > 0) {
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            const sections = ['overview', 'medical', 'security', 'technical', 'scenarios', 'quiz'];
+            const currentIndex = sections.indexOf(currentSection);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('lessonProgress').style.width = progress + '%';
+        }
+
+        // Section navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            currentSection = sectionId;
+            updateProgress();
+        }
+
+        // Scenario functionality
+        function startScenario(scenarioId) {
+            const scenario = scenarios[scenarioId];
+            document.getElementById('scenarioContent').classList.remove('hidden');
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            
+            // Create detailed scenario display
+            const scenarioHTML = `
+                <div class="alert alert-info">
+                    <strong>📍 Context:</strong> ${scenario.context}
+                </div>
+                <p><strong>Situation:</strong> ${scenario.description}</p>
+                <h4>What is your immediate response?</h4>
+            `;
+            document.getElementById('scenarioDescription').innerHTML = scenarioHTML;
+            
+            const optionsContainer = document.getElementById('scenarioOptions');
+            optionsContainer.innerHTML = '';
+            
+            scenario.options.forEach((option, index) => {
+                const optionBtn = document.createElement('button');
+                optionBtn.className = 'btn';
+                optionBtn.textContent = `${String.fromCharCode(65 + index)}) ${option.text}`;
+                optionBtn.onclick = () => selectScenarioOption(option, optionBtn);
+                optionsContainer.appendChild(optionBtn);
+            });
+            
+            document.getElementById('scenarioFeedback').classList.add('hidden');
+        }
+
+        function selectScenarioOption(option, selectedButton) {
+            const feedback = document.getElementById('scenarioFeedback');
+            
+            // Style the selected button based on correctness
+            if (option.correct) {
+                selectedButton.style.background = '#28a745';
+                selectedButton.style.borderColor = '#28a745';
+                selectedButton.innerHTML = '✅ ' + selectedButton.textContent;
+            } else {
+                selectedButton.style.background = '#dc3545';
+                selectedButton.style.borderColor = '#dc3545';
+                selectedButton.innerHTML = '❌ ' + selectedButton.textContent;
+                
+                // Highlight the correct answer
+                const allButtons = document.querySelectorAll('#scenarioOptions button');
+                const scenario = Object.values(scenarios).find(s => s.options.includes(option));
+                scenario.options.forEach((opt, index) => {
+                    if (opt.correct) {
+                        allButtons[index].style.background = '#28a745';
+                        allButtons[index].style.borderColor = '#28a745';
+                        allButtons[index].innerHTML = '✅ ' + allButtons[index].textContent.replace('❌ ', '');
+                    }
+                });
+            }
+            
+            feedback.innerHTML = `
+                <div class="alert ${option.correct ? 'alert-info' : 'alert-warning'}">
+                    <h4>${option.correct ? '🎉 Excellent Response!' : '📚 Learning Opportunity'}</h4>
+                    <p>${option.feedback}</p>
+                    ${!option.correct ? '<p><strong>Remember:</strong> In emergencies, proper protocol saves lives. Review the correct procedure above.</p>' : ''}
+                </div>
+            `;
+            feedback.classList.remove('hidden');
+            
+            // Disable all option buttons
+            document.querySelectorAll('#scenarioOptions button').forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.9';
+                btn.style.cursor = 'default';
+            });
+        }
+
+        // Quiz functionality
+        function selectAnswer(element, isCorrect) {
+            // Prevent multiple selections
+            const siblings = element.parentNode.querySelectorAll('.quiz-option');
+            siblings.forEach(sibling => {
+                sibling.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                quizScore++;
+            } else {
+                element.classList.add('incorrect');
+                // Show correct answer
+                siblings.forEach(sibling => {
+                    if (sibling.onclick.toString().includes('true')) {
+                        sibling.classList.add('correct');
+                    }
+                });
+            }
+            
+            questionsAnswered++;
+            
+            if (questionsAnswered === 10) {
+                setTimeout(showQuizResults, 1500);
+            }
+        }
+
+        function showQuizResults() {
+            const percentage = Math.round((quizScore / 10) * 100);
+            document.getElementById('finalScore').textContent = `${quizScore}/10 (${percentage}%)`;
+            
+            // Performance level feedback
+            const performanceDiv = document.getElementById('performanceLevel');
+            const resultsTitle = document.getElementById('resultsTitle');
+            
+            if (percentage >= 90) {
+                resultsTitle.textContent = '🏆 Outstanding Performance!';
+                performanceDiv.innerHTML = '<div class="alert alert-info"><strong>Expert Level:</strong> You demonstrate exceptional emergency response knowledge. You\'re ready for advanced scenarios!</div>';
+            } else if (percentage >= 80) {
+                resultsTitle.textContent = '🎯 Excellent Work!';
+                performanceDiv.innerHTML = '<div class="alert alert-info"><strong>Proficient Level:</strong> Strong understanding of emergency procedures. Review any missed questions to perfect your knowledge.</div>';
+            } else if (percentage >= 70) {
+                resultsTitle.textContent = '✅ Good Progress!';
+                performanceDiv.innerHTML = '<div class="alert alert-warning"><strong>Competent Level:</strong> You have a solid foundation. Focus on studying the areas where you missed questions.</div>';
+            } else if (percentage >= 60) {
+                resultsTitle.textContent = '📚 Keep Learning!';
+                performanceDiv.innerHTML = '<div class="alert alert-warning"><strong>Developing Level:</strong> You\'re on the right track but need more study. Review all emergency procedures carefully.</div>';
+            } else {
+                resultsTitle.textContent = '🔄 More Study Needed';
+                performanceDiv.innerHTML = '<div class="alert alert-warning"><strong>Needs Improvement:</strong> Emergency response requires thorough knowledge. Please review all lesson materials and retake the assessment.</div>';
+            }
+            
+            document.getElementById('quizResults').classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            quizScore = 0;
+            questionsAnswered = 0;
+            document.getElementById('quizResults').classList.add('hidden');
+            
+            // Reset all quiz options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+        }
+
+        // Initialize
+        updateTimer();
+        updateProgress();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988d082834fb265d',t:'MTc1OTUwMDcxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

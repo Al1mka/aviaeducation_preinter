@@ -3,70 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 21: Speaking Club – Pre-flight Briefing & Welcome on Board</title>
+    <title>Lesson 21: Flight Attendant Communication Mastery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             box-sizing: border-box;
         }
-        .flight-timer {
-            animation: pulse 2s infinite;
+        .takeoff-animation {
+            animation: takeoff 3s ease-in-out infinite alternate;
         }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        @keyframes takeoff {
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-15px) rotate(5deg); }
         }
-        .slide-in {
-            animation: slideIn 0.5s ease-out;
+        .confidence-glow {
+            animation: glow 2s ease-in-out infinite alternate;
         }
-        @keyframes slideIn {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+            to { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
         }
         .cabin-lights {
-            animation: cabinBlink 3s infinite;
+            animation: blink 1.5s ease-in-out infinite;
         }
-        @keyframes cabinBlink {
-            0%, 90% { opacity: 1; }
-            95% { opacity: 0.3; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
-        .speaking-indicator {
-            animation: speaking 1s ease-in-out infinite alternate;
+        .service-flow {
+            animation: flow 4s ease-in-out infinite;
         }
-        @keyframes speaking {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
+        @keyframes flow {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(10px); }
         }
-        .airplane-seat {
-            background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
-            border-radius: 8px;
-            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
+        .emergency-alert {
+            animation: pulse 1s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .passenger-wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-sky-100 to-blue-200 min-h-screen font-sans">
-    <!-- Flight Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
-        <div class="max-w-6xl mx-auto px-6 py-4">
+<body class="bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 min-h-screen font-sans">
+    <!-- Flight Attendant Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="cabin-lights absolute top-4 left-10 text-2xl">💡</div>
+            <div class="cabin-lights absolute top-8 right-20 text-2xl" style="animation-delay: -0.5s;">💡</div>
+            <div class="cabin-lights absolute top-12 left-1/3 text-2xl" style="animation-delay: -1s;">💡</div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 py-4 relative z-10">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="text-4xl mr-4">✈️</div>
+                    <div class="takeoff-animation text-4xl mr-4">✈️</div>
                     <div>
-                        <h1 class="text-3xl font-bold">Flight SC-21: Speaking Club Express</h1>
-                        <p class="text-blue-100 mt-1">Pre-flight Briefing & Welcome Aboard Training</p>
+                        <h1 class="text-3xl font-bold">Flight Attendant Communication Academy</h1>
+                        <p class="text-blue-100 mt-1">Lesson 21: Building Confidence for Take-off</p>
                         <div class="flex items-center mt-2 text-sm">
-                            <span class="bg-green-500 text-white px-2 py-1 rounded mr-2">ON TIME</span>
-                            <span>Gate: Classroom A | Departure: Now</span>
+                            <span class="bg-green-500 text-white px-2 py-1 rounded mr-2">BOARDING</span>
+                            <span>Preparing for Professional Excellence</span>
                         </div>
                     </div>
                 </div>
                 <div class="text-right">
-                    <div id="flight-timer" class="text-2xl font-bold flight-timer">60:00</div>
-                    <p class="text-sm text-blue-100">Flight Duration</p>
-                    <div class="cabin-lights mt-2">
-                        <span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-1"></span>
-                        <span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-1"></span>
-                        <span class="inline-block w-3 h-3 bg-green-400 rounded-full"></span>
+                    <div class="text-2xl font-bold">👩‍✈️👨‍✈️</div>
+                    <p class="text-sm text-blue-100">Cabin Crew Training</p>
+                    <div class="mt-2">
+                        <div class="flex items-center justify-end">
+                            <span class="text-xs mr-2">Confidence Level:</span>
+                            <div id="confidence-indicator" class="flex">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-yellow-400 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full mr-1"></span>
+                                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,90 +96,132 @@
     </header>
 
     <div class="max-w-6xl mx-auto px-6 py-8">
-        <!-- Flight Navigation -->
+        <!-- Flight Attendant Dashboard -->
         <div class="bg-white rounded-lg shadow-md mb-8 overflow-hidden">
             <div class="bg-gradient-to-r from-gray-100 to-gray-200 px-6 py-3 border-b">
-                <h3 class="font-semibold text-gray-800">Flight Phases</h3>
+                <h3 class="font-semibold text-gray-800 flex items-center">
+                    <span class="mr-2">🎛️</span>
+                    Cabin Crew Communication Center
+                </h3>
             </div>
             <div class="flex flex-wrap">
-                <button onclick="showPhase('boarding')" id="tab-boarding" class="phase-btn px-6 py-3 font-semibold text-blue-600 border-b-2 border-blue-600 bg-blue-50">🎫 Boarding</button>
-                <button onclick="showPhase('briefing')" id="tab-briefing" class="phase-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">📋 Safety Briefing</button>
-                <button onclick="showPhase('announcements')" id="tab-announcements" class="phase-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">📢 Announcements</button>
-                <button onclick="showPhase('service')" id="tab-service" class="phase-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🍽️ In-Flight Service</button>
-                <button onclick="showPhase('landing')" id="tab-landing" class="phase-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🛬 Landing</button>
+                <button onclick="showSection('pre-flight')" id="tab-pre-flight" class="section-btn px-6 py-3 font-semibold text-blue-600 border-b-2 border-blue-600 bg-blue-50">🛫 Pre-Flight Prep</button>
+                <button onclick="showSection('safety')" id="tab-safety" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🦺 Safety Communications</button>
+                <button onclick="showSection('service')" id="tab-service" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🍽️ Service Excellence</button>
+                <button onclick="showSection('difficult')" id="tab-difficult" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">😤 Difficult Passengers</button>
+                <button onclick="showSection('emergency')" id="tab-emergency" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">🚨 Emergency Procedures</button>
+                <button onclick="showSection('confidence')" id="tab-confidence" class="section-btn px-6 py-3 font-semibold text-gray-500 hover:text-blue-600">💪 Confidence Building</button>
             </div>
         </div>
 
-        <!-- Boarding Phase -->
-        <div id="phase-boarding" class="phase-content">
+        <!-- Pre-Flight Preparation Section -->
+        <div id="section-pre-flight" class="section-content">
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Welcome Aboard Training</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-3">🛫</span>
+                        Pre-Flight Communication Checklist
+                    </h2>
                     <div class="space-y-4">
                         <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
-                            <h3 class="font-semibold text-blue-800 mb-2">Learning Objectives</h3>
-                            <ul class="text-sm text-blue-700 space-y-1">
-                                <li>• Master confident public speaking techniques</li>
-                                <li>• Practice clear pronunciation and projection</li>
-                                <li>• Develop professional presentation skills</li>
-                                <li>• Build confidence through aviation roleplay</li>
-                            </ul>
+                            <h3 class="font-semibold text-blue-800 mb-2">Voice and Presence Preparation</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-blue-600" id="voice-warmup">
+                                    <span class="text-blue-700 text-sm">Complete voice warm-up exercises</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-blue-600" id="posture-check">
+                                    <span class="text-blue-700 text-sm">Check posture and professional appearance</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-blue-600" id="breathing-exercise">
+                                    <span class="text-blue-700 text-sm">Practice deep breathing for calm confidence</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-blue-600" id="smile-practice">
+                                    <span class="text-blue-700 text-sm">Practice genuine, welcoming smile</span>
+                                </label>
+                            </div>
                         </div>
                         
                         <div class="bg-green-50 border-l-4 border-green-500 p-4">
-                            <h3 class="font-semibold text-green-800 mb-2">Today's Flight Plan</h3>
-                            <div class="text-sm text-green-700 space-y-2">
-                                <div class="flex justify-between">
-                                    <span>Boarding & Introductions</span>
-                                    <span class="font-medium">10 min</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Safety Briefing Practice</span>
-                                    <span class="font-medium">15 min</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Announcement Training</span>
-                                    <span class="font-medium">20 min</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Service Interactions</span>
-                                    <span class="font-medium">10 min</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span>Final Presentations</span>
-                                    <span class="font-medium">5 min</span>
-                                </div>
+                            <h3 class="font-semibold text-green-800 mb-2">Communication Readiness</h3>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-green-600" id="announcements-review">
+                                    <span class="text-green-700 text-sm">Review standard announcements</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-green-600" id="multilingual-prep">
+                                    <span class="text-green-700 text-sm">Prepare key phrases in multiple languages</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="mr-3 text-green-600" id="passenger-scenarios">
+                                    <span class="text-green-700 text-sm">Mental rehearsal of passenger scenarios</span>
+                                </label>
                             </div>
                         </div>
                     </div>
+                    <button onclick="completePreFlightCheck()" class="mt-4 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Complete Pre-Flight Check</button>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">✈️ Cabin Crew Assignment</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-3">🎤</span>
+                        Voice Training Studio
+                    </h2>
                     <div class="space-y-4">
-                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                            <h3 class="font-semibold text-yellow-800 mb-2">Your Role Today</h3>
-                            <p class="text-yellow-700 text-sm mb-3">You are a flight attendant responsible for passenger safety and comfort. Practice your speaking skills through realistic aviation scenarios.</p>
-                            <button onclick="assignRole()" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition-colors">Get Your Assignment</button>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-purple-800 mb-3">Cabin Announcement Practice</h3>
+                            <div class="space-y-3">
+                                <button onclick="practiceAnnouncement('welcome')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors">
+                                    Welcome Aboard Message
+                                </button>
+                                <button onclick="practiceAnnouncement('safety')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors">
+                                    Safety Demonstration
+                                </button>
+                                <button onclick="practiceAnnouncement('service')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors">
+                                    Service Announcements
+                                </button>
+                                <button onclick="practiceAnnouncement('landing')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors">
+                                    Landing Preparation
+                                </button>
+                            </div>
                         </div>
                         
-                        <div id="role-assignment" class="hidden bg-indigo-50 border border-indigo-200 rounded-lg p-4">
-                            <div id="assigned-role"></div>
-                        </div>
-
-                        <div class="airplane-seat p-4">
-                            <h3 class="font-semibold text-gray-800 mb-3">🎤 Speaking Confidence Meter</h3>
-                            <div class="space-y-3">
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-orange-800 mb-3">Voice Quality Metrics</h3>
+                            <div class="space-y-2">
                                 <div class="flex justify-between text-sm">
-                                    <span>Current Confidence Level</span>
-                                    <span id="confidence-level">50%</span>
+                                    <span>Clarity:</span>
+                                    <div class="flex">
+                                        <span class="w-2 h-2 bg-orange-400 rounded-full mr-1" id="clarity-1"></span>
+                                        <span class="w-2 h-2 bg-orange-400 rounded-full mr-1" id="clarity-2"></span>
+                                        <span class="w-2 h-2 bg-orange-400 rounded-full mr-1" id="clarity-3"></span>
+                                        <span class="w-2 h-2 bg-gray-300 rounded-full mr-1" id="clarity-4"></span>
+                                        <span class="w-2 h-2 bg-gray-300 rounded-full" id="clarity-5"></span>
+                                    </div>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-3">
-                                    <div id="confidence-bar" class="bg-gradient-to-r from-red-400 via-yellow-400 to-green-400 h-3 rounded-full transition-all duration-500" style="width: 50%"></div>
+                                <div class="flex justify-between text-sm">
+                                    <span>Warmth:</span>
+                                    <div class="flex">
+                                        <span class="w-2 h-2 bg-pink-400 rounded-full mr-1" id="warmth-1"></span>
+                                        <span class="w-2 h-2 bg-pink-400 rounded-full mr-1" id="warmth-2"></span>
+                                        <span class="w-2 h-2 bg-pink-400 rounded-full mr-1" id="warmth-3"></span>
+                                        <span class="w-2 h-2 bg-pink-400 rounded-full mr-1" id="warmth-4"></span>
+                                        <span class="w-2 h-2 bg-gray-300 rounded-full" id="warmth-5"></span>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between">
-                                    <button onclick="adjustConfidence(-10)" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">Nervous</button>
-                                    <button onclick="adjustConfidence(10)" class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">Confident</button>
+                                <div class="flex justify-between text-sm">
+                                    <span>Authority:</span>
+                                    <div class="flex">
+                                        <span class="w-2 h-2 bg-indigo-400 rounded-full mr-1" id="authority-1"></span>
+                                        <span class="w-2 h-2 bg-indigo-400 rounded-full mr-1" id="authority-2"></span>
+                                        <span class="w-2 h-2 bg-indigo-400 rounded-full mr-1" id="authority-3"></span>
+                                        <span class="w-2 h-2 bg-indigo-400 rounded-full mr-1" id="authority-4"></span>
+                                        <span class="w-2 h-2 bg-indigo-400 rounded-full" id="authority-5"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,319 +229,455 @@
                 </div>
             </div>
 
-            <div class="mt-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg shadow-lg p-8 text-white">
-                <h2 class="text-2xl font-bold mb-4">🚀 Ready for Takeoff?</h2>
-                <p class="text-lg mb-4">Welcome aboard Speaking Club Express! Today you'll transform from a nervous passenger into a confident cabin crew member through interactive speaking practice.</p>
-                <button onclick="showPhase('briefing')" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Begin Safety Briefing →</button>
-            </div>
-        </div>
-
-        <!-- Safety Briefing Phase -->
-        <div id="phase-briefing" class="phase-content hidden">
-            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">📋 Safety Briefing Training</h2>
-                
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Speaking Fundamentals</h3>
-                        <div class="space-y-4">
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-blue-800 mb-2">Voice Projection</h4>
-                                <p class="text-sm text-blue-700 mb-3">Speak from your diaphragm, not your throat. Practice the "airplane voice" - clear and authoritative.</p>
-                                <button onclick="practiceVoice()" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">Practice Now</button>
-                            </div>
-                            
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-green-800 mb-2">Body Language</h4>
-                                <p class="text-sm text-green-700 mb-3">Stand tall, make eye contact, use purposeful gestures. Your body speaks before you do.</p>
-                                <button onclick="practiceGestures()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">Learn Gestures</button>
-                            </div>
-                            
-                            <div class="bg-purple-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-purple-800 mb-2">Pace & Clarity</h4>
-                                <p class="text-sm text-purple-700 mb-3">Speak slowly enough to be understood, pause for emphasis, articulate clearly.</p>
-                                <button onclick="practicePace()" class="bg-purple-600 text-white px-4 py-2 rounded text-sm hover:bg-purple-700">Practice Pace</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Safety Briefing Script</h3>
-                        <div class="bg-gray-50 p-4 rounded-lg h-80 overflow-y-auto">
-                            <div class="text-sm space-y-3">
-                                <p><strong>Opening:</strong> "Good morning, ladies and gentlemen. Welcome aboard Speaking Club Express flight SC-21. I'm [Your Name], and I'll be your lead flight attendant today."</p>
-                                
-                                <p><strong>Seatbelts:</strong> "Please ensure your seatbelt is securely fastened. To fasten, insert the metal fitting into the buckle and pull tight. To release, lift the upper portion of the buckle."</p>
-                                
-                                <p><strong>Emergency Exits:</strong> "Please take a moment to locate the nearest exit. In some cases, your nearest exit may be behind you. Exit signs are illuminated and will guide you to safety."</p>
-                                
-                                <p><strong>Oxygen Masks:</strong> "In the unlikely event of a cabin pressure change, oxygen masks will drop from above your seat. Place the mask over your nose and mouth, and breathe normally."</p>
-                                
-                                <p><strong>Life Vests:</strong> "Your life vest is located under your seat. Place it over your head, wrap the straps around your waist, and buckle in front."</p>
-                                
-                                <p><strong>Closing:</strong> "Thank you for your attention. We wish you a pleasant flight and look forward to serving you today."</p>
-                            </div>
-                        </div>
-                        <button onclick="startBriefingPractice()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">Start Practice Session</button>
-                    </div>
+            <div id="announcement-practice" class="mt-8 bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <span class="mr-2">🎙️</span>
+                    Announcement Practice Session
+                </h3>
+                <div id="announcement-content" class="mb-6"></div>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="recordPractice()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">🔴 Record Practice</button>
+                    <button onclick="playbackPractice()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">▶️ Playback</button>
+                    <button onclick="getAnnouncementFeedback()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">📊 Get Feedback</button>
                 </div>
-
-                <div id="briefing-practice" class="hidden bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold text-yellow-800 mb-4">🎭 Practice Session Active</h3>
-                    <div id="practice-content" class="mb-4"></div>
-                    <div class="flex gap-4">
-                        <button onclick="nextPracticeSection()" class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700">Next Section</button>
-                        <button onclick="completeBriefing()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Complete Briefing</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">📊 Performance Tracker</h3>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <div class="text-center p-4 bg-blue-50 rounded-lg">
-                        <div class="text-2xl font-bold text-blue-600" id="voice-score">0</div>
-                        <div class="text-sm text-blue-700">Voice Clarity</div>
-                    </div>
-                    <div class="text-center p-4 bg-green-50 rounded-lg">
-                        <div class="text-2xl font-bold text-green-600" id="gesture-score">0</div>
-                        <div class="text-sm text-green-700">Body Language</div>
-                    </div>
-                    <div class="text-center p-4 bg-purple-50 rounded-lg">
-                        <div class="text-2xl font-bold text-purple-600" id="pace-score">0</div>
-                        <div class="text-sm text-purple-700">Pace & Timing</div>
-                    </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2">Practice Tips:</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li>• Speak clearly and at a moderate pace</li>
+                        <li>• Use a warm, professional tone</li>
+                        <li>• Pause appropriately between sections</li>
+                        <li>• Project confidence and authority</li>
+                        <li>• Maintain consistent volume throughout</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Announcements Phase -->
-        <div id="phase-announcements" class="phase-content hidden">
+        <!-- Safety Communications Section -->
+        <div id="section-safety" class="section-content hidden">
             <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">📢 Flight Announcements Training</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">🦺</span>
+                    Safety Communication Mastery
+                </h2>
                 
                 <div class="grid md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Announcement Types</h3>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Safety Demonstration Excellence</h3>
                         <div class="space-y-4">
-                            <div class="announcement-card bg-gradient-to-r from-blue-50 to-blue-100 p-4 rounded-lg cursor-pointer" onclick="selectAnnouncement('welcome')">
-                                <h4 class="font-semibold text-blue-800">Welcome Announcement</h4>
-                                <p class="text-sm text-blue-700">Greet passengers and introduce the flight</p>
+                            <div class="safety-demo bg-gradient-to-r from-red-50 to-orange-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-red-800 mb-2">🔥 Emergency Equipment</h4>
+                                <p class="text-red-700 text-sm mb-3">Clear, confident explanation of safety equipment locations and usage</p>
+                                <button onclick="practiceSafetyDemo('equipment')" class="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700">Practice Demo</button>
                             </div>
                             
-                            <div class="announcement-card bg-gradient-to-r from-green-50 to-green-100 p-4 rounded-lg cursor-pointer" onclick="selectAnnouncement('takeoff')">
-                                <h4 class="font-semibold text-green-800">Pre-Takeoff Announcement</h4>
-                                <p class="text-sm text-green-700">Final preparations before departure</p>
+                            <div class="safety-demo bg-gradient-to-r from-blue-50 to-cyan-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">🦺 Life Vest Instructions</h4>
+                                <p class="text-blue-700 text-sm mb-3">Step-by-step life vest demonstration with clear gestures</p>
+                                <button onclick="practiceSafetyDemo('lifevest')" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">Practice Demo</button>
                             </div>
                             
-                            <div class="announcement-card bg-gradient-to-r from-yellow-50 to-yellow-100 p-4 rounded-lg cursor-pointer" onclick="selectAnnouncement('cruise')">
-                                <h4 class="font-semibold text-yellow-800">Cruise Announcement</h4>
-                                <p class="text-sm text-yellow-700">Updates during flight</p>
+                            <div class="safety-demo bg-gradient-to-r from-yellow-50 to-orange-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">💨 Oxygen Mask Procedure</h4>
+                                <p class="text-yellow-700 text-sm mb-3">Critical oxygen mask instructions with proper emphasis</p>
+                                <button onclick="practiceSafetyDemo('oxygen')" class="bg-yellow-600 text-white px-4 py-2 rounded text-sm hover:bg-yellow-700">Practice Demo</button>
                             </div>
                             
-                            <div class="announcement-card bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg cursor-pointer" onclick="selectAnnouncement('landing')">
-                                <h4 class="font-semibold text-purple-800">Landing Preparation</h4>
-                                <p class="text-sm text-purple-700">Prepare for arrival</p>
-                            </div>
-                            
-                            <div class="announcement-card bg-gradient-to-r from-red-50 to-red-100 p-4 rounded-lg cursor-pointer" onclick="selectAnnouncement('delay')">
-                                <h4 class="font-semibold text-red-800">Delay Announcement</h4>
-                                <p class="text-sm text-red-700">Handle unexpected situations</p>
+                            <div class="safety-demo bg-gradient-to-r from-green-50 to-teal-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">🚪 Emergency Exits</h4>
+                                <p class="text-green-700 text-sm mb-3">Exit locations and evacuation procedures</p>
+                                <button onclick="practiceSafetyDemo('exits')" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">Practice Demo</button>
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">🎤 Practice Station</h3>
-                        <div id="announcement-display" class="bg-gray-50 rounded-lg p-6 mb-4 min-h-64">
-                            <p class="text-gray-600 text-center">Select an announcement type to begin practice</p>
-                        </div>
-                        
-                        <div class="flex gap-3 mb-4">
-                            <button onclick="recordAnnouncement()" id="record-btn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors disabled:bg-gray-400" disabled>🎙️ Record</button>
-                            <button onclick="playbackAnnouncement()" id="playback-btn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors disabled:bg-gray-400" disabled>▶️ Playback</button>
-                            <button onclick="submitAnnouncement()" id="submit-btn" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors disabled:bg-gray-400" disabled>✅ Submit</button>
-                        </div>
-                        
-                        <div id="recording-status" class="hidden">
-                            <div class="speaking-indicator bg-red-100 border border-red-300 rounded-lg p-3 text-center">
-                                <span class="text-red-700 font-semibold">🔴 Recording in progress...</span>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Communication Techniques</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 mb-4">The CLEAR Method</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">C</span>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800">Confident Delivery</h5>
+                                        <p class="text-gray-600 text-sm">Speak with authority and assurance</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">L</span>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800">Loud and Clear</h5>
+                                        <p class="text-gray-600 text-sm">Ensure everyone can hear and understand</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">E</span>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800">Eye Contact</h5>
+                                        <p class="text-gray-600 text-sm">Connect with passengers throughout the cabin</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">A</span>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800">Appropriate Gestures</h5>
+                                        <p class="text-gray-600 text-sm">Use clear, purposeful hand movements</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">R</span>
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800">Repeat Key Points</h5>
+                                        <p class="text-gray-600 text-sm">Emphasize critical safety information</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">🏆 Announcement Leaderboard</h3>
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center p-3 bg-yellow-50 rounded-lg">
-                        <div class="flex items-center">
-                            <span class="text-2xl mr-3">🥇</span>
-                            <span class="font-semibold">Captain Confidence</span>
-                        </div>
-                        <span class="text-yellow-600 font-bold">95 points</span>
+            <div id="safety-practice" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎭 Safety Demonstration Practice</h3>
+                <div id="safety-content" class="mb-6"></div>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="startSafetyTimer()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">⏱️ Start Timer</button>
+                    <button onclick="pauseSafetyPractice()" class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700">⏸️ Pause</button>
+                    <button onclick="completeSafetyDemo()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">✅ Complete</button>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-blue-800 font-semibold">Demonstration Progress</span>
+                        <span id="safety-timer" class="text-blue-600 font-bold">00:00</span>
                     </div>
-                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <span class="text-2xl mr-3">🥈</span>
-                            <span class="font-semibold">First Officer Fluent</span>
-                        </div>
-                        <span class="text-gray-600 font-bold">88 points</span>
-                    </div>
-                    <div class="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-                        <div class="flex items-center">
-                            <span class="text-2xl mr-3">🥉</span>
-                            <span class="font-semibold">Attendant Articulate</span>
-                        </div>
-                        <span class="text-orange-600 font-bold">82 points</span>
-                    </div>
-                    <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg border-2 border-blue-300">
-                        <div class="flex items-center">
-                            <span class="text-2xl mr-3">✈️</span>
-                            <span class="font-semibold">Your Score</span>
-                        </div>
-                        <span class="text-blue-600 font-bold" id="user-score">0 points</span>
+                    <div class="w-full bg-blue-200 rounded-full h-3">
+                        <div id="safety-progress-bar" class="bg-blue-600 h-3 rounded-full transition-all" style="width: 0%"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- In-Flight Service Phase -->
-        <div id="phase-service" class="phase-content hidden">
+        <!-- Service Excellence Section -->
+        <div id="section-service" class="section-content hidden">
             <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">🍽️ In-Flight Service Communication</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">🍽️</span>
+                    Service Communication Excellence
+                </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold text-pink-800 mb-3">Meal Service</h3>
-                        <p class="text-sm text-pink-700 mb-4">Practice offering meals and handling dietary requests with confidence and courtesy.</p>
-                        <button onclick="startServicePractice('meals')" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition-colors">Practice Meals</button>
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="service-scenario bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">☕</div>
+                        <h3 class="text-lg font-semibold text-green-800 mb-2">Beverage Service</h3>
+                        <p class="text-sm text-green-700 mb-4">Professional drink service with personalized attention</p>
+                        <button onclick="practiceService('beverage')" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition-colors">Practice Service</button>
                     </div>
                     
-                    <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold text-teal-800 mb-3">Passenger Assistance</h3>
-                        <p class="text-sm text-teal-700 mb-4">Handle passenger requests, complaints, and special needs with professionalism.</p>
-                        <button onclick="startServicePractice('assistance')" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">Practice Assistance</button>
+                    <div class="service-scenario bg-gradient-to-br from-orange-50 to-red-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">🍽️</div>
+                        <h3 class="text-lg font-semibold text-orange-800 mb-2">Meal Service</h3>
+                        <p class="text-sm text-orange-700 mb-4">Efficient meal distribution with dietary accommodations</p>
+                        <button onclick="practiceService('meal')" class="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition-colors">Practice Service</button>
                     </div>
                     
-                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg">
-                        <h3 class="text-lg font-semibold text-orange-800 mb-3">Emergency Situations</h3>
-                        <p class="text-sm text-orange-700 mb-4">Maintain calm and clear communication during unexpected situations.</p>
-                        <button onclick="startServicePractice('emergency')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition-colors">Practice Emergency</button>
+                    <div class="service-scenario bg-gradient-to-br from-purple-50 to-indigo-100 p-6 rounded-lg">
+                        <div class="text-3xl mb-3 text-center">🛍️</div>
+                        <h3 class="text-lg font-semibold text-purple-800 mb-2">Duty-Free Sales</h3>
+                        <p class="text-sm text-purple-700 mb-4">Engaging product presentations and sales techniques</p>
+                        <button onclick="practiceService('dutyfree')" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors">Practice Service</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Service Communication Scripts</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-blue-800 mb-2">Professional Greeting</h4>
+                                <p class="text-blue-700 text-sm italic mb-2">"Good morning! Welcome aboard. How may I assist you today?"</p>
+                                <button onclick="practiceScript('greeting')" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Practice</button>
+                            </div>
+                            
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-green-800 mb-2">Service Offering</h4>
+                                <p class="text-green-700 text-sm italic mb-2">"We have coffee, tea, juice, and water available. What would you prefer?"</p>
+                                <button onclick="practiceScript('offering')" class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Practice</button>
+                            </div>
+                            
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h4 class="font-semibold text-purple-800 mb-2">Problem Resolution</h4>
+                                <p class="text-purple-700 text-sm italic mb-2">"I understand your concern. Let me see what I can do to help you."</p>
+                                <button onclick="practiceScript('resolution')" class="bg-purple-600 text-white px-3 py-1 rounded text-sm hover:bg-purple-700">Practice</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Service Flow Tracker</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <div class="service-flow mb-4">
+                                <h4 class="font-semibold text-gray-800 mb-3">Current Service Round</h4>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm text-gray-600">Progress:</span>
+                                    <span id="service-progress" class="text-sm font-semibold text-blue-600">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div id="service-bar" class="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Passengers Served:</span>
+                                    <span id="passengers-served" class="font-semibold">0/150</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Service Time:</span>
+                                    <span id="service-time" class="font-semibold">00:00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Satisfaction Score:</span>
+                                    <span id="satisfaction-score" class="font-semibold text-green-600">98%</span>
+                                </div>
+                            </div>
+                            
+                            <button onclick="startServiceRound()" class="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition-colors">Start Service Round</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div id="service-practice" class="bg-white rounded-lg shadow-md p-6 hidden">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎭 Service Scenario Practice</h3>
-                <div id="service-scenario" class="mb-6"></div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎪 Service Practice Session</h3>
+                <div id="service-scenario-content" class="mb-6"></div>
                 <div class="flex gap-4">
-                    <button onclick="nextServiceScenario()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Next Scenario</button>
-                    <button onclick="completeService()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Complete Service</button>
+                    <button onclick="handleServiceWell()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">😊 Handle Professionally</button>
+                    <button onclick="handleServiceBetter()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">⭐ Go Above & Beyond</button>
+                    <button onclick="handleServiceChallenge()" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">🎯 Handle Challenge</button>
                 </div>
             </div>
+        </div>
 
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">💬 Communication Tips</h3>
-                <div class="grid md:grid-cols-2 gap-6">
+        <!-- Difficult Passengers Section -->
+        <div id="section-difficult" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">😤</span>
+                    Difficult Passenger Management
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
-                        <h4 class="font-semibold text-gray-700 mb-3">Positive Language</h4>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex">
-                                <span class="text-red-500 mr-2">❌</span>
-                                <span class="text-gray-600">"I can't do that"</span>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Passenger Types & Strategies</h3>
+                        <div class="space-y-4">
+                            <div class="passenger-type bg-gradient-to-r from-red-50 to-pink-100 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-3">😡</span>
+                                    <h4 class="font-semibold text-red-800">Angry Passenger</h4>
+                                </div>
+                                <p class="text-red-700 text-sm mb-3">Upset about delays, seating, or service issues</p>
+                                <button onclick="handlePassengerType('angry')" class="bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700">Practice Handling</button>
                             </div>
-                            <div class="flex">
-                                <span class="text-green-500 mr-2">✅</span>
-                                <span class="text-gray-600">"Let me see what I can do for you"</span>
+                            
+                            <div class="passenger-type bg-gradient-to-r from-yellow-50 to-orange-100 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-3">😰</span>
+                                    <h4 class="font-semibold text-yellow-800">Anxious Flyer</h4>
+                                </div>
+                                <p class="text-yellow-700 text-sm mb-3">Nervous about flying, needs reassurance and support</p>
+                                <button onclick="handlePassengerType('anxious')" class="bg-yellow-600 text-white px-4 py-2 rounded text-sm hover:bg-yellow-700">Practice Handling</button>
                             </div>
-                            <div class="flex">
-                                <span class="text-red-500 mr-2">❌</span>
-                                <span class="text-gray-600">"That's not my job"</span>
+                            
+                            <div class="passenger-type bg-gradient-to-r from-purple-50 to-indigo-100 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-3">🍷</span>
+                                    <h4 class="font-semibold text-purple-800">Intoxicated Passenger</h4>
+                                </div>
+                                <p class="text-purple-700 text-sm mb-3">Under the influence, potentially disruptive behavior</p>
+                                <button onclick="handlePassengerType('intoxicated')" class="bg-purple-600 text-white px-4 py-2 rounded text-sm hover:bg-purple-700">Practice Handling</button>
                             </div>
-                            <div class="flex">
-                                <span class="text-green-500 mr-2">✅</span>
-                                <span class="text-gray-600">"I'll find someone who can help you"</span>
+                            
+                            <div class="passenger-type bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-2xl mr-3">🤔</span>
+                                    <h4 class="font-semibold text-gray-800">Demanding Passenger</h4>
+                                </div>
+                                <p class="text-gray-700 text-sm mb-3">Excessive requests, entitled behavior, unrealistic expectations</p>
+                                <button onclick="handlePassengerType('demanding')" class="bg-gray-600 text-white px-4 py-2 rounded text-sm hover:bg-gray-700">Practice Handling</button>
                             </div>
                         </div>
                     </div>
+
                     <div>
-                        <h4 class="font-semibold text-gray-700 mb-3">Active Listening</h4>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• Make eye contact and nod to show understanding</li>
-                            <li>• Repeat back key information to confirm</li>
-                            <li>• Ask clarifying questions when needed</li>
-                            <li>• Show empathy through your tone and words</li>
-                            <li>• Thank passengers for their patience</li>
-                        </ul>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">De-escalation Techniques</h3>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-blue-800 mb-4">The CALM Protocol</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">C</span>
+                                    <div>
+                                        <h5 class="font-semibold text-blue-800">Control Your Response</h5>
+                                        <p class="text-blue-700 text-sm">Stay calm, breathe deeply, maintain professional demeanor</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">A</span>
+                                    <div>
+                                        <h5 class="font-semibold text-green-800">Acknowledge & Listen</h5>
+                                        <p class="text-green-700 text-sm">Validate their feelings, listen actively to their concerns</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">L</span>
+                                    <div>
+                                        <h5 class="font-semibold text-purple-800">Lower the Temperature</h5>
+                                        <p class="text-purple-700 text-sm">Use soft tone, apologize when appropriate, find common ground</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">M</span>
+                                    <div>
+                                        <h5 class="font-semibold text-orange-800">Move to Solutions</h5>
+                                        <p class="text-orange-700 text-sm">Offer alternatives, involve supervisor if needed, follow up</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+                            <h4 class="font-semibold text-red-800 mb-2">⚠️ When to Escalate</h4>
+                            <ul class="text-red-700 text-sm space-y-1">
+                                <li>• Physical aggression or threats</li>
+                                <li>• Refusal to comply with safety instructions</li>
+                                <li>• Harassment of other passengers or crew</li>
+                                <li>• Intoxication affecting safety</li>
+                                <li>• Damage to aircraft property</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="passenger-scenario" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎭 Passenger Scenario Training</h3>
+                <div id="scenario-content" class="mb-6"></div>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="useCALMProtocol()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Use CALM Protocol</button>
+                    <button onclick="escalateToSupervisor()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">Escalate to Supervisor</button>
+                    <button onclick="offerAlternative()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Offer Alternative</button>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2">Scenario Progress</h4>
+                    <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                        <div id="scenario-progress-bar" class="bg-blue-600 h-3 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600">
+                        <span>Tension Level: <span id="tension-level">High</span></span>
+                        <span>Resolution Progress: <span id="resolution-progress">0%</span></span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Landing Phase -->
-        <div id="phase-landing" class="phase-content hidden">
+        <!-- Emergency Procedures Section -->
+        <div id="section-emergency" class="section-content hidden">
             <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">🛬 Final Presentations & Landing</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">🚨</span>
+                    Emergency Communication Protocols
+                </h2>
                 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">🎯 Final Challenge</h3>
-                        <div class="bg-gradient-to-br from-purple-50 to-indigo-100 p-6 rounded-lg">
-                            <h4 class="font-semibold text-purple-800 mb-3">Captain's Test</h4>
-                            <p class="text-purple-700 mb-4">Demonstrate your speaking mastery by delivering a complete flight experience from welcome to goodbye.</p>
-                            <div class="space-y-3">
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="welcome-check" class="mr-3">
-                                    <label for="welcome-check" class="text-sm">Welcome announcement</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="safety-check" class="mr-3">
-                                    <label for="safety-check" class="text-sm">Safety briefing</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="service-check" class="mr-3">
-                                    <label for="service-check" class="text-sm">Service interaction</label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input type="checkbox" id="landing-check" class="mr-3">
-                                    <label for="landing-check" class="text-sm">Landing announcement</label>
-                                </div>
-                            </div>
-                            <button onclick="startFinalTest()" class="mt-4 w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">Start Captain's Test</button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700 mb-4">📊 Flight Summary</h3>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Emergency Scenarios</h3>
                         <div class="space-y-4">
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-blue-800 mb-2">Speaking Skills Developed</h4>
-                                <div class="grid grid-cols-2 gap-2 text-sm text-blue-700">
-                                    <div>✓ Voice projection</div>
-                                    <div>✓ Clear articulation</div>
-                                    <div>✓ Confident posture</div>
-                                    <div>✓ Professional tone</div>
-                                    <div>✓ Active listening</div>
-                                    <div>✓ Stress management</div>
+                            <div class="emergency-scenario emergency-alert bg-gradient-to-r from-red-50 to-red-100 p-4 rounded-lg cursor-pointer" onclick="practiceEmergency('medical')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🏥</span>
+                                    <div>
+                                        <h4 class="font-semibold text-red-800">Medical Emergency</h4>
+                                        <p class="text-sm text-red-700">Passenger requires immediate medical attention</p>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="bg-green-50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-green-800 mb-2">Performance Metrics</h4>
-                                <div class="space-y-2">
-                                    <div class="flex justify-between text-sm">
-                                        <span>Confidence Level:</span>
-                                        <span id="final-confidence" class="font-semibold">75%</span>
+                            <div class="emergency-scenario emergency-alert bg-gradient-to-r from-orange-50 to-orange-100 p-4 rounded-lg cursor-pointer" onclick="practiceEmergency('turbulence')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🌪️</span>
+                                    <div>
+                                        <h4 class="font-semibold text-orange-800">Severe Turbulence</h4>
+                                        <p class="text-sm text-orange-700">Unexpected severe weather conditions</p>
                                     </div>
-                                    <div class="flex justify-between text-sm">
-                                        <span>Announcements Completed:</span>
-                                        <span id="announcements-count" class="font-semibold">0/5</span>
+                                </div>
+                            </div>
+                            
+                            <div class="emergency-scenario emergency-alert bg-gradient-to-r from-yellow-50 to-yellow-100 p-4 rounded-lg cursor-pointer" onclick="practiceEmergency('evacuation')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🚪</span>
+                                    <div>
+                                        <h4 class="font-semibold text-yellow-800">Emergency Evacuation</h4>
+                                        <p class="text-sm text-yellow-700">Immediate aircraft evacuation required</p>
                                     </div>
-                                    <div class="flex justify-between text-sm">
-                                        <span>Overall Score:</span>
-                                        <span id="overall-score" class="font-semibold">0 points</span>
+                                </div>
+                            </div>
+                            
+                            <div class="emergency-scenario emergency-alert bg-gradient-to-r from-purple-50 to-purple-100 p-4 rounded-lg cursor-pointer" onclick="practiceEmergency('security')">
+                                <div class="flex items-center">
+                                    <span class="text-2xl mr-3">🔒</span>
+                                    <div>
+                                        <h4 class="font-semibold text-purple-800">Security Threat</h4>
+                                        <p class="text-sm text-purple-700">Potential security or safety threat aboard</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Emergency Communication Principles</h3>
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-red-800 mb-4">URGENT Protocol</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <span class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">U</span>
+                                    <div>
+                                        <h5 class="font-semibold text-red-800">Understand the Situation</h5>
+                                        <p class="text-red-700 text-sm">Quickly assess the emergency and its severity</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">R</span>
+                                    <div>
+                                        <h5 class="font-semibold text-orange-800">Remain Calm</h5>
+                                        <p class="text-orange-700 text-sm">Project confidence and control to passengers</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-yellow-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">G</span>
+                                    <div>
+                                        <h5 class="font-semibold text-yellow-800">Give Clear Instructions</h5>
+                                        <p class="text-yellow-700 text-sm">Use simple, direct commands that are easy to follow</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">E</span>
+                                    <div>
+                                        <h5 class="font-semibold text-green-800">Ensure Compliance</h5>
+                                        <p class="text-green-700 text-sm">Verify passengers are following instructions</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">N</span>
+                                    <div>
+                                        <h5 class="font-semibold text-blue-800">Notify Appropriate Personnel</h5>
+                                        <p class="text-blue-700 text-sm">Communicate with cockpit and ground as needed</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">T</span>
+                                    <div>
+                                        <h5 class="font-semibold text-purple-800">Take Decisive Action</h5>
+                                        <p class="text-purple-700 text-sm">Execute emergency procedures without hesitation</p>
                                     </div>
                                 </div>
                             </div>
@@ -486,396 +686,825 @@
                 </div>
             </div>
 
-            <div id="final-test" class="bg-white rounded-lg shadow-md p-6 hidden">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎤 Captain's Test in Progress</h3>
-                <div id="test-content" class="mb-6"></div>
-                <div class="flex gap-4">
-                    <button onclick="nextTestSection()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Next Section</button>
-                    <button onclick="completeFinalTest()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Complete Test</button>
+            <div id="emergency-practice" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🚨 Emergency Simulation Active</h3>
+                <div id="emergency-content" class="mb-6"></div>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="executeEmergencyProtocol()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">Execute Protocol</button>
+                    <button onclick="communicateWithCockpit()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Contact Cockpit</button>
+                    <button onclick="calmPassengers()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Calm Passengers</button>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-red-800 font-semibold">Emergency Response Time</span>
+                        <span id="emergency-timer" class="text-red-600 font-bold">00:00</span>
+                    </div>
+                    <div class="w-full bg-red-200 rounded-full h-3">
+                        <div id="emergency-progress-bar" class="bg-red-600 h-3 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <p class="text-red-700 text-sm mt-2">Quick, decisive action saves lives in emergencies</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confidence Building Section -->
+        <div id="section-confidence" class="section-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-3">💪</span>
+                    Building Unshakeable Confidence
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Confidence Challenges</h3>
+                        <div class="space-y-4">
+                            <div class="confidence-challenge confidence-glow bg-gradient-to-r from-blue-50 to-indigo-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">🎤 Public Speaking Challenge</h4>
+                                <p class="text-blue-700 text-sm mb-3">Address the entire cabin with confidence and authority</p>
+                                <button onclick="startConfidenceChallenge('speaking')" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">Accept Challenge</button>
+                            </div>
+                            
+                            <div class="confidence-challenge confidence-glow bg-gradient-to-r from-green-50 to-emerald-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-800 mb-2">🎭 Role-Play Mastery</h4>
+                                <p class="text-green-700 text-sm mb-3">Handle multiple challenging scenarios back-to-back</p>
+                                <button onclick="startConfidenceChallenge('roleplay')" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">Accept Challenge</button>
+                            </div>
+                            
+                            <div class="confidence-challenge confidence-glow bg-gradient-to-r from-purple-50 to-pink-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-purple-800 mb-2">⚡ Pressure Test</h4>
+                                <p class="text-purple-700 text-sm mb-3">Maintain composure under extreme time pressure</p>
+                                <button onclick="startConfidenceChallenge('pressure')" class="bg-purple-600 text-white px-4 py-2 rounded text-sm hover:bg-purple-700">Accept Challenge</button>
+                            </div>
+                            
+                            <div class="confidence-challenge confidence-glow bg-gradient-to-r from-orange-50 to-red-100 p-4 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-2">🌟 Leadership Moment</h4>
+                                <p class="text-orange-700 text-sm mb-3">Take charge during a crisis simulation</p>
+                                <button onclick="startConfidenceChallenge('leadership')" class="bg-orange-600 text-white px-4 py-2 rounded text-sm hover:bg-orange-700">Accept Challenge</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-4">Confidence Meter</h3>
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-100 p-6 rounded-lg">
+                            <div class="text-center mb-6">
+                                <div class="text-5xl font-bold text-indigo-600 mb-2" id="confidence-score">75%</div>
+                                <div class="text-lg text-indigo-800 font-semibold">Flight Attendant Confidence</div>
+                                <div class="text-sm text-indigo-600">Ready for Take-off Level</div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-700 mb-1">
+                                        <span>Voice Authority</span>
+                                        <span id="voice-confidence">80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="voice-confidence-bar" class="bg-blue-500 h-2 rounded-full transition-all" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-700 mb-1">
+                                        <span>Passenger Management</span>
+                                        <span id="passenger-confidence">70%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="passenger-confidence-bar" class="bg-green-500 h-2 rounded-full transition-all" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-700 mb-1">
+                                        <span>Emergency Response</span>
+                                        <span id="emergency-confidence">75%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="emergency-confidence-bar" class="bg-red-500 h-2 rounded-full transition-all" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-700 mb-1">
+                                        <span>Service Excellence</span>
+                                        <span id="service-confidence">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div id="service-confidence-bar" class="bg-purple-500 h-2 rounded-full transition-all" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex gap-2">
+                                <button onclick="boostConfidence()" class="flex-1 bg-indigo-600 text-white py-2 rounded text-sm hover:bg-indigo-700">🚀 Boost Confidence</button>
+                                <button onclick="resetConfidence()" class="flex-1 bg-gray-500 text-white py-2 rounded text-sm hover:bg-gray-600">🔄 Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-8 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg shadow-lg p-8 text-white">
-                <h2 class="text-2xl font-bold mb-4">🎉 Congratulations, Captain!</h2>
-                <p class="text-lg mb-4">You've successfully completed Speaking Club Express flight SC-21. Your confidence has soared to new heights!</p>
-                <div class="flex gap-4">
-                    <button onclick="downloadCertificate()" class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Download Certificate</button>
-                    <button onclick="shareAchievement()" class="bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition-colors">Share Achievement</button>
+            <div id="confidence-challenge-active" class="bg-white rounded-lg shadow-md p-6 hidden">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">🎯 Active Confidence Challenge</h3>
+                <div id="challenge-scenario" class="mb-6"></div>
+                <div class="flex gap-4 mb-4">
+                    <button onclick="completeChallenge()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">✅ Complete Challenge</button>
+                    <button onclick="needSupport()" class="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-700">🤝 Need Support</button>
+                    <button onclick="pushHarder()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700">💪 Push Harder</button>
+                </div>
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-indigo-800 font-semibold">Challenge Progress</span>
+                        <span id="challenge-timer" class="text-indigo-600 font-bold">00:00</span>
+                    </div>
+                    <div class="w-full bg-indigo-200 rounded-full h-3">
+                        <div id="confidence-challenge-bar" class="bg-indigo-600 h-3 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">🎓 Flight Attendant Certification Progress</h2>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="skills-mastered">6/8</div>
+                        <div class="text-sm opacity-90">Skills Mastered</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="scenarios-completed">24</div>
+                        <div class="text-sm opacity-90">Scenarios Completed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="confidence-level">Advanced</div>
+                        <div class="text-sm opacity-90">Confidence Level</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2" id="readiness-status">Ready</div>
+                        <div class="text-sm opacity-90">Flight Readiness</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center">
+                    <button onclick="proceedToLesson22()" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        🛫 Proceed to Lesson 22: Take-off & Flight
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Flight timer functionality
-        let flightTime = 60 * 60; // 60 minutes in seconds
-        let timerInterval;
+        // Global variables
+        let confidenceScores = {
+            voice: 80,
+            passenger: 70,
+            emergency: 75,
+            service: 85
+        };
+        let currentChallenge = null;
+        let challengeTimer = null;
+        let skillsCompleted = 6;
+        let scenariosCompleted = 24;
 
-        function startFlightTimer() {
-            timerInterval = setInterval(() => {
-                if (flightTime > 0) {
-                    flightTime--;
-                    updateFlightTimerDisplay();
-                } else {
-                    clearInterval(timerInterval);
-                    alert('Flight completed! Time to land.');
-                }
-            }, 1000);
-        }
-
-        function updateFlightTimerDisplay() {
-            const minutes = Math.floor(flightTime / 60);
-            const seconds = flightTime % 60;
-            document.getElementById('flight-timer').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // Phase navigation
-        function showPhase(phaseName) {
-            const phases = document.querySelectorAll('.phase-content');
-            phases.forEach(phase => phase.classList.add('hidden'));
+        // Section navigation
+        function showSection(sectionName) {
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
             
-            document.getElementById(`phase-${phaseName}`).classList.remove('hidden');
-            document.getElementById(`phase-${phaseName}`).classList.add('slide-in');
+            document.getElementById(`section-${sectionName}`).classList.remove('hidden');
             
-            const tabs = document.querySelectorAll('.phase-btn');
+            const tabs = document.querySelectorAll('.section-btn');
             tabs.forEach(tab => {
                 tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600', 'bg-blue-50');
                 tab.classList.add('text-gray-500');
             });
             
-            const activeTab = document.getElementById(`tab-${phaseName}`);
+            const activeTab = document.getElementById(`tab-${sectionName}`);
             activeTab.classList.remove('text-gray-500');
             activeTab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600', 'bg-blue-50');
         }
 
-        // Role assignment
-        const roles = [
-            {
-                title: "Senior Flight Attendant",
-                description: "Lead the safety briefing and coordinate with the crew",
-                badge: "👨‍✈️",
-                color: "blue"
-            },
-            {
-                title: "Welcome Specialist",
-                description: "Greet passengers and make announcements",
-                badge: "🎤",
-                color: "green"
-            },
-            {
-                title: "Safety Coordinator",
-                description: "Demonstrate safety procedures and equipment",
-                badge: "🦺",
-                color: "red"
-            },
-            {
-                title: "Service Manager",
-                description: "Handle passenger requests and meal service",
-                badge: "🍽️",
-                color: "purple"
-            }
-        ];
-
-        function assignRole() {
-            const randomRole = roles[Math.floor(Math.random() * roles.length)];
-            document.getElementById('assigned-role').innerHTML = `
-                <div class="text-center">
-                    <div class="text-4xl mb-2">${randomRole.badge}</div>
-                    <h4 class="font-semibold text-${randomRole.color}-800 mb-2">${randomRole.title}</h4>
-                    <p class="text-sm text-${randomRole.color}-700">${randomRole.description}</p>
-                </div>
-            `;
-            document.getElementById('role-assignment').classList.remove('hidden');
-        }
-
-        // Confidence tracking
-        let confidenceLevel = 50;
-
-        function adjustConfidence(change) {
-            confidenceLevel = Math.max(0, Math.min(100, confidenceLevel + change));
-            document.getElementById('confidence-level').textContent = `${confidenceLevel}%`;
-            document.getElementById('confidence-bar').style.width = `${confidenceLevel}%`;
+        // Pre-flight functions
+        function completePreFlightCheck() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
             
-            // Update final confidence display
-            document.getElementById('final-confidence').textContent = `${confidenceLevel}%`;
-        }
-
-        // Practice sessions
-        let practiceScores = {
-            voice: 0,
-            gesture: 0,
-            pace: 0
-        };
-
-        function practiceVoice() {
-            practiceScores.voice = Math.min(100, practiceScores.voice + 20);
-            document.getElementById('voice-score').textContent = practiceScores.voice;
-            adjustConfidence(5);
-            alert('Great voice projection! Remember to speak from your diaphragm.');
-        }
-
-        function practiceGestures() {
-            practiceScores.gesture = Math.min(100, practiceScores.gesture + 20);
-            document.getElementById('gesture-score').textContent = practiceScores.gesture;
-            adjustConfidence(5);
-            alert('Excellent body language! Keep your gestures purposeful and confident.');
-        }
-
-        function practicePace() {
-            practiceScores.pace = Math.min(100, practiceScores.pace + 20);
-            document.getElementById('pace-score').textContent = practiceScores.pace;
-            adjustConfidence(5);
-            alert('Perfect pacing! Clear articulation makes all the difference.');
-        }
-
-        // Safety briefing practice
-        const briefingSections = [
-            "Welcome passengers and introduce yourself",
-            "Demonstrate seatbelt fastening and release",
-            "Point out emergency exits and lighting",
-            "Show oxygen mask procedures",
-            "Explain life vest location and use",
-            "Thank passengers for their attention"
-        ];
-        let currentBriefingSection = 0;
-
-        function startBriefingPractice() {
-            document.getElementById('briefing-practice').classList.remove('hidden');
-            displayBriefingSection();
-        }
-
-        function displayBriefingSection() {
-            document.getElementById('practice-content').innerHTML = `
-                <h4 class="font-semibold text-yellow-800 mb-2">Section ${currentBriefingSection + 1} of ${briefingSections.length}</h4>
-                <p class="text-yellow-700">${briefingSections[currentBriefingSection]}</p>
-                <p class="text-sm text-yellow-600 mt-2">Practice this section out loud with confidence and clear pronunciation.</p>
-            `;
-        }
-
-        function nextPracticeSection() {
-            if (currentBriefingSection < briefingSections.length - 1) {
-                currentBriefingSection++;
-                displayBriefingSection();
-                adjustConfidence(3);
+            if (checkedCount >= 6) {
+                alert('🎉 Excellent! Pre-flight communication check complete. You\'re ready for boarding and service. Your professional preparation shows in your confident demeanor.');
+                boostConfidence();
+            } else {
+                alert('Please complete more checklist items to ensure you\'re fully prepared for your flight duties.');
             }
         }
 
-        function completeBriefing() {
-            adjustConfidence(15);
-            alert('Safety briefing completed! You\'re ready for real passengers.');
-            showPhase('announcements');
-        }
-
-        // Announcements
+        // Announcement practice
         const announcements = {
             welcome: {
-                title: "Welcome Announcement",
-                script: "Good morning and welcome aboard Speaking Club Express flight SC-21. I'm [Your Name], your lead flight attendant. Our flight time today will be approximately 60 minutes. Please ensure your seatbelts are fastened and your seats are in the upright position. We'll be taking off shortly.",
-                tips: "Speak warmly and confidently. Make eye contact with passengers. Smile in your voice."
+                title: "Welcome Aboard Announcement",
+                script: "Good morning and welcome aboard Flight 123 to New York. I'm Sarah, your lead flight attendant. Please take a moment to locate the nearest exit, which may be behind you. Fasten your seatbelts and prepare for our safety demonstration.",
+                tips: ["Smile while speaking", "Make eye contact with passengers", "Speak clearly and at moderate pace", "Project warmth and authority"]
             },
-            takeoff: {
-                title: "Pre-Takeoff Announcement",
-                script: "Ladies and gentlemen, we're preparing for takeoff. Please ensure all electronic devices are in airplane mode, tray tables are up and locked, and seat backs are in their full upright position. Thank you for your cooperation.",
-                tips: "Be clear and authoritative. Check that passengers are following instructions."
+            safety: {
+                title: "Safety Demonstration Script",
+                script: "Ladies and gentlemen, please direct your attention to the safety demonstration. In the unlikely event of a water landing, your life vest is located under your seat. Place it over your head, secure the straps around your waist, and inflate only when exiting the aircraft.",
+                tips: ["Use clear gestures", "Maintain serious but calm tone", "Ensure all passengers are watching", "Repeat key safety points"]
             },
-            cruise: {
-                title: "Cruise Announcement",
-                script: "Good afternoon, passengers. We've reached our cruising altitude and the captain has turned off the seatbelt sign. You're now free to move about the cabin. We'll be beginning our meal service shortly.",
-                tips: "Relaxed but professional tone. Provide helpful information about services."
+            service: {
+                title: "Service Announcement",
+                script: "We'll now begin our beverage service. Today we're offering coffee, tea, juice, water, and soft drinks. We also have a selection of snacks available for purchase. Please have your payment ready if you'd like to make a purchase.",
+                tips: ["Sound enthusiastic about service", "Speak at comfortable volume", "Mention all available options", "Be prepared for questions"]
             },
             landing: {
-                title: "Landing Preparation",
-                script: "Ladies and gentlemen, we're beginning our descent. Please return to your seats, fasten your seatbelts, and return your seats to the upright position. Thank you for flying with us today.",
-                tips: "Clear instructions with a sense of urgency but not panic."
-            },
-            delay: {
-                title: "Delay Announcement",
-                script: "Ladies and gentlemen, we apologize for the delay. We're currently waiting for clearance from air traffic control. We expect to be airborne in approximately 15 minutes. Thank you for your patience.",
-                tips: "Apologetic but confident. Provide specific information when possible."
+                title: "Landing Preparation Announcement",
+                script: "Ladies and gentlemen, we're beginning our descent into New York. Please return your seats to the upright position, secure your tray tables, and ensure your seatbelts are fastened. Thank you for flying with us today."
             }
         };
 
-        let selectedAnnouncement = null;
-        let userScore = 0;
-        let announcementsCompleted = 0;
-
-        function selectAnnouncement(type) {
-            selectedAnnouncement = type;
+        function practiceAnnouncement(type) {
             const announcement = announcements[type];
-            
-            document.getElementById('announcement-display').innerHTML = `
-                <h4 class="font-semibold text-gray-800 mb-3">${announcement.title}</h4>
+            document.getElementById('announcement-content').innerHTML = `
                 <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                    <h5 class="font-semibold text-blue-800 mb-2">Script:</h5>
-                    <p class="text-blue-700 text-sm">${announcement.script}</p>
+                    <h4 class="font-semibold text-blue-800 mb-2">${announcement.title}</h4>
+                    <div class="bg-white p-3 rounded border">
+                        <p class="text-gray-800 italic">"${announcement.script}"</p>
+                    </div>
                 </div>
                 <div class="bg-green-50 p-4 rounded-lg">
-                    <h5 class="font-semibold text-green-800 mb-2">Tips:</h5>
-                    <p class="text-green-700 text-sm">${announcement.tips}</p>
+                    <h5 class="font-semibold text-green-800 mb-2">Practice Tips:</h5>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        ${announcement.tips.map(tip => `<li>• ${tip}</li>`).join('')}
+                    </ul>
                 </div>
             `;
-            
-            document.getElementById('record-btn').disabled = false;
-            document.getElementById('record-btn').classList.remove('bg-gray-400');
-            document.getElementById('record-btn').classList.add('bg-red-600', 'hover:bg-red-700');
+            document.getElementById('announcement-practice').classList.remove('hidden');
         }
 
-        function recordAnnouncement() {
-            document.getElementById('recording-status').classList.remove('hidden');
-            document.getElementById('record-btn').disabled = true;
-            
-            // Simulate recording
-            setTimeout(() => {
-                document.getElementById('recording-status').classList.add('hidden');
-                document.getElementById('playback-btn').disabled = false;
-                document.getElementById('submit-btn').disabled = false;
-                document.getElementById('playback-btn').classList.remove('bg-gray-400');
-                document.getElementById('submit-btn').classList.remove('bg-gray-400');
-                document.getElementById('playback-btn').classList.add('bg-blue-600', 'hover:bg-blue-700');
-                document.getElementById('submit-btn').classList.add('bg-green-600', 'hover:bg-green-700');
-                alert('Recording complete! You can now playback or submit.');
-            }, 3000);
+        function recordPractice() {
+            alert('🎤 Recording started! Practice your announcement now. Focus on clarity, pace, and professional tone.');
         }
 
-        function playbackAnnouncement() {
-            alert('Playing back your announcement... (In a real app, this would play the audio)');
+        function playbackPractice() {
+            alert('▶️ Playing back your practice session. Listen for areas to improve: pace, clarity, and confidence level.');
         }
 
-        function submitAnnouncement() {
-            const points = Math.floor(Math.random() * 20) + 15; // 15-35 points
-            userScore += points;
-            announcementsCompleted++;
+        function getAnnouncementFeedback() {
+            const feedback = [
+                "Excellent clarity and professional tone!",
+                "Great pace - easy to follow and understand.",
+                "Your confidence really shows through your voice.",
+                "Perfect balance of authority and warmth.",
+                "Consider slowing down slightly on key safety points.",
+                "Try adding a bit more enthusiasm to service announcements."
+            ];
+            const randomFeedback = feedback[Math.floor(Math.random() * feedback.length)];
+            alert(`📊 Feedback: ${randomFeedback}`);
             
-            document.getElementById('user-score').textContent = `${userScore} points`;
-            document.getElementById('announcements-count').textContent = `${announcementsCompleted}/5`;
-            document.getElementById('overall-score').textContent = `${userScore} points`;
-            
-            adjustConfidence(8);
-            alert(`Great job! You earned ${points} points for that announcement.`);
-            
-            // Reset buttons
-            document.getElementById('record-btn').disabled = true;
-            document.getElementById('playback-btn').disabled = true;
-            document.getElementById('submit-btn').disabled = true;
+            // Boost voice confidence
+            confidenceScores.voice = Math.min(100, confidenceScores.voice + 5);
+            updateConfidenceDisplay();
         }
 
-        // Service practice
-        const serviceScenarios = {
-            meals: [
-                "A passenger asks about vegetarian meal options",
-                "Someone has a severe peanut allergy and is concerned",
-                "A child is refusing to eat and the parent needs help",
-                "A passenger complains the meal is cold"
-            ],
-            assistance: [
-                "An elderly passenger needs help reaching the overhead bin",
-                "Someone is feeling airsick and needs assistance",
-                "A passenger's entertainment system isn't working",
-                "Someone is anxious about flying and needs reassurance"
-            ],
-            emergency: [
-                "A passenger is having a medical emergency",
-                "There's turbulence and passengers are scared",
-                "The plane needs to make an emergency landing",
-                "A passenger is being disruptive and aggressive"
-            ]
+        // Safety demonstration practice
+        const safetyDemos = {
+            equipment: {
+                title: "Emergency Equipment Demonstration",
+                content: "Practice explaining the location and use of emergency equipment including flashlights, life vests, and emergency exits. Use clear gestures and maintain eye contact with passengers throughout the cabin.",
+                duration: 180
+            },
+            lifevest: {
+                title: "Life Vest Demonstration",
+                content: "Demonstrate proper life vest usage: placement over head, securing straps, and inflation timing. Remember to emphasize 'inflate only when exiting the aircraft'.",
+                duration: 120
+            },
+            oxygen: {
+                title: "Oxygen Mask Procedure",
+                content: "Show oxygen mask placement and emphasize 'secure your own mask before helping others'. Practice the pulling motion and proper mask positioning.",
+                duration: 90
+            },
+            exits: {
+                title: "Emergency Exit Briefing",
+                content: "Point out all emergency exits, count rows to nearest exits, and explain exit door operation. Ensure passengers understand exit row responsibilities.",
+                duration: 150
+            }
         };
 
-        let currentServiceType = null;
-        let currentServiceIndex = 0;
-
-        function startServicePractice(type) {
-            currentServiceType = type;
-            currentServiceIndex = 0;
-            document.getElementById('service-practice').classList.remove('hidden');
-            displayServiceScenario();
-        }
-
-        function displayServiceScenario() {
-            const scenarios = serviceScenarios[currentServiceType];
-            document.getElementById('service-scenario').innerHTML = `
-                <h4 class="font-semibold text-gray-800 mb-3">Scenario ${currentServiceIndex + 1} of ${scenarios.length}</h4>
-                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-                    <p class="text-yellow-800">${scenarios[currentServiceIndex]}</p>
+        function practiceSafetyDemo(type) {
+            const demo = safetyDemos[type];
+            document.getElementById('safety-content').innerHTML = `
+                <div class="bg-red-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-red-800 mb-2">${demo.title}</h4>
+                    <p class="text-red-700">${demo.content}</p>
                 </div>
-                <p class="text-gray-600">How would you handle this situation? Practice your response out loud.</p>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-blue-800 mb-2">Demonstration Guidelines:</h5>
+                    <ul class="text-blue-700 text-sm space-y-1">
+                        <li>• Speak loudly and clearly for all passengers to hear</li>
+                        <li>• Use deliberate, exaggerated gestures</li>
+                        <li>• Make eye contact throughout the cabin</li>
+                        <li>• Pause between key instructions</li>
+                        <li>• Maintain serious, professional demeanor</li>
+                    </ul>
+                </div>
             `;
+            document.getElementById('safety-practice').classList.remove('hidden');
+            window.currentSafetyDemo = { type, duration: demo.duration };
         }
 
-        function nextServiceScenario() {
-            const scenarios = serviceScenarios[currentServiceType];
-            if (currentServiceIndex < scenarios.length - 1) {
-                currentServiceIndex++;
-                displayServiceScenario();
-                adjustConfidence(5);
+        function startSafetyTimer() {
+            if (!window.currentSafetyDemo) return;
+            
+            let elapsed = 0;
+            const duration = window.currentSafetyDemo.duration;
+            
+            window.safetyTimerInterval = setInterval(() => {
+                elapsed++;
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('safety-timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                const progress = (elapsed / duration) * 100;
+                document.getElementById('safety-progress-bar').style.width = `${progress}%`;
+                
+                if (elapsed >= duration) {
+                    completeSafetyDemo();
+                }
+            }, 1000);
+        }
+
+        function pauseSafetyPractice() {
+            if (window.safetyTimerInterval) {
+                clearInterval(window.safetyTimerInterval);
+                alert('⏸️ Safety demonstration paused. Take a moment to review your technique.');
             }
         }
 
-        function completeService() {
-            adjustConfidence(10);
-            alert('Service training completed! You\'re ready to handle any passenger situation.');
+        function completeSafetyDemo() {
+            if (window.safetyTimerInterval) {
+                clearInterval(window.safetyTimerInterval);
+            }
+            document.getElementById('safety-practice').classList.add('hidden');
+            alert('✅ Safety demonstration complete! Your clear communication and professional delivery help ensure passenger safety.');
+            
+            confidenceScores.emergency = Math.min(100, confidenceScores.emergency + 8);
+            updateConfidenceDisplay();
         }
 
-        // Final test
-        const testSections = [
-            "Deliver a welcome announcement",
-            "Perform a safety briefing segment",
-            "Handle a service interaction",
-            "Make a landing announcement"
-        ];
-        let currentTestSection = 0;
+        // Service practice functions
+        const serviceScenarios = {
+            beverage: {
+                title: "Beverage Service Excellence",
+                scenario: "You're serving beverages to a full cabin. A passenger requests a specific drink that's not available, another passenger has dietary restrictions, and someone spills their drink.",
+                challenges: ["Handle unavailable items gracefully", "Accommodate dietary needs", "Clean spills quickly and professionally"]
+            },
+            meal: {
+                title: "Meal Service Management",
+                scenario: "During meal service, you run out of the chicken option, a passenger has a severe allergy, and the galley equipment malfunctions.",
+                challenges: ["Manage limited meal options", "Handle allergy concerns seriously", "Adapt to equipment issues"]
+            },
+            dutyfree: {
+                title: "Duty-Free Sales Presentation",
+                scenario: "Present duty-free products to passengers, handle price questions, process payments, and deal with a passenger who wants to return an item.",
+                challenges: ["Present products enthusiastically", "Handle pricing inquiries", "Manage return requests professionally"]
+            }
+        };
 
-        function startFinalTest() {
-            document.getElementById('final-test').classList.remove('hidden');
-            currentTestSection = 0;
-            displayTestSection();
-        }
-
-        function displayTestSection() {
-            document.getElementById('test-content').innerHTML = `
-                <h4 class="font-semibold text-gray-800 mb-3">Captain's Test - Section ${currentTestSection + 1} of ${testSections.length}</h4>
-                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
-                    <p class="text-purple-800">${testSections[currentTestSection]}</p>
+        function practiceService(type) {
+            const scenario = serviceScenarios[type];
+            document.getElementById('service-scenario-content').innerHTML = `
+                <div class="bg-green-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-green-800 mb-2">${scenario.title}</h4>
+                    <p class="text-green-700 mb-3">${scenario.scenario}</p>
+                    <h5 class="font-semibold text-green-800 mb-2">Key Challenges:</h5>
+                    <ul class="text-green-700 text-sm space-y-1">
+                        ${scenario.challenges.map(challenge => `<li>• ${challenge}</li>`).join('')}
+                    </ul>
                 </div>
-                <p class="text-gray-600">Demonstrate your mastery of this skill. Speak with confidence and professionalism.</p>
             `;
+            document.getElementById('service-practice').classList.remove('hidden');
+            window.currentServiceType = type;
         }
 
-        function nextTestSection() {
-            if (currentTestSection < testSections.length - 1) {
-                currentTestSection++;
-                displayTestSection();
-                adjustConfidence(5);
+        function handleServiceWell() {
+            alert('😊 Professional service! You handled the situation with courtesy and efficiency. Passengers appreciate your helpful attitude.');
+            confidenceScores.service = Math.min(100, confidenceScores.service + 3);
+            updateConfidenceDisplay();
+            document.getElementById('service-practice').classList.add('hidden');
+        }
+
+        function handleServiceBetter() {
+            alert('⭐ Exceptional service! You went above and beyond expectations. This level of care creates loyal customers and positive reviews.');
+            confidenceScores.service = Math.min(100, confidenceScores.service + 6);
+            updateConfidenceDisplay();
+            document.getElementById('service-practice').classList.add('hidden');
+        }
+
+        function handleServiceChallenge() {
+            alert('🎯 Challenge accepted! You turned a difficult situation into a positive experience. Your problem-solving skills are excellent.');
+            confidenceScores.service = Math.min(100, confidenceScores.service + 8);
+            confidenceScores.passenger = Math.min(100, confidenceScores.passenger + 5);
+            updateConfidenceDisplay();
+            document.getElementById('service-practice').classList.add('hidden');
+        }
+
+        function startServiceRound() {
+            let progress = 0;
+            let passengers = 0;
+            let time = 0;
+            
+            const serviceInterval = setInterval(() => {
+                progress += 2;
+                passengers += 3;
+                time += 2;
                 
-                // Update checklist
-                const checkboxes = ['welcome-check', 'safety-check', 'service-check', 'landing-check'];
-                if (currentTestSection <= checkboxes.length) {
-                    document.getElementById(checkboxes[currentTestSection - 1]).checked = true;
+                document.getElementById('service-progress').textContent = `${progress}%`;
+                document.getElementById('service-bar').style.width = `${progress}%`;
+                document.getElementById('passengers-served').textContent = `${passengers}/150`;
+                
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                document.getElementById('service-time').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (progress >= 100) {
+                    clearInterval(serviceInterval);
+                    alert('🎉 Service round complete! Excellent efficiency and passenger satisfaction maintained throughout.');
+                    confidenceScores.service = Math.min(100, confidenceScores.service + 5);
+                    updateConfidenceDisplay();
+                }
+            }, 1000);
+        }
+
+        // Difficult passenger handling
+        const passengerTypes = {
+            angry: {
+                title: "Angry Passenger Scenario",
+                scenario: "A passenger is shouting about a delayed flight, demanding compensation, and disturbing other passengers. They refuse to lower their voice and are becoming increasingly agitated.",
+                tension: 90,
+                approaches: {
+                    calm: "Use CALM protocol: Stay composed, acknowledge their frustration, listen actively, and offer solutions",
+                    escalate: "Involve supervisor immediately due to disruptive behavior affecting other passengers",
+                    alternative: "Offer to discuss the issue privately and provide information about compensation procedures"
+                }
+            },
+            anxious: {
+                title: "Anxious Flyer Support",
+                scenario: "A passenger is having a panic attack, hyperventilating, and asking to get off the plane. Other passengers are starting to notice and become concerned.",
+                tension: 70,
+                approaches: {
+                    calm: "Speak softly, guide breathing exercises, provide reassurance about flight safety",
+                    escalate: "Call for medical assistance if breathing doesn't improve",
+                    alternative: "Offer to move them to a different seat or provide comfort items"
+                }
+            },
+            intoxicated: {
+                title: "Intoxicated Passenger Management",
+                scenario: "A passenger appears intoxicated, is speaking loudly, bothering other passengers, and requesting more alcohol. They're becoming argumentative when refused service.",
+                tension: 85,
+                approaches: {
+                    calm: "Firmly but politely refuse alcohol, offer food and water, monitor behavior closely",
+                    escalate: "Notify captain immediately as intoxicated passengers pose safety risks",
+                    alternative: "Attempt to engage them in quiet conversation to de-escalate"
+                }
+            },
+            demanding: {
+                title: "Demanding Passenger Challenge",
+                scenario: "A passenger is making excessive requests, complaining about everything, demanding upgrades they didn't pay for, and threatening to write negative reviews.",
+                tension: 60,
+                approaches: {
+                    calm: "Listen patiently, explain policies clearly, offer reasonable alternatives within guidelines",
+                    escalate: "Involve supervisor if demands become unreasonable or abusive",
+                    alternative: "Focus on what you CAN do rather than what you cannot"
                 }
             }
+        };
+
+        function handlePassengerType(type) {
+            const passenger = passengerTypes[type];
+            document.getElementById('scenario-content').innerHTML = `
+                <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-yellow-800 mb-2">${passenger.title}</h4>
+                    <p class="text-yellow-700">${passenger.scenario}</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-red-800 mb-2">Available Approaches:</h5>
+                    <div class="space-y-2 text-sm">
+                        <p><strong>CALM Protocol:</strong> ${passenger.approaches.calm}</p>
+                        <p><strong>Escalation:</strong> ${passenger.approaches.escalate}</p>
+                        <p><strong>Alternative:</strong> ${passenger.approaches.alternative}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('passenger-scenario').classList.remove('hidden');
+            
+            // Set initial tension level
+            document.getElementById('tension-level').textContent = passenger.tension > 80 ? 'Very High' : passenger.tension > 60 ? 'High' : 'Moderate';
+            document.getElementById('resolution-progress').textContent = '0%';
+            document.getElementById('scenario-progress-bar').style.width = '0%';
+            
+            window.currentPassengerScenario = { type, tension: passenger.tension };
         }
 
-        function completeFinalTest() {
-            adjustConfidence(20);
-            document.getElementById(testSections.length > 3 ? 'landing-check' : 'service-check').checked = true;
-            alert('Congratulations! You\'ve passed the Captain\'s Test with flying colors!');
+        function useCALMProtocol() {
+            const scenario = window.currentPassengerScenario;
+            let newTension = Math.max(20, scenario.tension - 30);
+            let progress = 60;
+            
+            document.getElementById('tension-level').textContent = newTension > 60 ? 'High' : newTension > 30 ? 'Moderate' : 'Low';
+            document.getElementById('resolution-progress').textContent = `${progress}%`;
+            document.getElementById('scenario-progress-bar').style.width = `${progress}%`;
+            
+            alert('✅ CALM protocol applied successfully! The passenger is responding well to your professional approach. Tension is decreasing.');
+            
+            confidenceScores.passenger = Math.min(100, confidenceScores.passenger + 8);
+            updateConfidenceDisplay();
         }
 
-        // Certificate and sharing
-        function downloadCertificate() {
-            alert('Certificate downloaded! You are now a certified Speaking Club Captain.');
+        function escalateToSupervisor() {
+            document.getElementById('resolution-progress').textContent = '100%';
+            document.getElementById('scenario-progress-bar').style.width = '100%';
+            document.getElementById('tension-level').textContent = 'Resolved';
+            
+            alert('📞 Supervisor involved successfully. Good judgment in recognizing when to escalate. The situation is now under control.');
+            
+            confidenceScores.passenger = Math.min(100, confidenceScores.passenger + 5);
+            updateConfidenceDisplay();
         }
 
-        function shareAchievement() {
-            alert('Achievement shared! Your friends will be impressed by your speaking skills.');
+        function offerAlternative() {
+            let progress = 80;
+            document.getElementById('resolution-progress').textContent = `${progress}%`;
+            document.getElementById('scenario-progress-bar').style.width = `${progress}%`;
+            document.getElementById('tension-level').textContent = 'Low';
+            
+            alert('🤝 Creative solution offered! Your flexibility and problem-solving approach has satisfied the passenger.');
+            
+            confidenceScores.passenger = Math.min(100, confidenceScores.passenger + 6);
+            updateConfidenceDisplay();
         }
 
-        // Initialize the application
+        // Emergency procedures
+        const emergencyScenarios = {
+            medical: {
+                title: "Medical Emergency Response",
+                scenario: "A passenger has collapsed in the aisle. They appear unconscious and other passengers are panicking. You need to take immediate action while maintaining calm in the cabin.",
+                protocol: "Assess passenger, call for medical assistance, clear the area, reassure other passengers, coordinate with cockpit"
+            },
+            turbulence: {
+                title: "Severe Turbulence Management",
+                scenario: "The aircraft encounters unexpected severe turbulence. Passengers are not seated, service items are flying around, and people are scared.",
+                protocol: "Immediately secure all loose items, ensure all passengers are seated with seatbelts, make calming announcement, secure yourself"
+            },
+            evacuation: {
+                title: "Emergency Evacuation Procedures",
+                scenario: "The captain has ordered an emergency evacuation. You must guide passengers to exits quickly and safely while maintaining order and preventing panic.",
+                protocol: "Open emergency exits, direct passenger flow, assist those needing help, ensure no one takes belongings, count passengers"
+            },
+            security: {
+                title: "Security Threat Response",
+                scenario: "A passenger is acting suspiciously and making threatening statements. Other passengers are becoming nervous and the situation needs immediate attention.",
+                protocol: "Discreetly notify cockpit, monitor passenger closely, prepare for potential restraint, reassure other passengers subtly"
+            }
+        };
+
+        function practiceEmergency(type) {
+            const emergency = emergencyScenarios[type];
+            document.getElementById('emergency-content').innerHTML = `
+                <div class="bg-red-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-red-800 mb-2">${emergency.title}</h4>
+                    <p class="text-red-700 mb-3">${emergency.scenario}</p>
+                    <div class="bg-white p-3 rounded border">
+                        <h5 class="font-semibold text-red-800 mb-2">Emergency Protocol:</h5>
+                        <p class="text-red-700 text-sm">${emergency.protocol}</p>
+                    </div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-yellow-800 mb-2">⚠️ Remember:</h5>
+                    <ul class="text-yellow-700 text-sm space-y-1">
+                        <li>• Stay calm and project confidence</li>
+                        <li>• Follow established procedures exactly</li>
+                        <li>• Communicate clearly and decisively</li>
+                        <li>• Prioritize passenger safety above all</li>
+                    </ul>
+                </div>
+            `;
+            document.getElementById('emergency-practice').classList.remove('hidden');
+            
+            // Start emergency timer
+            let elapsed = 0;
+            window.emergencyTimerInterval = setInterval(() => {
+                elapsed++;
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('emergency-timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                const progress = Math.min(100, (elapsed / 300) * 100); // 5 minute max
+                document.getElementById('emergency-progress-bar').style.width = `${progress}%`;
+            }, 1000);
+            
+            window.currentEmergencyType = type;
+        }
+
+        function executeEmergencyProtocol() {
+            if (window.emergencyTimerInterval) {
+                clearInterval(window.emergencyTimerInterval);
+            }
+            
+            alert('🚨 Emergency protocol executed perfectly! Your quick thinking and decisive action helped ensure passenger safety.');
+            
+            confidenceScores.emergency = Math.min(100, confidenceScores.emergency + 10);
+            updateConfidenceDisplay();
+            document.getElementById('emergency-practice').classList.add('hidden');
+        }
+
+        function communicateWithCockpit() {
+            alert('📞 Cockpit notified successfully. Clear communication with flight crew is essential during emergencies.');
+            confidenceScores.emergency = Math.min(100, confidenceScores.emergency + 5);
+            updateConfidenceDisplay();
+        }
+
+        function calmPassengers() {
+            alert('😌 Passengers successfully calmed. Your reassuring presence and clear communication helped maintain order during the emergency.');
+            confidenceScores.passenger = Math.min(100, confidenceScores.passenger + 7);
+            updateConfidenceDisplay();
+        }
+
+        // Confidence building functions
+        const confidenceChallenges = {
+            speaking: {
+                title: "Public Speaking Mastery Challenge",
+                scenario: "Address the entire cabin (150+ passengers) with a complex announcement about weather delays, rebooking procedures, and compensation policies. Maintain authority and calm throughout.",
+                duration: 300
+            },
+            roleplay: {
+                title: "Multi-Scenario Role-Play Challenge",
+                scenario: "Handle 5 different challenging situations back-to-back: angry passenger, medical emergency, service complaint, safety violation, and equipment malfunction.",
+                duration: 600
+            },
+            pressure: {
+                title: "High-Pressure Decision Challenge",
+                scenario: "Make critical decisions under extreme time pressure during a simulated emergency evacuation while managing passenger panic and equipment failures.",
+                duration: 180
+            },
+            leadership: {
+                title: "Crisis Leadership Challenge",
+                scenario: "Take charge during a multi-faceted crisis involving weather, passenger issues, and crew coordination. Lead the team and maintain passenger confidence.",
+                duration: 420
+            }
+        };
+
+        function startConfidenceChallenge(type) {
+            const challenge = confidenceChallenges[type];
+            document.getElementById('challenge-scenario').innerHTML = `
+                <div class="bg-indigo-50 p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold text-indigo-800 mb-2">${challenge.title}</h4>
+                    <p class="text-indigo-700">${challenge.scenario}</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-purple-800 mb-2">Challenge Objectives:</h5>
+                    <ul class="text-purple-700 text-sm space-y-1">
+                        <li>• Maintain confidence under pressure</li>
+                        <li>• Demonstrate clear communication</li>
+                        <li>• Show leadership and decision-making</li>
+                        <li>• Keep passengers calm and informed</li>
+                    </ul>
+                </div>
+            `;
+            document.getElementById('confidence-challenge-active').classList.remove('hidden');
+            
+            // Start challenge timer
+            let elapsed = 0;
+            challengeTimer = setInterval(() => {
+                elapsed++;
+                const minutes = Math.floor(elapsed / 60);
+                const seconds = elapsed % 60;
+                document.getElementById('challenge-timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                const progress = (elapsed / challenge.duration) * 100;
+                document.getElementById('confidence-challenge-bar').style.width = `${progress}%`;
+                
+                if (elapsed >= challenge.duration) {
+                    completeChallenge();
+                }
+            }, 1000);
+            
+            currentChallenge = type;
+        }
+
+        function completeChallenge() {
+            if (challengeTimer) {
+                clearInterval(challengeTimer);
+            }
+            
+            document.getElementById('confidence-challenge-active').classList.add('hidden');
+            
+            const bonuses = {
+                speaking: { voice: 15, passenger: 5 },
+                roleplay: { passenger: 15, service: 10 },
+                pressure: { emergency: 20, voice: 10 },
+                leadership: { voice: 10, passenger: 10, emergency: 10, service: 5 }
+            };
+            
+            const bonus = bonuses[currentChallenge];
+            Object.keys(bonus).forEach(skill => {
+                confidenceScores[skill] = Math.min(100, confidenceScores[skill] + bonus[skill]);
+            });
+            
+            updateConfidenceDisplay();
+            scenariosCompleted++;
+            document.getElementById('scenarios-completed').textContent = scenariosCompleted;
+            
+            alert('🎉 Challenge completed successfully! Your confidence and skills have grown significantly. You\'re becoming an exceptional flight attendant.');
+        }
+
+        function needSupport() {
+            alert('🤝 Support provided! Remember: every expert was once a beginner. Take your time, breathe deeply, and trust your training.');
+        }
+
+        function pushHarder() {
+            alert('💪 Pushing limits! This extra effort is building incredible resilience and confidence. You\'re developing elite-level skills.');
+            
+            // Extra confidence boost for pushing harder
+            Object.keys(confidenceScores).forEach(skill => {
+                confidenceScores[skill] = Math.min(100, confidenceScores[skill] + 3);
+            });
+            updateConfidenceDisplay();
+        }
+
+        function boostConfidence() {
+            Object.keys(confidenceScores).forEach(skill => {
+                confidenceScores[skill] = Math.min(100, confidenceScores[skill] + 5);
+            });
+            updateConfidenceDisplay();
+            alert('🚀 Confidence boosted! You\'re radiating professional competence and passenger trust.');
+        }
+
+        function resetConfidence() {
+            confidenceScores = { voice: 80, passenger: 70, emergency: 75, service: 85 };
+            updateConfidenceDisplay();
+            alert('🔄 Confidence levels reset to baseline. Ready for fresh training and improvement.');
+        }
+
+        function updateConfidenceDisplay() {
+            const overall = Math.round((confidenceScores.voice + confidenceScores.passenger + confidenceScores.emergency + confidenceScores.service) / 4);
+            document.getElementById('confidence-score').textContent = `${overall}%`;
+            
+            // Update individual scores
+            document.getElementById('voice-confidence').textContent = `${confidenceScores.voice}%`;
+            document.getElementById('voice-confidence-bar').style.width = `${confidenceScores.voice}%`;
+            
+            document.getElementById('passenger-confidence').textContent = `${confidenceScores.passenger}%`;
+            document.getElementById('passenger-confidence-bar').style.width = `${confidenceScores.passenger}%`;
+            
+            document.getElementById('emergency-confidence').textContent = `${confidenceScores.emergency}%`;
+            document.getElementById('emergency-confidence-bar').style.width = `${confidenceScores.emergency}%`;
+            
+            document.getElementById('service-confidence').textContent = `${confidenceScores.service}%`;
+            document.getElementById('service-confidence-bar').style.width = `${confidenceScores.service}%`;
+            
+            // Update confidence indicator in header
+            const indicators = document.querySelectorAll('#confidence-indicator span');
+            indicators.forEach(indicator => indicator.classList.remove('bg-green-400', 'bg-yellow-400', 'bg-red-400'));
+            
+            const level = Math.floor(overall / 20);
+            for (let i = 0; i < Math.min(5, level + 1); i++) {
+                indicators[i].classList.add(overall >= 80 ? 'bg-green-400' : overall >= 60 ? 'bg-yellow-400' : 'bg-red-400');
+            }
+            
+            // Update readiness status
+            if (overall >= 85) {
+                document.getElementById('confidence-level').textContent = 'Expert';
+                document.getElementById('readiness-status').textContent = 'Flight Ready';
+            } else if (overall >= 75) {
+                document.getElementById('confidence-level').textContent = 'Advanced';
+                document.getElementById('readiness-status').textContent = 'Ready';
+            } else if (overall >= 65) {
+                document.getElementById('confidence-level').textContent = 'Intermediate';
+                document.getElementById('readiness-status').textContent = 'Nearly Ready';
+            } else {
+                document.getElementById('confidence-level').textContent = 'Developing';
+                document.getElementById('readiness-status').textContent = 'In Training';
+            }
+        }
+
+        function proceedToLesson22() {
+            const overall = Math.round((confidenceScores.voice + confidenceScores.passenger + confidenceScores.emergency + confidenceScores.service) / 4);
+            
+            if (overall >= 75) {
+                alert('🛫 Excellent! You\'re ready for Lesson 22: After Take-off and into the Flight. Your confidence foundation is solid and you\'re prepared for advanced in-flight communication challenges.');
+                // In a real application, this would navigate to Lesson 22
+            } else {
+                alert('✈️ You\'re making great progress! Complete a few more challenges to build your confidence to flight-ready levels before proceeding to Lesson 22.');
+            }
+        }
+
+        // Initialize the lesson
         document.addEventListener('DOMContentLoaded', function() {
-            startFlightTimer();
-            showPhase('boarding');
+            showSection('pre-flight');
+            updateConfidenceDisplay();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987c3ccab67fa467',t:'MTc1OTMyNDYxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988bf777b21b265d',t:'MTc1OTQ4OTU1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

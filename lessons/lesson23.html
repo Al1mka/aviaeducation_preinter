@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 23: Cabin Services and Amenities</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .lesson-title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .lesson-subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .timer {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .service-description {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        .quiz-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+        }
+
+        .quiz-option.selected {
+            border-color: #3498db;
+            background: #3498db;
+            color: white;
+        }
+
+        .quiz-option.correct {
+            border-color: #2ecc71;
+            background: #2ecc71;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #e74c3c;
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .checklist {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            margin-right: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox.checked {
+            background: #3498db;
+            color: white;
+        }
+
+        .scenario-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #f39c12;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            color: #d68910;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .completion-badge {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .completion-badge.show {
+            display: block;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .lesson-title {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                min-width: auto;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="lesson-title">✈️ Lesson 23: Cabin Services and Amenities</h1>
+            <p class="lesson-subtitle">Flight Attendant Training Program</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="timer" id="timer">60:00</div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('overview')">📋 Overview</button>
+            <button class="nav-tab" onclick="showSection('services')">🛎️ Services</button>
+            <button class="nav-tab" onclick="showSection('amenities')">🎯 Amenities</button>
+            <button class="nav-tab" onclick="showSection('scenarios')">🎭 Scenarios</button>
+            <button class="nav-tab" onclick="showSection('speaking')">🎤 Speaking</button>
+            <button class="nav-tab" onclick="showSection('quiz')">📝 Quiz</button>
+            <button class="nav-tab" onclick="showSection('checklist')">✅ Checklist</button>
+        </div>
+
+        <!-- Overview Section -->
+        <div class="content-section active" id="overview">
+            <h2 class="section-title">Learning Objectives</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="service-icon">🎯</span>
+                    <h3 class="service-title">Understand Service Standards</h3>
+                    <p class="service-description">Learn the different levels of cabin service and how to deliver exceptional customer experiences across all classes.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛎️</span>
+                    <h3 class="service-title">Master Service Procedures</h3>
+                    <p class="service-description">Develop proficiency in meal service, beverage service, and special assistance protocols.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">💎</span>
+                    <h3 class="service-title">Amenity Management</h3>
+                    <p class="service-description">Understand how to manage and distribute amenities effectively while maintaining inventory control.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🤝</span>
+                    <h3 class="service-title">Customer Relations</h3>
+                    <p class="service-description">Build skills in handling passenger requests, complaints, and creating memorable travel experiences.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="content-section" id="services">
+            <h2 class="section-title">Cabin Services</h2>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="service-icon">🍽️</span>
+                    <h3 class="service-title">Meal Service</h3>
+                    <p class="service-description"><strong>Economy:</strong> Pre-packaged meals, limited options<br>
+                    <strong>Business:</strong> Multi-course meals, wine pairings<br>
+                    <strong>First:</strong> À la carte dining, premium ingredients</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🥤</span>
+                    <h3 class="service-title">Beverage Service</h3>
+                    <p class="service-description"><strong>Complimentary:</strong> Water, coffee, tea, soft drinks<br>
+                    <strong>Premium:</strong> Wine, beer, spirits<br>
+                    <strong>Specialty:</strong> Fresh juices, premium coffee</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛏️</span>
+                    <h3 class="service-title">Comfort Items</h3>
+                    <p class="service-description">Pillows, blankets, eye masks, earplugs. Distribution based on class of service and availability.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📺</span>
+                    <h3 class="service-title">Entertainment</h3>
+                    <p class="service-description">In-flight entertainment systems, magazines, newspapers, Wi-Fi assistance, and device charging support.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏥</span>
+                    <h3 class="service-title">Special Assistance</h3>
+                    <p class="service-description">Wheelchair assistance, unaccompanied minors, dietary restrictions, medical needs, and language barriers.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛍️</span>
+                    <h3 class="service-title">Duty-Free Sales</h3>
+                    <p class="service-description">Product knowledge, payment processing, inventory management, and customer recommendations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amenities Section -->
+        <div class="content-section" id="amenities">
+            <h2 class="section-title">Cabin Amenities by Class</h2>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="service-icon">💺</span>
+                    <h3 class="service-title">Economy Class</h3>
+                    <p class="service-description">
+                        • Basic pillow and blanket<br>
+                        • Headphones (upon request)<br>
+                        • Safety card and magazine<br>
+                        • Complimentary snacks on long flights<br>
+                        • Water service throughout flight
+                    </p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">💼</span>
+                    <h3 class="service-title">Business Class</h3>
+                    <p class="service-description">
+                        • Premium bedding set<br>
+                        • Noise-canceling headphones<br>
+                        • Amenity kit (toiletries, socks, eye mask)<br>
+                        • Welcome drink and hot towel<br>
+                        • Priority meal service<br>
+                        • Newspapers and magazines
+                    </p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">👑</span>
+                    <h3 class="service-title">First Class</h3>
+                    <p class="service-description">
+                        • Luxury bedding and pajamas<br>
+                        • Premium amenity kit<br>
+                        • Personalized service<br>
+                        • Champagne and caviar service<br>
+                        • Turn-down service<br>
+                        • Exclusive publications
+                    </p>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">💡 Pro Tip: Amenity Distribution</h3>
+                <p>Always check inventory before takeoff. Distribute amenities systematically, starting with premium classes. Keep extras for special requests or passenger comfort needs during the flight.</p>
+            </div>
+        </div>
+
+        <!-- Speaking Tasks Section -->
+        <div class="content-section" id="speaking">
+            <h2 class="section-title">Speaking Tasks & Critical Thinking</h2>
+            
+            <div class="scenario-box">
+                <h3 class="scenario-title">🎤 Task 1: Service Recovery Speech (3 minutes)</h3>
+                <p><strong>Situation:</strong> The aircraft has been delayed 2 hours due to weather. Passengers are frustrated, some have missed connections, and the catering truck delivered the wrong meals. You need to address the entire cabin.</p>
+                <p><strong>Your Task:</strong> Prepare and deliver a 3-minute announcement that:</p>
+                <ul style="margin: 15px 0; padding-left: 20px;">
+                    <li>Acknowledges the situation with empathy</li>
+                    <li>Explains what happened without blaming</li>
+                    <li>Outlines specific solutions you're providing</li>
+                    <li>Manages expectations for the remainder of the flight</li>
+                    <li>Maintains professional tone while showing genuine care</li>
+                </ul>
+                <button class="btn" onclick="startSpeakingTimer(1, 180)">Start 3-Min Timer</button>
+                <div id="speakingTimer1" class="timer" style="display: none; margin: 15px 0;"></div>
+                <button class="btn" onclick="showSpeakingTips(1)" style="background: #f39c12;">Show Tips</button>
+                <div id="speakingTips1" style="display: none; margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                    <p><strong>Key Points:</strong> Use "we" language, avoid technical jargon, offer specific compensation, acknowledge individual concerns, end with positive outlook.</p>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">🧠 Task 2: Critical Thinking - Resource Allocation (5 minutes)</h3>
+                <p><strong>Complex Scenario:</strong> You're on a 12-hour international flight with 300 passengers. Mid-flight issues:</p>
+                <ul style="margin: 15px 0; padding-left: 20px;">
+                    <li>Air conditioning malfunction - cabin is getting warm</li>
+                    <li>30% of economy passengers didn't receive their special meals</li>
+                    <li>Business class is demanding extra amenities due to discomfort</li>
+                    <li>You have limited backup meals and only 20 extra blankets</li>
+                    <li>Some passengers are becoming agitated and demanding compensation</li>
+                </ul>
+                <p><strong>Your Challenge:</strong> Develop a comprehensive action plan addressing:</p>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>Priority order for addressing each issue</li>
+                    <li>Resource distribution strategy</li>
+                    <li>Communication plan for different passenger groups</li>
+                    <li>Prevention of escalation</li>
+                    <li>Documentation for post-flight reporting</li>
+                </ol>
+                <button class="btn" onclick="startSpeakingTimer(2, 300)">Start 5-Min Timer</button>
+                <div id="speakingTimer2" class="timer" style="display: none; margin: 15px 0;"></div>
+                <textarea placeholder="Write your action plan here..." style="width: 100%; height: 150px; margin: 15px 0; padding: 15px; border: 2px solid #e9ecef; border-radius: 8px; font-family: inherit;"></textarea>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">🎭 Task 3: Difficult Passenger Role-Play (4 minutes)</h3>
+                <p><strong>Scenario:</strong> A first-class passenger is intoxicated and becoming disruptive. They're demanding more alcohol, speaking loudly, and making other passengers uncomfortable. They claim to be a frequent flyer and threaten to "get you fired."</p>
+                <p><strong>Your Speaking Task:</strong> Practice the conversation you would have with this passenger. Address:</p>
+                <ul style="margin: 15px 0; padding-left: 20px;">
+                    <li>De-escalation techniques</li>
+                    <li>Firm but respectful boundary setting</li>
+                    <li>Alternative solutions to keep them calm</li>
+                    <li>When and how to involve the captain</li>
+                    <li>Protecting other passengers' experience</li>
+                </ul>
+                <button class="btn" onclick="startSpeakingTimer(3, 240)">Start 4-Min Timer</button>
+                <div id="speakingTimer3" class="timer" style="display: none; margin: 15px 0;"></div>
+                <button class="btn" onclick="showSpeakingTips(3)" style="background: #f39c12;">Show De-escalation Tips</button>
+                <div id="speakingTips3" style="display: none; margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                    <p><strong>De-escalation Techniques:</strong> Lower your voice, maintain calm body language, acknowledge their status, offer alternatives, set clear boundaries, involve team members if needed.</p>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">💡 Task 4: Innovation Challenge (6 minutes)</h3>
+                <p><strong>Creative Thinking:</strong> Your airline wants to improve passenger satisfaction scores. You've been asked to propose innovative service ideas that don't require major equipment changes.</p>
+                <p><strong>Your Presentation:</strong> Develop and present 3 creative service improvements:</p>
+                <ol style="margin: 15px 0; padding-left: 20px;">
+                    <li>One for economy class passenger experience</li>
+                    <li>One for business/first class enhancement</li>
+                    <li>One for special situations (delays, medical, families)</li>
+                </ol>
+                <p>For each idea, explain: What it is, why it works, how to implement it, and expected passenger impact.</p>
+                <button class="btn" onclick="startSpeakingTimer(4, 360)">Start 6-Min Timer</button>
+                <div id="speakingTimer4" class="timer" style="display: none; margin: 15px 0;"></div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">🌍 Task 5: Cultural Sensitivity Challenge (3 minutes)</h3>
+                <p><strong>International Flight Scenario:</strong> You're serving passengers from diverse cultural backgrounds. You notice:</p>
+                <ul style="margin: 15px 0; padding-left: 20px;">
+                    <li>A family observing Ramadan during daylight hours</li>
+                    <li>Passengers with dietary restrictions you're unfamiliar with</li>
+                    <li>Language barriers affecting service delivery</li>
+                    <li>Different expectations about personal space and service style</li>
+                </ul>
+                <p><strong>Speaking Challenge:</strong> Explain how you would adapt your service approach to be culturally sensitive while maintaining efficiency and fairness for all passengers.</p>
+                <button class="btn" onclick="startSpeakingTimer(5, 180)">Start 3-Min Timer</button>
+                <div id="speakingTimer5" class="timer" style="display: none; margin: 15px 0;"></div>
+            </div>
+        </div>
+
+        <!-- Scenarios Section -->
+        <div class="content-section" id="scenarios">
+            <h2 class="section-title">Practice Scenarios</h2>
+            
+            <div class="scenario-box">
+                <h3 class="scenario-title">Scenario 1: Meal Service Issue</h3>
+                <p><strong>Situation:</strong> A business class passenger's special meal (vegetarian) was not loaded. The passenger is upset and hungry on a 6-hour flight.</p>
+                <p><strong>Your Response:</strong></p>
+                <button class="btn" onclick="showScenarioAnswer(1)">Show Solution</button>
+                <div id="scenario1Answer" style="display: none; margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
+                    <p><strong>Solution:</strong> Apologize sincerely, offer alternative vegetarian options from available meals, provide extra snacks and beverages, and document the incident for catering feedback. Consider upgrading their next flight experience.</p>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">Scenario 2: Amenity Shortage</h3>
+                <p><strong>Situation:</strong> You've run out of blankets in economy class, but several passengers are requesting them due to cold cabin temperature.</p>
+                <p><strong>Your Response:</strong></p>
+                <button class="btn" onclick="showScenarioAnswer(2)">Show Solution</button>
+                <div id="scenario2Answer" style="display: none; margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
+                    <p><strong>Solution:</strong> Adjust cabin temperature if possible, offer extra pillows, check if business class has spare blankets, provide hot beverages, and explain the situation honestly while showing empathy.</p>
+                </div>
+            </div>
+
+            <div class="scenario-box">
+                <h3 class="scenario-title">Scenario 3: Special Assistance Request</h3>
+                <p><strong>Situation:</strong> An elderly passenger needs help accessing the overhead bin and is traveling alone on a long international flight.</p>
+                <p><strong>Your Response:</strong></p>
+                <button class="btn" onclick="showScenarioAnswer(3)">Show Solution</button>
+                <div id="scenario3Answer" style="display: none; margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
+                    <p><strong>Solution:</strong> Assist immediately with overhead bin, check on them regularly throughout the flight, help with meal service if needed, ensure they have easy access to call button, and assist with connections if required.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="content-section" id="quiz">
+            <h2 class="section-title">Knowledge Check</h2>
+            
+            <div class="quiz-container">
+                <div class="question">1. What is the correct order for meal service in a mixed-class aircraft?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Economy, Business, First Class</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">B) Business, First, Economy</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">C) First, Business, Economy</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) All classes simultaneously</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">2. When should amenity kits be distributed in business class?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) After meal service</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">B) During boarding or shortly after takeoff</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">C) Before landing</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Only when requested</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">3. What should you do if a passenger complains about the temperature?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Tell them it's controlled automatically</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">B) Acknowledge their concern and offer solutions like blankets or adjusting vents</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">C) Ignore the complaint</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Ask them to change seats</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">4. A passenger in economy asks for a business class amenity kit. What's the best response?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) "No, those are only for business class passengers"</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">B) "I understand you'd like one. Let me see what alternative comfort items I can offer you"</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">C) "You should have upgraded if you wanted those amenities"</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Give them the amenity kit without explanation</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">5. During turbulence, when should you suspend beverage service?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Only when the captain makes an announcement</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">B) When the seatbelt sign is on or when you judge it unsafe</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">C) Never, passengers expect their drinks</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Only during severe turbulence</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">6. What's the proper procedure for handling a passenger's special dietary meal complaint?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Apologize and offer regular meal options</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">B) Explain that catering is not your responsibility</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">C) Apologize, find suitable alternatives, document the issue, and follow up</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Tell them to contact customer service after the flight</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">7. A passenger asks for alcohol but appears intoxicated. Your response should be:</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Serve them but limit the amount</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">B) Politely refuse and offer non-alcoholic alternatives</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">C) Ask other passengers if they think the person is drunk</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Serve them to avoid confrontation</div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="question">8. What's the most important factor when prioritizing passenger requests during busy service periods?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this, false)">A) Class of service only</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">B) Order of requests received</div>
+                    <div class="quiz-option" onclick="selectOption(this, true)">C) Safety, medical needs, then service class and urgency</div>
+                    <div class="quiz-option" onclick="selectOption(this, false)">D) Frequent flyer status</div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="checkQuizCompletion()" id="quizSubmit" disabled>Submit Quiz</button>
+            <div id="quizResults" style="display: none; margin-top: 20px;"></div>
+        </div>
+
+        <!-- Checklist Section -->
+        <div class="content-section" id="checklist">
+            <h2 class="section-title">Service Completion Checklist</h2>
+            
+            <div class="checklist">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Pre-Flight Preparation</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Check amenity inventory and special meal requests</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Review passenger manifest for special assistance needs</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Prepare service carts and equipment</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Brief team on service sequence and timing</span>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">During Flight Service</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Distribute amenities according to class standards</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Complete meal and beverage service efficiently</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Monitor passenger comfort and respond to requests</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Maintain service standards throughout flight</span>
+                </div>
+            </div>
+
+            <div class="checklist">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">Post-Service Tasks</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Collect service items and secure cabin</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Document any service issues or passenger feedback</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Report inventory discrepancies</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Prepare cabin for arrival procedures</span>
+                </div>
+            </div>
+
+            <div class="completion-badge" id="completionBadge">
+                🎉 Congratulations! You've completed Lesson 23: Cabin Services and Amenities
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let timeRemaining = 3600; // 60 minutes in seconds
+        let currentSection = 'overview';
+        let quizAnswered = 0;
+        let totalQuizQuestions = 8;
+        let checkedItems = 0;
+        let totalChecklistItems = 12;
+
+        // Timer functionality
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                document.getElementById('timer').textContent = "Time's Up!";
+                document.getElementById('timer').style.background = '#e74c3c';
+            }
+        }
+
+        // Progress bar functionality
+        function updateProgress() {
+            const sections = ['overview', 'services', 'amenities', 'scenarios', 'speaking', 'quiz', 'checklist'];
+            const currentIndex = sections.indexOf(currentSection);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Speaking task timers
+        let speakingTimers = {};
+
+        function startSpeakingTimer(taskNumber, duration) {
+            const timerElement = document.getElementById(`speakingTimer${taskNumber}`);
+            timerElement.style.display = 'block';
+            
+            if (speakingTimers[taskNumber]) {
+                clearInterval(speakingTimers[taskNumber]);
+            }
+            
+            let timeLeft = duration;
+            
+            function updateSpeakingTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 30) {
+                    timerElement.style.background = '#e74c3c';
+                } else if (timeLeft <= 60) {
+                    timerElement.style.background = '#f39c12';
+                } else {
+                    timerElement.style.background = '#27ae60';
+                }
+                
+                if (timeLeft <= 0) {
+                    timerElement.textContent = "Time's Up!";
+                    timerElement.style.background = '#e74c3c';
+                    clearInterval(speakingTimers[taskNumber]);
+                    
+                    // Flash the timer
+                    let flashCount = 0;
+                    const flashInterval = setInterval(() => {
+                        timerElement.style.opacity = timerElement.style.opacity === '0.3' ? '1' : '0.3';
+                        flashCount++;
+                        if (flashCount >= 6) {
+                            clearInterval(flashInterval);
+                            timerElement.style.opacity = '1';
+                        }
+                    }, 300);
+                } else {
+                    timeLeft--;
+                }
+            }
+            
+            updateSpeakingTimer();
+            speakingTimers[taskNumber] = setInterval(updateSpeakingTimer, 1000);
+        }
+
+        function showSpeakingTips(taskNumber) {
+            const tipsElement = document.getElementById(`speakingTips${taskNumber}`);
+            if (tipsElement.style.display === 'none') {
+                tipsElement.style.display = 'block';
+                event.target.textContent = 'Hide Tips';
+            } else {
+                tipsElement.style.display = 'none';
+                event.target.textContent = 'Show Tips';
+            }
+        }
+
+        // Section navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            currentSection = sectionId;
+            updateProgress();
+        }
+
+        // Quiz functionality
+        function selectOption(element, isCorrect) {
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                option.onclick = null; // Disable further clicks
+            });
+            
+            element.classList.add('selected');
+            
+            setTimeout(() => {
+                if (isCorrect) {
+                    element.classList.add('correct');
+                } else {
+                    element.classList.add('incorrect');
+                    // Show correct answer
+                    options.forEach(option => {
+                        if (option.onclick && option.onclick.toString().includes('true')) {
+                            option.classList.add('correct');
+                        }
+                    });
+                }
+                quizAnswered++;
+                checkQuizCompletion();
+            }, 500);
+        }
+
+        function checkQuizCompletion() {
+            if (quizAnswered >= totalQuizQuestions) {
+                document.getElementById('quizSubmit').disabled = false;
+                document.getElementById('quizSubmit').onclick = function() {
+                    const correctAnswers = document.querySelectorAll('.quiz-option.correct.selected').length;
+                    const percentage = Math.round((correctAnswers / totalQuizQuestions) * 100);
+                    
+                    document.getElementById('quizResults').innerHTML = `
+                        <div style="background: ${percentage >= 70 ? '#d4edda' : '#f8d7da'}; 
+                                    color: ${percentage >= 70 ? '#155724' : '#721c24'}; 
+                                    padding: 20px; border-radius: 8px; text-align: center;">
+                            <h3>Quiz Results: ${correctAnswers}/${totalQuizQuestions} (${percentage}%)</h3>
+                            <p>${percentage >= 70 ? '🎉 Great job! You passed the quiz!' : '📚 Review the material and try again.'}</p>
+                        </div>
+                    `;
+                    document.getElementById('quizResults').style.display = 'block';
+                };
+            }
+        }
+
+        // Scenario answers
+        function showScenarioAnswer(scenarioNumber) {
+            document.getElementById(`scenario${scenarioNumber}Answer`).style.display = 'block';
+            event.target.style.display = 'none';
+        }
+
+        // Checklist functionality
+        function toggleCheck(element) {
+            if (element.classList.contains('checked')) {
+                element.classList.remove('checked');
+                element.innerHTML = '';
+                checkedItems--;
+            } else {
+                element.classList.add('checked');
+                element.innerHTML = '✓';
+                checkedItems++;
+            }
+            
+            if (checkedItems === totalChecklistItems) {
+                document.getElementById('completionBadge').classList.add('show');
+            } else {
+                document.getElementById('completionBadge').classList.remove('show');
+            }
+        }
+
+        // Initialize timer
+        updateTimer();
+        updateProgress();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988cbe47b6dec419',t:'MTc1OTQ5NzY5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+ 

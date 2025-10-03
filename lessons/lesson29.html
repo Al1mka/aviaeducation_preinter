@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 29: Preparing for Landing - Flight Attendant Training</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .lesson-title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .lesson-subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .duration-badge {
+            background: #3498db;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        .nav-tab.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Text highlighting effects */
+        .highlight-text {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight-text:hover {
+            background: linear-gradient(120deg, #81c784 0%, #aed581 100%);
+            transform: scale(1.05);
+        }
+
+        /* Reading enhancement for paragraphs */
+        p, li {
+            transition: all 0.3s ease;
+        }
+
+        p:hover, li:hover {
+            color: #2c3e50;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Interactive text selection */
+        ::selection {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .timeline-time {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-right: 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .checklist-item.completed {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .checkbox.checked {
+            background: #28a745;
+            border-color: #28a745;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .scenario-card {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            transform: scale(0);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .scenario-card:hover::before {
+            transform: scale(1);
+        }
+
+        .scenario-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .quiz-question {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-question::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.05), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .quiz-question:hover {
+            border-color: #3498db;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .quiz-question:hover::before {
+            left: 100%;
+        }
+
+        .quiz-question h3 {
+            color: #2c3e50;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quiz-option {
+            padding: 12px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #3498db;
+            background: #f0f8ff;
+        }
+
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            color: #856404;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-time {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Reading Progress Bar -->
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.2); z-index: 1000;">
+            <div id="readingProgress" style="height: 100%; background: linear-gradient(90deg, #3498db, #2ecc71); width: 0%; transition: width 0.3s ease;"></div>
+        </div>
+        
+        <div class="header">
+            <h1 class="lesson-title">✈️ Lesson 29: Preparing for Landing</h1>
+            <p class="lesson-subtitle">Flight Attendant Training Module</p>
+            <span class="duration-badge">⏱️ 60 Minutes</span>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-tab" onclick="showSection('procedures')">Procedures</button>
+            <button class="nav-tab" onclick="showSection('checklist')">Checklist</button>
+            <button class="nav-tab" onclick="showSection('scenarios')">Scenarios</button>
+            <button class="nav-tab" onclick="showSection('quiz')">Quiz</button>
+            <button class="nav-tab" onclick="showSection('summary')">Summary</button>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+            <h2 class="section-title">📋 Lesson Overview</h2>
+            
+            <div class="alert alert-warning">
+                <strong>Critical Safety Note:</strong> Landing preparation is one of the most safety-critical phases of flight operations. Statistical data shows that 49% of aviation accidents occur during the final approach and landing phase. Your role as a flight attendant during this phase can be the difference between a routine landing and a life-threatening situation.
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">0-10 min</div>
+                    <div>
+                        <strong>Introduction & Risk Assessment</strong><br>
+                        Understanding statistical risks, regulatory requirements (FAR 121.571), and the physiological effects of descent on passengers including ear pressure, anxiety responses, and medical considerations
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">10-25 min</div>
+                    <div>
+                        <strong>Advanced Procedures & Crew Coordination</strong><br>
+                        Multi-phase preparation protocols, sterile cockpit procedures, crew resource management during descent, and communication hierarchies
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">25-35 min</div>
+                    <div>
+                        <strong>Dynamic Checklist Management</strong><br>
+                        Adaptive checklists for different aircraft types, weather conditions, airport categories, and passenger demographics
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">35-50 min</div>
+                    <div>
+                        <strong>Critical Decision-Making Scenarios</strong><br>
+                        Complex multi-variable situations requiring immediate assessment, prioritization, and coordinated response under time pressure
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">50-60 min</div>
+                    <div>
+                        <strong>Comprehensive Assessment</strong><br>
+                        Advanced scenario-based evaluation and regulatory compliance verification
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="alert alert-info">
+                    <strong>Primary Learning Objectives:</strong><br>
+                    • Execute time-critical safety procedures under pressure<br>
+                    • Demonstrate advanced crew resource management<br>
+                    • Apply risk assessment and mitigation strategies<br>
+                    • Handle complex passenger compliance issues<br>
+                    • Coordinate emergency response protocols<br>
+                    • Manage multiple simultaneous safety threats
+                </div>
+                <div class="alert alert-info">
+                    <strong>Regulatory Framework:</strong><br>
+                    • FAR 121.571 - Briefing passengers before takeoff<br>
+                    • FAR 121.573 - Briefing passengers: extended overwater<br>
+                    • FAR 121.575 - Alcoholic beverages<br>
+                    • ICAO Annex 6 - Operation of Aircraft<br>
+                    • Company Operations Manual compliance<br>
+                    • Emergency Response Procedures (ERP)
+                </div>
+            </div>
+        </div>
+
+        <!-- Procedures Section -->
+        <div id="procedures" class="content-section">
+            <h2 class="section-title">📖 Advanced Landing Preparation Procedures</h2>
+            
+            <div class="alert alert-warning">
+                <strong>Sterile Cockpit Rule:</strong> Below 10,000 feet, all non-essential communication with flight deck is prohibited. Plan your coordination accordingly.
+            </div>
+            
+            <h3>🕐 Phase 1: Initial Preparation (45-30 minutes before landing)</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>🔔 Strategic Announcement Protocol</h4>
+                    <div class="alert alert-info">
+                        <strong>Standard Script:</strong><br>
+                        "Ladies and gentlemen, we have begun our initial descent into [destination]. The current time at our destination is [local time], and the weather is [conditions]. Please begin preparing for landing by returning to your seats. We will be making our final preparations shortly."
+                    </div>
+                    
+                    <h4>📊 Passenger Assessment Matrix</h4>
+                    <ul>
+                        <li><strong>High-Risk Passengers:</strong> Elderly, disabled, unaccompanied minors, intoxicated</li>
+                        <li><strong>Exit Row Verification:</strong> Physical capability, language comprehension, willingness</li>
+                        <li><strong>Medical Considerations:</strong> Passengers with oxygen, wheelchairs, service animals</li>
+                        <li><strong>Behavioral Indicators:</strong> Anxiety, non-compliance history, language barriers</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>🛡️ Advanced Safety Protocols</h4>
+                    <ul>
+                        <li><strong>Galley Security Level 1:</strong> Secure loose items, lock drawers</li>
+                        <li><strong>Emergency Equipment Check:</strong> Verify PBE, flashlights, megaphones</li>
+                        <li><strong>Cabin Pressure Monitoring:</strong> Watch for passenger discomfort signs</li>
+                        <li><strong>Crew Coordination:</strong> Establish communication protocols</li>
+                    </ul>
+                    
+                    <h4>📡 Flight Deck Coordination</h4>
+                    <div class="alert alert-info">
+                        <strong>Required Reports to Captain:</strong><br>
+                        • Cabin secure status<br>
+                        • Any passenger medical issues<br>
+                        • Compliance concerns<br>
+                        • Weather-related passenger anxiety
+                    </div>
+                </div>
+            </div>
+
+            <h3>🕕 Phase 2: Critical Preparation (30-15 minutes before landing)</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>🔊 Final Preparation Announcement</h4>
+                    <div class="alert alert-warning">
+                        <strong>Enhanced Script for Challenging Conditions:</strong><br>
+                        "Ladies and gentlemen, we are now making our final approach into [destination]. Due to [weather/traffic conditions], we may experience some [turbulence/delays]. For your safety, please ensure seatbelts are securely fastened, seat backs upright, tray tables stowed and locked. All electronic devices must be in airplane mode. Thank you for your cooperation."
+                    </div>
+                    
+                    <h4>🎯 Compliance Enforcement Strategy</h4>
+                    <ul>
+                        <li><strong>Visual Sweep:</strong> Systematic cabin inspection</li>
+                        <li><strong>Individual Approach:</strong> Personal compliance requests</li>
+                        <li><strong>Authority Escalation:</strong> When to involve senior crew</li>
+                        <li><strong>Documentation:</strong> Recording non-compliance incidents</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>⚠️ Multi-Variable Weather Protocols</h4>
+                    <div class="scenario-card">
+                        <strong>Crosswind Landing (>25 knots):</strong><br>
+                        • Brief passengers on potential aircraft movement<br>
+                        • Extra attention to loose items<br>
+                        • Prepare for possible go-around<br>
+                        • Position crew for rapid response
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <strong>Low Visibility Approach (CAT II/III):</strong><br>
+                        • Enhanced passenger briefing on approach duration<br>
+                        • Verify all electronic devices compliance<br>
+                        • Prepare for extended final approach<br>
+                        • Monitor passenger anxiety levels
+                    </div>
+                </div>
+            </div>
+
+            <h3>🕘 Phase 3: Final Approach (15-0 minutes before landing)</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>🔒 Maximum Security Protocol</h4>
+                    <ul>
+                        <li><strong>Galley Security Level 2:</strong> All items secured, carts locked</li>
+                        <li><strong>Passenger Final Check:</strong> 100% compliance verification</li>
+                        <li><strong>Crew Positioning:</strong> Strategic placement for emergency response</li>
+                        <li><strong>Silent Monitoring:</strong> Continuous passenger observation</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>🚨 Emergency Preparedness Matrix</h4>
+                    <ul>
+                        <li><strong>Evacuation Readiness:</strong> Mental preparation for commands</li>
+                        <li><strong>Medical Response:</strong> First aid kit accessibility</li>
+                        <li><strong>Communication Backup:</strong> Manual systems if PA fails</li>
+                        <li><strong>Passenger Control:</strong> Crowd management strategies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checklist Section -->
+        <div id="checklist" class="content-section">
+            <h2 class="section-title">✅ Comprehensive Landing Preparation Checklist</h2>
+            
+            <div class="alert alert-warning">
+                <strong>Critical Reminder:</strong> This checklist must be completed in sequence. Each item builds upon the previous one for maximum safety effectiveness.
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="checklistProgress"></div>
+            </div>
+            
+            <h3>Phase 1: Initial Descent (45-30 minutes)</h3>
+            <div class="checklist" id="landingChecklist">
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Flight Deck Coordination:</strong> Receive descent briefing from captain including weather, approach type, and any special considerations
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Crew Briefing:</strong> Brief all cabin crew on landing conditions, passenger load factors, and emergency procedures specific to destination airport
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Passenger Assessment:</strong> Identify high-risk passengers, verify exit row occupants, and note any special assistance requirements
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Initial Announcement:</strong> Make descent announcement with destination weather, local time, and preliminary preparation instructions
+                    </div>
+                </div>
+            </div>
+
+            <h3>Phase 2: Active Preparation (30-15 minutes)</h3>
+            <div class="checklist">
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Galley Security Level 1:</strong> Secure all loose items, lock service carts, verify coffee makers and ovens are off and secured
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Emergency Equipment Verification:</strong> Check accessibility of PBE, flashlights, megaphones, first aid kits, and AED units
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Lavatory Security:</strong> Ensure all lavatories are unoccupied, waste bins secured, and smoke detector systems functional
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Passenger Compliance Phase 1:</strong> Begin systematic cabin walk-through ensuring passengers return to assigned seats
+                    </div>
+                </div>
+            </div>
+
+            <h3>Phase 3: Critical Preparation (15-5 minutes)</h3>
+            <div class="checklist">
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Final Preparation Announcement:</strong> Make comprehensive landing announcement including seatbelt, seat position, tray table, and electronic device requirements
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Seatbelt Compliance:</strong> Verify 100% passenger seatbelt compliance with proper positioning and tightness
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Seat Position Verification:</strong> Ensure all seat backs upright, footrests stowed, and armrests down
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Tray Table Security:</strong> Verify all tray tables stowed and locked, including seat-back entertainment systems
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Overhead Bin Inspection:</strong> Ensure all bins properly closed and latched, no items protruding
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Floor Area Clearance:</strong> Verify aisles and emergency exit paths clear of personal items, bags, and debris
+                    </div>
+                </div>
+            </div>
+
+            <h3>Phase 4: Final Approach (5-0 minutes)</h3>
+            <div class="checklist">
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Electronic Device Compliance:</strong> Verify all large electronic devices stowed, small devices in airplane mode
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Galley Security Level 2:</strong> Final galley lockdown - all drawers locked, equipment secured, emergency equipment accessible
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Cabin Crew Positioning:</strong> All crew members in assigned jump seats with harnesses secured
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Final Safety Sweep:</strong> Complete visual confirmation of total cabin compliance and emergency readiness
+                    </div>
+                </div>
+                <div class="checklist-item" onclick="toggleChecklistItem(this)">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Captain Notification:</strong> Report "Cabin Secure for Landing" to flight deck
+                    </div>
+                </div>
+            </div>
+            
+            <div id="checklistComplete" style="display: none;">
+                <div class="alert alert-info">
+                    🎉 <strong>Outstanding!</strong> You've completed the comprehensive landing preparation checklist. All 17 critical safety items verified. The cabin is secure for landing!
+                </div>
+            </div>
+        </div>
+
+        <!-- Scenarios Section -->
+        <div id="scenarios" class="content-section">
+            <h2 class="section-title">🎭 Critical Decision-Making Scenarios</h2>
+            
+            <div class="alert alert-warning">
+                <strong>Instructions:</strong> Each scenario presents multiple variables and time pressure. Consider all factors before revealing the response. Think about passenger safety, regulatory compliance, crew coordination, and risk mitigation.
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 1: Multi-Threat Turbulent Approach</div>
+                <p style="line-height: 1.8; font-size: 1.02rem;"><strong style="color: #e74c3c; font-size: 1.1rem;">Situation:</strong> During final approach in severe turbulence, you observe: <span class="highlight-text" style="background: #ffebee; color: #c62828;">(1) An elderly passenger in 12A appears to be having difficulty breathing</span>, <span class="highlight-text" style="background: #fff3e0; color: #ef6c00;">(2) A passenger in 15C is standing in the aisle trying to retrieve something from the overhead bin</span>, <span class="highlight-text" style="background: #f3e5f5; color: #7b1fa2;">(3) The galley cart has broken loose and is sliding</span>, <span class="highlight-text" style="background: #e8f5e8; color: #2e7d32;">(4) A child in 8B is crying loudly and the parent is trying to unbuckle to comfort them</span>. You have <strong style="color: #d32f2f; background: #ffcdd2; padding: 2px 8px; border-radius: 4px;">3 minutes before landing</strong>.</p>
+                <p><strong>Additional factors:</strong> You are the only flight attendant in this section, the seatbelt sign is on, and the captain has announced "flight attendants be seated immediately."</p>
+                <button class="btn" onclick="showScenarioResponse(1)">Show Critical Response</button>
+                <div id="response1" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Priority-Based Response (CRITICAL THINKING):</strong><br>
+                    <strong>1. IMMEDIATE (30 seconds):</strong> Secure the loose galley cart first - it's a projectile hazard to all passengers<br>
+                    <strong>2. LIFE SAFETY (45 seconds):</strong> Quickly assess 12A's breathing - if conscious and responsive, instruct them to remain seated and breathe slowly. If unconscious, this becomes priority #1<br>
+                    <strong>3. COMPLIANCE (30 seconds):</strong> Firmly command 15C to sit immediately: "Sir, sit down NOW for your safety!" Use authoritative tone<br>
+                    <strong>4. FAMILY MANAGEMENT (30 seconds):</strong> Tell parent in 8B: "Keep your seatbelt on, hold your child from your seat, landing in 2 minutes"<br>
+                    <strong>5. POSITION (15 seconds):</strong> Take your jump seat and monitor all situations<br>
+                    <strong>6. POST-LANDING:</strong> Immediately address medical situation with 12A, document all incidents<br><br>
+                    <strong>Key Decision Factors:</strong> Triage by immediate physical danger, regulatory compliance, and crew safety protocols
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 2: Medical Emergency with Compliance Issues</div>
+                <p><strong>Situation:</strong> During descent, a passenger in 22F collapses with suspected cardiac arrest. As you begin CPR, you notice: (1) Multiple passengers are standing and crowding around, (2) Someone is filming with their phone, (3) A passenger claiming to be a doctor wants to take over but has no identification, (4) The AED is in the forward galley - 2 sections away, (5) Another passenger is demanding the plane land immediately and is becoming aggressive.</p>
+                <p><strong>Additional factors:</strong> 20 minutes to landing, moderate turbulence, you're the senior flight attendant, and the captain is asking for status updates.</p>
+                <button class="btn" onclick="showScenarioResponse(2)">Show Critical Response</button>
+                <div id="response2" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Multi-Variable Crisis Management:</strong><br>
+                    <strong>IMMEDIATE ACTIONS (First 60 seconds):</strong><br>
+                    • Continue CPR while giving commands: "Everyone sit down immediately! This is a medical emergency!"<br>
+                    • To phone user: "Stop filming and sit down or you will be restrained!"<br>
+                    • To claiming doctor: "Are you licensed? What's your specialty?" (Accept help only if credible)<br>
+                    • Call for AED: "Flight attendant to forward galley - bring AED to 22F immediately!"<br><br>
+                    <strong>CROWD CONTROL:</strong><br>
+                    • Designate one calm passenger to help clear the area<br>
+                    • Use authoritative commands, not requests<br>
+                    • Position aggressive passenger away from medical scene<br><br>
+                    <strong>COMMUNICATION PROTOCOL:</strong><br>
+                    • Brief captain: "Medical emergency in progress, CPR initiated, requesting priority landing if possible"<br>
+                    • Update every 3-5 minutes with patient status<br><br>
+                    <strong>DECISION MATRIX:</strong><br>
+                    • Patient care is priority #1, but crew safety enables patient care<br>
+                    • Crowd control prevents secondary injuries<br>
+                    • Documentation of all actions for legal protection
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 3: Security Threat During Landing Preparation</div>
+                <p><strong>Situation:</strong> While conducting final safety checks, you notice a passenger in 18D acting suspiciously: repeatedly checking their watch, sweating profusely, and has a large bag they refuse to stow. When approached, they become hostile and claim they have "something important" in the bag that "can't wait." Other passengers are becoming nervous. The passenger speaks limited English and appears increasingly agitated.</p>
+                <p><strong>Additional factors:</strong> 10 minutes to landing, you cannot see inside the bag, the passenger is in an aisle seat near an emergency exit, and other passengers are asking what's happening.</p>
+                <button class="btn" onclick="showScenarioResponse(3)">Show Critical Response</button>
+                <div id="response3" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Security Protocol Response:</strong><br>
+                    <strong>IMMEDIATE ASSESSMENT (30 seconds):</strong><br>
+                    • Maintain calm demeanor while evaluating threat level<br>
+                    • Position yourself to observe passenger and bag while maintaining escape route<br>
+                    • Note passenger's exact behavior and statements<br><br>
+                    <strong>DE-ESCALATION ATTEMPT (60 seconds):</strong><br>
+                    • Use calm, clear language: "Sir, for everyone's safety, I need you to stow your bag"<br>
+                    • Try to find someone who speaks their language<br>
+                    • Offer to help secure the bag in overhead bin<br><br>
+                    <strong>ESCALATION PROTOCOL (if de-escalation fails):</strong><br>
+                    • Discreetly signal other crew members using predetermined codes<br>
+                    • Notify captain immediately using security phraseology<br>
+                    • Do NOT attempt to physically inspect bag<br>
+                    • Prepare for potential restraint procedures<br><br>
+                    <strong>PASSENGER MANAGEMENT:</strong><br>
+                    • Reassure other passengers without revealing security concerns<br>
+                    • Position able-bodied passengers away from the situation<br>
+                    • Prepare for emergency landing procedures if necessary<br><br>
+                    <strong>CRITICAL DECISION POINT:</strong> Balance security concerns with avoiding panic while maintaining regulatory compliance
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 4: Simultaneous System Failures</div>
+                <p><strong>Situation:</strong> During final approach, multiple systems begin failing: (1) Cabin lights flicker and go out, (2) PA system stops working, (3) Emergency lighting activates, (4) Passengers panic and some begin standing, (5) You hear unusual engine sounds, (6) The captain makes no announcement. You have no communication with the flight deck, and passengers are asking if they should prepare for an emergency landing.</p>
+                <p><strong>Additional factors:</strong> It's a night landing, weather is poor, you can see emergency vehicles on the ground, and some passengers are crying and praying.</p>
+                <button class="btn" onclick="showScenarioResponse(4)">Show Critical Response</button>
+                <div id="response4" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Emergency Systems Failure Protocol:</strong><br>
+                    <strong>IMMEDIATE ACTIONS (First 30 seconds):</strong><br>
+                    • Use megaphone/loud voice: "Everyone remain seated and calm. Crew is handling the situation."<br>
+                    • Quickly assess if this is precautionary or actual emergency<br>
+                    • Check interphone system for flight deck communication<br><br>
+                    <strong>PASSENGER CONTROL (Next 60 seconds):</strong><br>
+                    • Move through cabin using flashlight, physically guiding passengers to seats<br>
+                    • Use calm, authoritative voice: "Seatbelts tight, heads down, follow crew instructions"<br>
+                    • Identify and calm the most panicked passengers first<br><br>
+                    <strong>EMERGENCY PREPARATION (Ongoing):</strong><br>
+                    • Mentally prepare for evacuation commands<br>
+                    • Identify able-bodied passengers near exits<br>
+                    • Ensure emergency equipment is accessible<br>
+                    • Position crew for maximum effectiveness<br><br>
+                    <strong>COMMUNICATION STRATEGY:</strong><br>
+                    • Attempt flight deck contact every 30 seconds<br>
+                    • If no contact, prepare passengers for possible emergency landing<br>
+                    • Use standard emergency commands if evacuation becomes necessary<br><br>
+                    <strong>CRITICAL THINKING:</strong> Assume worst-case scenario while hoping for best-case outcome. Prepare passengers without causing panic.
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 5: Cultural and Language Barriers</div>
+                <p><strong>Situation:</strong> You're preparing a large group of passengers (30+ people) who don't speak English and appear to be traveling together. Their cultural practices include: (1) Men and women sitting separately, (2) Religious items they refuse to stow, (3) A leader who insists on translating everything but may not understand aviation safety, (4) Some women wearing face coverings that may interfere with oxygen masks, (5) Children running in aisles during preparation.</p>
+                <p><strong>Additional factors:</strong> 15 minutes to landing, no crew members speak their language, other passengers are complaining about the disruption, and you must ensure 100% compliance.</p>
+                <button class="btn" onclick="showScenarioResponse(5)">Show Critical Response</button>
+                <div id="response5" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Cultural Sensitivity with Safety Priority:</strong><br>
+                    <strong>RESPECTFUL ENGAGEMENT (First 2 minutes):</strong><br>
+                    • Approach the group leader with respect: "I need your help to keep everyone safe"<br>
+                    • Use simple English, hand gestures, and safety card demonstrations<br>
+                    • Acknowledge their customs while explaining safety requirements<br><br>
+                    <strong>PRACTICAL SOLUTIONS:</strong><br>
+                    • Religious items: "Hold small items, larger items must be secured for safety"<br>
+                    • Face coverings: Demonstrate oxygen mask use, explain it goes over covering<br>
+                    • Seating: "Safety requires everyone in assigned seats during landing"<br>
+                    • Children: Work with parents to secure children immediately<br><br>
+                    <strong>TRANSLATION STRATEGY:</strong><br>
+                    • Use safety demonstration cards as visual aids<br>
+                    • Find passengers who speak both languages to assist<br>
+                    • Use universal safety gestures (seatbelt, upright position)<br><br>
+                    <strong>COMPLIANCE ENFORCEMENT:</strong><br>
+                    • Set clear expectations through the leader<br>
+                    • Use positive reinforcement when compliance is achieved<br>
+                    • Be prepared to involve captain if safety is compromised<br><br>
+                    <strong>BALANCE POINT:</strong> Respect cultural practices while maintaining non-negotiable safety standards. Safety always takes precedence.
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-title">Scenario 6: Crew Incapacitation</div>
+                <p><strong>Situation:</strong> During landing preparation, your senior flight attendant suddenly becomes ill and is unable to perform duties. You are now the most senior crew member in the cabin. Simultaneously: (1) A passenger is having an allergic reaction, (2) The galley equipment is not properly secured, (3) Several passengers are non-compliant with safety instructions, (4) The captain is requesting cabin status, (5) A junior flight attendant is asking for guidance.</p>
+                <p><strong>Additional factors:</strong> 12 minutes to landing, you've never been the senior crew member in an emergency, and passengers are noticing the crew confusion.</p>
+                <button class="btn" onclick="showScenarioResponse(6)">Show Critical Response</button>
+                <div id="response6" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                    <strong>Leadership Under Pressure Protocol:</strong><br>
+                    <strong>IMMEDIATE COMMAND ASSUMPTION (30 seconds):</strong><br>
+                    • Take charge decisively: "I'm now senior crew. Follow my instructions."<br>
+                    • Quickly assess incapacitated crew member's condition<br>
+                    • Delegate tasks immediately to available crew<br><br>
+                    <strong>TASK DELEGATION (60 seconds):</strong><br>
+                    • Junior FA: "Secure the galley immediately, then assist with passenger compliance"<br>
+                    • Self: Handle allergic reaction while coordinating overall response<br>
+                    • If possible, assign someone to monitor incapacitated crew member<br><br>
+                    <strong>MEDICAL PRIORITY:</strong><br>
+                    • Assess allergic reaction severity<br>
+                    • Administer epinephrine if available and trained<br>
+                    • Call for medical professionals on board<br>
+                    • Prepare for two medical situations simultaneously<br><br>
+                    <strong>CAPTAIN COMMUNICATION:</strong><br>
+                    • Brief report: "Cabin crew medical situation, managing two passengers, cabin securing in progress"<br>
+                    • Request medical priority if needed<br>
+                    • Update on cabin secure status<br><br>
+                    <strong>LEADERSHIP PRINCIPLES:</strong> Project confidence even if uncertain, prioritize life-threatening situations, delegate effectively, maintain communication flow.
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section">
+            <h2 class="section-title">🧠 Advanced Knowledge Assessment</h2>
+            
+            <div class="alert alert-warning">
+                <strong>Professional Certification Quiz:</strong> This assessment tests advanced flight attendant competencies. Passing score is 80%. Each question requires critical thinking and regulatory knowledge.
+            </div>
+            
+            <div class="quiz-question">
+                <h3>Question 1: According to FAR 121.571, what is the maximum altitude at which the sterile cockpit rule applies, and how does this affect your landing preparation timeline?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) 5,000 feet - begin all preparations before this altitude</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) 10,000 feet - complete non-essential flight deck communication before descent below this altitude</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) 15,000 feet - no communication restrictions apply during landing preparation</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) 8,000 feet - only emergency communications allowed below this altitude</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 2: During a CAT III approach in low visibility conditions, a passenger in 14F claims to be a pilot and insists the approach is unsafe, demanding to speak to the captain. Your response should prioritize:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Immediately relay the passenger's concerns to the flight deck</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Acknowledge their concern, ensure their compliance with safety procedures, and document the incident</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Ask them to assist with passenger management due to their aviation knowledge</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Ignore their concerns as passengers cannot evaluate flight operations</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 3: You discover a passenger has consumed alcohol from their personal supply during descent. They are not visibly intoxicated but admit to drinking. Your regulatory obligation under FAR 121.575 requires:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Confiscate the alcohol and continue normal procedures</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Monitor the passenger but take no action if they're not disruptive</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) Document the violation, ensure passenger compliance, and report to captain and authorities</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Request the passenger stop drinking and dispose of remaining alcohol</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 4: During final approach, you notice an exit row passenger appears to have a broken arm in a sling. According to emergency evacuation protocols, you must:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Allow them to remain if they verbally confirm they can assist</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Immediately reseat them away from the exit row as they cannot perform required functions</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Brief them on one-handed exit operation procedures</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Assign another passenger to assist them with exit operations</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 5: A passenger's service animal becomes agitated during descent and is not responding to the owner's commands. The animal is blocking an aisle. Your immediate priority is:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Request the owner to control the animal or it will be restrained</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Ensure aisle clearance for emergency egress while working with owner to calm animal</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Move passengers away from the animal until landing</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Contact the flight deck to request priority landing</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 6: During crosswind landing preparations (winds >25 knots), you observe a passenger in 23A has removed their seatbelt to retrieve medication from their carry-on. The captain has announced "flight attendants be seated." You should:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Take your jump seat as ordered and address the issue post-landing</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Retrieve the medication for the passenger then take your seat</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) Quickly secure the passenger in their seat, assess medical urgency, then take your position</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Call the flight deck to report the passenger non-compliance</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 7: You're conducting final safety checks when you discover a passenger has a large lithium battery power bank that is hot to the touch and emitting a chemical odor. With 8 minutes to landing, your protocol requires:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Have the passenger turn off the device and monitor until landing</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Immediately isolate the device, notify flight deck, prepare for potential fire emergency</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Move the passenger and device to an empty row away from others</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Place the device in the lavatory and secure the door</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 8: During approach, a passenger begins showing signs of severe hypoxia (confusion, blue lips, difficulty breathing). The aircraft is at 8,000 feet and descending. Your immediate response should be:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Wait for lower altitude as oxygen will improve naturally</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Administer supplemental oxygen immediately and notify flight deck of medical emergency</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Have the passenger breathe into a paper bag to control hyperventilation</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Move the passenger to a window seat for better air circulation</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 9: You notice two passengers in different rows are communicating through hand signals and appear to be coordinating something. One is in an exit row, the other near the galley. Both avoided eye contact during safety briefings. Your assessment should consider:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) They likely don't speak English and are helping each other understand procedures</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">B) Potential security threat requiring discrete observation and crew notification</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">C) Normal passenger behavior that requires no special attention</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Possible medical condition requiring assistance</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>Question 10: During final approach in severe weather, multiple passengers are experiencing motion sickness, the cabin lights are flickering, and you hear the landing gear cycling repeatedly. A passenger asks if they should prepare for an emergency landing. Your response should:</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">A) Reassure them that everything is normal and routine</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">B) Explain that the captain will announce if emergency procedures are needed</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, true)">C) Acknowledge their concern, ensure they're properly secured, and prepare for possible emergency while projecting calm confidence</div>
+                    <div class="quiz-option" onclick="selectQuizOption(this, false)">D) Tell them to ask the flight deck directly for information</div>
+                </div>
+            </div>
+
+            <button class="btn btn-success" onclick="showQuizResults()" id="showResultsBtn" style="display: none;">Show Results</button>
+            <div id="quizResults" style="display: none;"></div>
+        </div>
+
+        <!-- Summary Section -->
+        <div id="summary" class="content-section">
+            <h2 class="section-title">📝 Lesson Summary</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>🎯 Key Takeaways</h3>
+                    <ul>
+                        <li><strong>Timing is Critical:</strong> Begin preparations 30 minutes before landing</li>
+                        <li><strong>Safety First:</strong> Passenger compliance with safety regulations is non-negotiable</li>
+                        <li><strong>Communication:</strong> Clear, calm announcements help ensure passenger cooperation</li>
+                        <li><strong>Teamwork:</strong> Coordinate with flight deck and cabin crew throughout the process</li>
+                        <li><strong>Adaptability:</strong> Be prepared to handle unexpected situations during descent</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3>📚 Additional Resources</h3>
+                    <ul>
+                        <li>Company Operations Manual - Section 8</li>
+                        <li>Emergency Procedures Handbook</li>
+                        <li>FAA Regulations Part 121.571</li>
+                        <li>Crew Resource Management Guidelines</li>
+                    </ul>
+                    
+                    <div class="alert alert-info">
+                        <strong>Next Lesson:</strong> Post-Landing Procedures and Passenger Disembarkation
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-success" onclick="completLesson()">Complete Lesson</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizAnswers = [];
+        let completedChecklist = 0;
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function toggleChecklistItem(item) {
+            const checkbox = item.querySelector('.checkbox');
+            const isCompleted = item.classList.contains('completed');
+            
+            if (!isCompleted) {
+                item.classList.add('completed');
+                checkbox.classList.add('checked');
+                completedChecklist++;
+            } else {
+                item.classList.remove('completed');
+                checkbox.classList.remove('checked');
+                completedChecklist--;
+            }
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalItems = document.querySelectorAll('.checklist-item').length;
+            const progress = (completedChecklist / totalItems) * 100;
+            document.getElementById('checklistProgress').style.width = progress + '%';
+            
+            if (completedChecklist === totalItems) {
+                document.getElementById('checklistComplete').style.display = 'block';
+            } else {
+                document.getElementById('checklistComplete').style.display = 'none';
+            }
+        }
+
+        function showScenarioResponse(scenarioNumber) {
+            const response = document.getElementById('response' + scenarioNumber);
+            if (response.style.display === 'none') {
+                response.style.display = 'block';
+                event.target.textContent = 'Hide Response';
+            } else {
+                response.style.display = 'none';
+                event.target.textContent = 'Show Response';
+            }
+        }
+
+        function selectQuizOption(option, isCorrect) {
+            const question = option.parentElement.parentElement;
+            const options = question.querySelectorAll('.quiz-option');
+            
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Mark the selected option
+            if (isCorrect) {
+                option.classList.add('correct');
+                quizAnswers.push(true);
+            } else {
+                option.classList.add('incorrect');
+                // Show correct answer
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                quizAnswers.push(false);
+            }
+            
+            // Disable further clicks on this question
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
+            
+            // Check if all questions are answered
+            if (quizAnswers.length === 10) {
+                document.getElementById('showResultsBtn').style.display = 'inline-block';
+            }
+        }
+
+        function showQuizResults() {
+            const correctAnswers = quizAnswers.filter(answer => answer === true).length;
+            const totalQuestions = quizAnswers.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            
+            let resultMessage = '';
+            let resultClass = '';
+            let certificationStatus = '';
+            
+            if (percentage >= 90) {
+                resultMessage = '🏆 Outstanding! You demonstrate exceptional mastery of advanced flight attendant procedures and critical thinking skills.';
+                resultClass = 'alert-info';
+                certificationStatus = 'CERTIFIED - Advanced Level';
+            } else if (percentage >= 80) {
+                resultMessage = '🎉 Excellent! You have passed the professional certification standard. You demonstrate strong competency in landing preparation procedures.';
+                resultClass = 'alert-info';
+                certificationStatus = 'CERTIFIED - Professional Level';
+            } else if (percentage >= 70) {
+                resultMessage = '👍 Good performance, but additional study is recommended. Review regulatory requirements and emergency procedures.';
+                resultClass = 'alert-warning';
+                certificationStatus = 'CONDITIONAL PASS - Requires Review';
+            } else {
+                resultMessage = '📚 Additional training required. Please review all lesson materials, focus on regulatory compliance, and retake the assessment.';
+                resultClass = 'alert-warning';
+                certificationStatus = 'REQUIRES ADDITIONAL TRAINING';
+            }
+            
+            document.getElementById('quizResults').innerHTML = `
+                <div class="alert ${resultClass}">
+                    <h3>Professional Assessment Results</h3>
+                    <p><strong>Score:</strong> ${correctAnswers}/${totalQuestions} (${percentage}%)</p>
+                    <p><strong>Certification Status:</strong> ${certificationStatus}</p>
+                    <p>${resultMessage}</p>
+                    ${percentage >= 80 ? '<p><strong>✅ You are qualified to proceed to advanced flight attendant responsibilities.</strong></p>' : '<p><strong>⚠️ Additional training and reassessment required before certification.</strong></p>'}
+                </div>
+            `;
+            document.getElementById('quizResults').style.display = 'block';
+        }
+
+        function completLesson() {
+            alert('🎓 Congratulations! You have successfully completed Lesson 29: Preparing for Landing. You are now ready to apply these skills in real flight situations. Remember to always prioritize passenger safety and maintain clear communication with your crew.');
+        }
+
+        // Reading progress tracker
+        function updateReadingProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("readingProgress").style.width = scrolled + "%";
+        }
+
+        // Text highlighting on scroll
+        function highlightVisibleText() {
+            const elements = document.querySelectorAll('p, li, h3, h4');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top >= 0 && rect.top <= window.innerHeight * 0.7;
+                
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateX(0)';
+                } else {
+                    element.style.opacity = '0.7';
+                    element.style.transform = 'translateX(-5px)';
+                }
+            });
+        }
+
+        // Initialize reading enhancements
+        window.addEventListener('scroll', () => {
+            updateReadingProgress();
+            highlightVisibleText();
+        });
+
+        window.addEventListener('load', () => {
+            updateReadingProgress();
+            highlightVisibleText();
+            
+            // Add smooth transitions to all text elements
+            const textElements = document.querySelectorAll('p, li, h3, h4');
+            textElements.forEach(element => {
+                element.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988d218af3d0c419',t:'MTc1OTUwMTc1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

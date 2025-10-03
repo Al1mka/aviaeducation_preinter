@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 26: Medical Issues and Health Situations on Board</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .lesson-title {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .lesson-subtitle {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .timer {
+            background: #f7fafc;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .top-nav {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .nav-tab {
+            padding: 12px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            background: white;
+            color: #4a5568;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 140px;
+        }
+        
+        .nav-tab:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+        
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: #2d3748;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .emergency-contacts {
+            background: #f0fff4;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .emergency-card {
+            background: #fed7d7;
+            border: 2px solid #fc8181;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .emergency-title {
+            color: #c53030;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .scenario-card {
+            background: #e6fffa;
+            border: 2px solid #38b2ac;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .scenario-title {
+            color: #2c7a7b;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .checklist {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            background: rgba(104, 211, 145, 0.1);
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .quiz-container {
+            background: #fef5e7;
+            border: 2px solid #ed8936;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .quiz-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-option {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .quiz-option:hover {
+            border-color: #ed8936;
+            background: #fffaf0;
+        }
+        
+        .quiz-option.selected {
+            border-color: #ed8936;
+            background: #fed7aa;
+        }
+        
+        .quiz-option.correct {
+            border-color: #38a169;
+            background: #c6f6d5;
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #e53e3e;
+            background: #fed7d7;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .quiz-feedback.correct {
+            background: #c6f6d5;
+            color: #2f855a;
+        }
+        
+        .quiz-feedback.incorrect {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        
+        .medical-kit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: white;
+        }
+        
+        .medical-kit-icon {
+            font-size: 2rem;
+            width: 50px;
+            text-align: center;
+        }
+        
+        .medical-kit-info h4 {
+            margin: 0 0 5px 0;
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+        
+        .medical-kit-info p {
+            margin: 0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-tab {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .lesson-title {
+                font-size: 2rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="lesson-title">✈️ Medical Issues and Health Situations on Board</h1>
+            <p class="lesson-subtitle">Lesson 26 - Flight Attendant Training</p>
+            <div class="timer" id="timer">⏱️ Time Remaining: 60:00</div>
+        </div>
+        
+        <div class="top-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="goToSection(1)">🎯 Objectives</button>
+                <button class="nav-tab" onclick="goToSection(2)">🏥 Emergencies</button>
+                <button class="nav-tab" onclick="goToSection(3)">📋 Protocol</button>
+                <button class="nav-tab" onclick="goToSection(4)">🧰 Equipment</button>
+                <button class="nav-tab" onclick="goToSection(5)">🎭 Scenarios</button>
+                <button class="nav-tab" onclick="goToSection(6)">📝 Quiz</button>
+                <button class="nav-tab" onclick="goToSection(7)">📚 Summary</button>
+            </div>
+            
+            <div class="emergency-contacts">
+                <h4 style="color: #2f855a; margin: 0 0 10px 0;">📞 Emergency Contacts</h4>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                    <span style="font-size: 0.9rem;"><strong>MedLink:</strong> 24/7 medical advisory</span>
+                    <span style="font-size: 0.9rem;"><strong>Ground Control:</strong> Diversion coordination</span>
+                    <span style="font-size: 0.9rem;"><strong>Company Ops:</strong> Incident reporting</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                
+                <!-- Section 1: Introduction -->
+                <div class="section active" id="section1">
+                    <h2 class="section-title">🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul style="font-size: 1.1rem; line-height: 1.8;">
+                        <li>Identify common medical emergencies that occur during flight</li>
+                        <li>Apply proper first aid procedures and emergency protocols</li>
+                        <li>Effectively communicate with medical professionals and ground support</li>
+                        <li>Use onboard medical equipment and supplies appropriately</li>
+                        <li>Make critical decisions regarding flight diversions</li>
+                    </ul>
+                    
+                    <div class="emergency-card">
+                        <div class="emergency-title">
+                            🚨 Key Statistics
+                        </div>
+                        <p><strong>1 in 604 flights</strong> experiences a medical emergency</p>
+                        <p><strong>Most common:</strong> Fainting/syncope (37%), respiratory issues (12%), nausea/vomiting (9%)</p>
+                        <p><strong>Diversion rate:</strong> Only 7% of medical emergencies require flight diversion</p>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Common Medical Emergencies -->
+                <div class="section" id="section2">
+                    <h2 class="section-title">🏥 Common Medical Emergencies</h2>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">1. Syncope (Fainting) - 37% of cases</div>
+                        <p><strong>Causes:</strong> Dehydration, low blood pressure, anxiety, standing too long</p>
+                        <p><strong>Signs:</strong> Dizziness, pale skin, sweating, loss of consciousness</p>
+                        <p><strong>Action:</strong> Lay passenger flat, elevate legs, loosen clothing, provide oxygen if needed</p>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">2. Respiratory Distress - 12% of cases</div>
+                        <p><strong>Causes:</strong> Asthma, COPD, anxiety, allergic reactions</p>
+                        <p><strong>Signs:</strong> Difficulty breathing, wheezing, chest tightness, blue lips</p>
+                        <p><strong>Action:</strong> Assist with inhaler, provide oxygen, keep passenger upright</p>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">3. Cardiac Events - 11% of cases</div>
+                        <p><strong>Types:</strong> Heart attack, arrhythmia, cardiac arrest</p>
+                        <p><strong>Signs:</strong> Chest pain, shortness of breath, sweating, nausea</p>
+                        <p><strong>Action:</strong> Call for medical professional, prepare AED, consider diversion</p>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">4. Gastrointestinal Issues - 9% of cases</div>
+                        <p><strong>Symptoms:</strong> Nausea, vomiting, diarrhea, abdominal pain</p>
+                        <p><strong>Action:</strong> Provide sick bags, fluids, anti-nausea medication if available</p>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Emergency Response Protocol -->
+                <div class="section" id="section3">
+                    <h2 class="section-title">📋 Emergency Response Protocol</h2>
+                    
+                    <div class="checklist">
+                        <h3 style="color: #2f855a; margin-top: 0;">✅ STEP-BY-STEP RESPONSE</h3>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step1">
+                            <label for="step1"><strong>1. Assess the Situation</strong> - Check consciousness, breathing, pulse</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step2">
+                            <label for="step2"><strong>2. Call for Help</strong> - "Is there a doctor on board?" announcement</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step3">
+                            <label for="step3"><strong>3. Notify Flight Deck</strong> - Inform captain immediately</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step4">
+                            <label for="step4"><strong>4. Retrieve Medical Kit</strong> - Get appropriate medical supplies</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step5">
+                            <label for="step5"><strong>5. Provide Care</strong> - Follow medical professional's guidance</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step6">
+                            <label for="step6"><strong>6. Contact Ground</strong> - MedLink or medical advisory service</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="step7">
+                            <label for="step7"><strong>7. Document Everything</strong> - Complete incident report</label>
+                        </div>
+                    </div>
+                    
+                    <div class="emergency-card">
+                        <div class="emergency-title">
+                            ⚠️ Critical Decision Points
+                        </div>
+                        <p><strong>Diversion Criteria:</strong></p>
+                        <ul>
+                            <li>Life-threatening emergency requiring immediate hospital care</li>
+                            <li>Passenger cannot be stabilized with onboard resources</li>
+                            <li>Medical professional recommends diversion</li>
+                            <li>Ground medical advisory recommends diversion</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Medical Equipment -->
+                <div class="section" id="section4">
+                    <h2 class="section-title">🧰 Onboard Medical Equipment</h2>
+                    
+                    <h3 style="color: #2d3748; margin-bottom: 20px;">First Aid Kit Contents:</h3>
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">🩹</div>
+                        <div class="medical-kit-info">
+                            <h4>Bandages & Gauze</h4>
+                            <p>Various sizes for wound care and bleeding control</p>
+                        </div>
+                    </div>
+                    
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">💊</div>
+                        <div class="medical-kit-info">
+                            <h4>Basic Medications</h4>
+                            <p>Pain relievers, antihistamines, anti-diarrheal, aspirin</p>
+                        </div>
+                    </div>
+                    
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">🌡️</div>
+                        <div class="medical-kit-info">
+                            <h4>Diagnostic Tools</h4>
+                            <p>Thermometer, blood pressure cuff, stethoscope</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: #2d3748; margin: 30px 0 20px 0;">Enhanced Medical Kit (EMK):</h3>
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">💉</div>
+                        <div class="medical-kit-info">
+                            <h4>Injectable Medications</h4>
+                            <p>Epinephrine, dextrose, atropine (doctor/nurse required)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">🫁</div>
+                        <div class="medical-kit-info">
+                            <h4>Airway Management</h4>
+                            <p>Airways, IV fluids, advanced diagnostic equipment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="medical-kit-item">
+                        <div class="medical-kit-icon">⚡</div>
+                        <div class="medical-kit-info">
+                            <h4>AED (Automated External Defibrillator)</h4>
+                            <p>For cardiac arrest - follow voice prompts, anyone can use</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Scenario Practice -->
+                <div class="section" id="section5">
+                    <h2 class="section-title">🎭 Critical Thinking Scenarios</h2>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">Complex Scenario 1: Multi-Patient Emergency</div>
+                        <p><strong>Situation:</strong> During severe turbulence, three passengers are injured: (A) Unconscious with head trauma, (B) Conscious with suspected broken arm and chest pain, (C) Panic attack with hyperventilation. You have one medical kit and no medical professionals onboard.</p>
+                        
+                        <p><strong>Critical Thinking Questions:</strong></p>
+                        <ul style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <li>🤔 <strong>Triage Priority:</strong> In what order do you assess and treat these passengers? Why?</li>
+                            <li>🤔 <strong>Resource Management:</strong> How do you allocate limited medical supplies?</li>
+                            <li>🤔 <strong>Crew Coordination:</strong> What specific tasks do you delegate to other crew members?</li>
+                            <li>🤔 <strong>Communication Strategy:</strong> What information do you relay to the captain first?</li>
+                            <li>🤔 <strong>Diversion Decision:</strong> What criteria determine if this requires immediate landing?</li>
+                        </ul>
+                        
+                        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>🎯 Learning Objective:</strong> Practice medical triage, resource allocation, and multi-tasking under pressure
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">Complex Scenario 2: Conflicting Medical Advice</div>
+                        <p><strong>Situation:</strong> A passenger is having a severe asthma attack. An onboard doctor recommends epinephrine, but a nurse disagrees, suggesting only bronchodilators. The passenger is deteriorating, and ground medical advisory is unreachable due to communication issues. The captain is asking for your recommendation on diversion.</p>
+                        
+                        <p><strong>Critical Thinking Questions:</strong></p>
+                        <ul style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <li>🤔 <strong>Authority Decision:</strong> How do you handle conflicting medical opinions from qualified professionals?</li>
+                            <li>🤔 <strong>Risk Assessment:</strong> What are the risks of each treatment option vs. no treatment?</li>
+                            <li>🤔 <strong>Documentation:</strong> How do you document this situation for legal protection?</li>
+                            <li>🤔 <strong>Communication Breakdown:</strong> What alternative methods can you use to reach ground support?</li>
+                            <li>🤔 <strong>Time Pressure:</strong> How do you make a decision when every minute counts?</li>
+                        </ul>
+                        
+                        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>🎯 Learning Objective:</strong> Navigate conflicting medical advice and make decisions under uncertainty
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">Complex Scenario 3: Psychiatric Emergency</div>
+                        <p><strong>Situation:</strong> A passenger becomes increasingly agitated and paranoid, claiming the crew is trying to poison them. They refuse medical attention and are becoming physically aggressive toward other passengers. They mention they stopped taking their psychiatric medication. Flight is 6 hours from destination over ocean.</p>
+                        
+                        <p><strong>Critical Thinking Questions:</strong></p>
+                        <ul style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <li>🤔 <strong>De-escalation Strategy:</strong> What verbal and non-verbal techniques can calm this passenger?</li>
+                            <li>🤔 <strong>Safety Assessment:</strong> At what point does this become a security vs. medical issue?</li>
+                            <li>🤔 <strong>Restraint Considerations:</strong> What are the medical and legal implications of physical restraint?</li>
+                            <li>🤔 <strong>Medication Decision:</strong> Should you consider sedation? What are the risks?</li>
+                            <li>🤔 <strong>Diversion Analysis:</strong> How do you weigh passenger safety vs. operational considerations over ocean?</li>
+                        </ul>
+                        
+                        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>🎯 Learning Objective:</strong> Handle psychiatric emergencies while balancing medical, safety, and legal concerns
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">Complex Scenario 4: Infectious Disease Concern</div>
+                        <p><strong>Situation:</strong> A passenger develops high fever (104°F), severe cough with blood, and difficulty breathing. They mention recent travel to a region with known infectious disease outbreaks. Other passengers are becoming concerned about contagion. The sick passenger is requesting to use the lavatory frequently.</p>
+                        
+                        <p><strong>Critical Thinking Questions:</strong></p>
+                        <ul style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <li>🤔 <strong>Isolation Protocol:</strong> How do you isolate the passenger while providing care?</li>
+                            <li>🤔 <strong>Crew Protection:</strong> What PPE and precautions should crew take?</li>
+                            <li>🤔 <strong>Passenger Communication:</strong> How do you address other passengers' fears without causing panic?</li>
+                            <li>🤔 <strong>Contact Tracing:</strong> What information do you need to collect about passenger interactions?</li>
+                            <li>🤔 <strong>Ground Coordination:</strong> What agencies need to be notified before landing?</li>
+                        </ul>
+                        
+                        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>🎯 Learning Objective:</strong> Manage potential infectious disease while protecting crew and passengers
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card">
+                        <div class="scenario-title">Complex Scenario 5: Ethical Dilemma</div>
+                        <p><strong>Situation:</strong> An elderly passenger with terminal cancer is experiencing severe pain and difficulty breathing. Their family member shows you a "Do Not Resuscitate" order and asks you not to provide aggressive treatment. However, the passenger is conscious and asking for help. A doctor onboard wants to intubate and provide full resuscitation if needed.</p>
+                        
+                        <p><strong>Critical Thinking Questions:</strong></p>
+                        <ul style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <li>🤔 <strong>Legal Authority:</strong> What legal weight does a DNR have at 35,000 feet?</li>
+                            <li>🤔 <strong>Patient Autonomy:</strong> How do you determine the passenger's current wishes?</li>
+                            <li>🤔 <strong>Family Dynamics:</strong> How do you handle disagreement between patient and family?</li>
+                            <li>🤔 <strong>Medical Ethics:</strong> What are your obligations vs. the doctor's medical judgment?</li>
+                            <li>🤔 <strong>Documentation:</strong> How do you protect yourself and the airline legally?</li>
+                        </ul>
+                        
+                        <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>🎯 Learning Objective:</strong> Navigate complex ethical decisions involving end-of-life care
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Quiz -->
+                <div class="section" id="section6">
+                    <h2 class="section-title">📝 Advanced Knowledge Assessment</h2>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question">1. A passenger with chest pain has taken their prescribed nitroglycerin but symptoms persist. The onboard physician recommends aspirin, but the passenger mentions they're on warfarin (blood thinner). What's your best course of action?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Give aspirin immediately as chest pain takes priority</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, true)">Consult ground medical advisory before administering aspirin</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Refuse to give aspirin and only provide oxygen</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Ask the passenger to decide for themselves</div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question">2. During turbulence, a diabetic passenger becomes confused and aggressive. Their blood glucose reads 45 mg/dL (normal: 70-100). They're conscious but refusing oral glucose. What's the most appropriate immediate action?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Physically restrain them and force oral glucose</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Wait for them to become unconscious, then give IV dextrose</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, true)">Apply glucose gel to their gums while talking calmly</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Immediately request emergency landing</div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question">3. You're 2 hours from destination when a pregnant passenger (32 weeks) reports severe abdominal pain and vaginal bleeding. No medical professional is onboard. The captain asks for your diversion recommendation. What factors are MOST critical in your decision?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Passenger's preference and comfort level</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, true)">Severity of bleeding, vital signs, and nearest hospital with obstetric care</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Weather conditions at potential diversion airports</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Cost implications of diversion for the airline</div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question">4. An elderly passenger is found unconscious with a weak pulse (40 bpm) and blood pressure of 80/50. The AED analyzes "no shock advised." A nurse onboard suggests atropine from the EMK. What's your primary concern before administration?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Whether the nurse has proper credentials</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, true)">Confirming the nurse's identity, getting ground medical approval, and proper dosing</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Finding a second medical professional to confirm</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Checking if passenger has medical allergies</div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="quiz-container">
+                        <div class="quiz-question">5. Multiple passengers are experiencing nausea, vomiting, and diarrhea after the meal service. You suspect food poisoning. The captain is asking about continuing to destination (4 hours) vs. diversion (1 hour). What's the most critical factor in this decision?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Number of affected passengers</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Whether crew members are also affected</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, true)">Severity of dehydration and any passengers showing signs of shock</div>
+                            <div class="quiz-option" onclick="selectAnswer(this, false)">Availability of IV fluids in the medical kit</div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5" style="display: none;"></div>
+                    </div>
+                </div>
+                
+                <!-- Section 7: Summary -->
+                <div class="section" id="section7">
+                    <h2 class="section-title">📚 Lesson Summary</h2>
+                    
+                    <div style="background: #f7fafc; padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+                        <h3 style="color: #2d3748; margin-top: 0;">Key Takeaways:</h3>
+                        <ul style="font-size: 1.1rem; line-height: 1.8;">
+                            <li><strong>Stay Calm:</strong> Your composure directly affects passenger confidence and outcome</li>
+                            <li><strong>Follow Protocol:</strong> Systematic approach ensures nothing is missed</li>
+                            <li><strong>Communicate Clearly:</strong> Keep flight deck and ground support informed</li>
+                            <li><strong>Document Everything:</strong> Detailed records are crucial for follow-up care</li>
+                            <li><strong>Know Your Limits:</strong> When to seek medical professional help</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="emergency-card">
+                        <div class="emergency-title">
+                            🎯 Remember: ABC Priority
+                        </div>
+                        <p><strong>A</strong>irway - Ensure it's clear</p>
+                        <p><strong>B</strong>reathing - Check and assist if needed</p>
+                        <p><strong>C</strong>irculation - Check pulse, control bleeding</p>
+                    </div>
+                    
+                    <div style="background: #e6fffa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h3 style="color: #2c7a7b; margin-top: 0;">Next Steps:</h3>
+                        <p>✅ Review your airline's specific medical emergency procedures</p>
+                        <p>✅ Practice with medical equipment during training</p>
+                        <p>✅ Maintain current first aid/CPR certification</p>
+                        <p>✅ Study location of medical equipment on your aircraft type</p>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousSection()" disabled>← Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextSection()">Next →</button>
+                </div>
+            </div>
+    </div>
+    
+    <script>
+        let currentSection = 1;
+        const totalSections = 7;
+        let startTime = Date.now();
+        const lessonDuration = 60 * 60 * 1000; // 60 minutes in milliseconds
+        
+        // Timer functionality
+        function updateTimer() {
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, lessonDuration - elapsed);
+            const minutes = Math.floor(remaining / 60000);
+            const seconds = Math.floor((remaining % 60000) / 1000);
+            
+            document.getElementById('timer').innerHTML = 
+                `⏱️ Time Remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (remaining > 0) {
+                setTimeout(updateTimer, 1000);
+            } else {
+                document.getElementById('timer').innerHTML = '⏱️ Lesson Complete!';
+                document.getElementById('timer').style.background = '#fed7d7';
+                document.getElementById('timer').style.color = '#c53030';
+            }
+        }
+        
+        updateTimer();
+        
+        // Navigation functions
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function showSection(sectionNum) {
+            // Hide all sections
+            for (let i = 1; i <= totalSections; i++) {
+                document.getElementById(`section${i}`).classList.remove('active');
+            }
+            
+            // Show current section
+            document.getElementById(`section${sectionNum}`).classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = sectionNum === 1;
+            document.getElementById('nextBtn').disabled = sectionNum === totalSections;
+            
+            if (sectionNum === totalSections) {
+                document.getElementById('nextBtn').textContent = 'Lesson Complete ✓';
+                document.getElementById('nextBtn').style.background = '#38a169';
+            } else {
+                document.getElementById('nextBtn').textContent = 'Next →';
+                document.getElementById('nextBtn').style.background = '#667eea';
+            }
+            
+            // Update top navigation
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach((tab, index) => {
+                tab.classList.toggle('active', index + 1 === sectionNum);
+            });
+            
+            updateProgress();
+        }
+        
+        function nextSection() {
+            if (currentSection < totalSections) {
+                currentSection++;
+                showSection(currentSection);
+            }
+        }
+        
+        function previousSection() {
+            if (currentSection > 1) {
+                currentSection--;
+                showSection(currentSection);
+            }
+        }
+        
+        function goToSection(sectionNum) {
+            currentSection = sectionNum;
+            showSection(currentSection);
+        }
+        
+        // Quiz functionality
+        function selectAnswer(element, isCorrect) {
+            const container = element.parentElement.parentElement;
+            const options = container.querySelectorAll('.quiz-option');
+            const feedback = container.querySelector('.quiz-feedback');
+            
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Mark selected answer
+            element.classList.add('selected');
+            
+            // Show correct/incorrect styling
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.textContent = '✅ Correct! Well done.';
+                feedback.className = 'quiz-feedback correct';
+            } else {
+                element.classList.add('incorrect');
+                // Find and highlight correct answer
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+                feedback.textContent = '❌ Incorrect. The correct answer is highlighted above.';
+                feedback.className = 'quiz-feedback incorrect';
+            }
+            
+            feedback.style.display = 'block';
+        }
+        
+        // Checklist functionality
+        document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const item = this.parentElement;
+                if (this.checked) {
+                    item.style.background = 'rgba(104, 211, 145, 0.2)';
+                    item.style.textDecoration = 'line-through';
+                } else {
+                    item.style.background = '';
+                    item.style.textDecoration = 'none';
+                }
+            });
+        });
+        
+        // Initialize
+        showSection(1);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'988d12c7801e265d',t:'MTc1OTUwMTE1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
